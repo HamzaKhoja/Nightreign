@@ -348,7 +348,7 @@
     // --- Application State ---
     let currentSelections = { boss: 'Gladius', earth: 'None' };
     let userChurches = [], userRises = [], seedData = [], currentPossible = [];
-
+  
     // --- DOM Elements ---
     const container        = document.querySelector('.container');
     const bossSelect       = document.getElementById('bossSelect');
@@ -362,6 +362,7 @@
     const seedDisplay      = document.getElementById('seedDisplay');
     const viewSeedButton   = document.getElementById('viewSeedButton');
     const seedImage        = document.getElementById('seedImage');
+    const mapOverlay       = document.getElementById('mapOverlay');
 
     // Map from boss to folder name
     const bossFolders = {
@@ -376,7 +377,8 @@
     };
 
     // --- MAP LOCATION DATA ---
-    const mapLocations = [
+    // Default Map
+    const mapLocationsNone = [
         { id: '1_Northeast of Saintsbridge',   x: 53.12, y: 23.44 },
         { id: '2_West of Warmasters Shack',     x: 22.83, y: 36.46 },
         { id: '3_Below Summonwater Hawk',       x: 65.75, y: 37.50 },
@@ -390,7 +392,66 @@
         { id: '11_Southeast of Lake',           x: 57.29, y: 80.73 }
     ];
 
-    // --- Load seeds.csv dynamically (skip empty lines) ---
+    // Mountains
+    const mapLocationsMountains = [
+        { id: '1_Northeast of Saintsbridge',   x: 53.12, y: 23.44 },
+        { id: '3_Below Summonwater Hawk',       x: 65.75, y: 37.50 },
+        { id: '4_Third Church',                 x: 75.12, y: 36.46 },
+        { id: '6_Stormhill South of Gate',      x: 23.79, y: 57.29 },
+        { id: '7_Minor Erdtree',                x: 76.73, y: 59.38 },
+        { id: '8_East of Cavalry Bridge',       x: 55.21, y: 64.58 },
+        { id: '9_Far Southwest',                x: 23.79, y: 71.88 },
+        { id: '10_Lake',                        x: 45.83, y: 70.83 },
+        { id: '11_Southeast of Lake',           x: 57.29, y: 80.73 }
+    ];
+
+    // Crater
+    const mapLocationsCrater = [
+        { id: '2_West of Warmasters Shack',     x: 22.83, y: 36.46 },
+        { id: '3_Below Summonwater Hawk',       x: 65.75, y: 37.50 },
+        { id: '4_Third Church',                 x: 75.12, y: 36.46 },
+        { id: '6_Stormhill South of Gate',      x: 23.79, y: 57.29 },
+        { id: '7_Minor Erdtree',                x: 76.73, y: 59.38 },
+        { id: '8_East of Cavalry Bridge',       x: 55.21, y: 64.58 },
+        { id: '9_Far Southwest',                x: 23.79, y: 71.88 },
+        { id: '10_Lake',                        x: 45.83, y: 70.83 },
+        { id: '11_Southeast of Lake',           x: 57.29, y: 80.73 }
+    ];
+
+    // Rotted Woods
+    const mapLocationsWoods = [
+        { id: '1_Northeast of Saintsbridge',   x: 53.12, y: 23.44 },
+        { id: '2_West of Warmasters Shack',     x: 22.83, y: 36.46 },
+        { id: '3_Below Summonwater Hawk',       x: 65.75, y: 37.50 },
+        { id: '4_Third Church',                 x: 75.12, y: 36.46 },
+        { id: '5_Above Stormhill Tunnel Entrance', x: 36.46, y: 40.62 },
+        { id: '6_Stormhill South of Gate',      x: 23.79, y: 57.29 },
+        { id: '9_Far Southwest',                x: 23.79, y: 71.88 },
+        { id: '10_Lake',                        x: 45.83, y: 70.83 },
+    ];
+    // Noklateo
+    const mapLocationsNoklateo = [
+        { id: '1_Northeast of Saintsbridge',   x: 53.12, y: 23.44 },
+        { id: '2_West of Warmasters Shack',     x: 22.83, y: 36.46 },
+        { id: '3_Below Summonwater Hawk',       x: 65.75, y: 37.50 },
+        { id: '4_Third Church',                 x: 75.12, y: 36.46 },
+        { id: '5_Above Stormhill Tunnel Entrance', x: 36.46, y: 40.62 },
+        { id: '7_Minor Erdtree',                x: 76.73, y: 59.38 },
+        { id: '8_East of Cavalry Bridge',       x: 55.21, y: 64.58 },
+        { id: '11_Southeast of Lake',           x: 57.29, y: 80.73 }
+    ];
+
+    function getCurrentMapLocations() {
+        switch (currentSelections.earth) {
+            case 'Mountains':   return mapLocationsMountains;
+            case 'Crater':      return mapLocationsCrater;
+            case 'Rotted Woods':return mapLocationsWoods;
+            case 'Noklateo':    return mapLocationsNoklateo;
+            default:            return mapLocationsNone;
+        }
+    }
+
+    // --- Load seeds.csv dynamically ---
     Papa.parse('seeds.csv', {
         download: true,
         header: true,
@@ -400,10 +461,9 @@
             .filter(r => r.ID && r.churchLocations && r.riseLocations)
             .map(r => ({
             id: r.ID.trim(),
-            churchLocations: r.churchLocations.split(';').map(s => s.trim()).filter(s => s),
-            riseLocations:   r.riseLocations.split(';').map(s => s.trim()).filter(s => s)
+            churchLocations: r.churchLocations.split(';').map(s => s.trim()),
+            riseLocations:   r.riseLocations.split(';').map(s => s.trim())
             }));
-        console.log('Loaded seeds:', seedData.length);
         }
     });
 
@@ -414,130 +474,99 @@
         return a.every((v,i) => v === b[i]);
     }
 
-    // --- Update possible seeds display with boss + earth filtering ---
+    // --- Update possible seeds with boss+earth filter ---
     function updatePossibleSeeds() {
-        const bossNames = Object.keys(bossFolders);
-        const bIdx = bossNames.indexOf(currentSelections.boss);
-        if (bIdx < 0) { currentPossible = []; return; }
-
-        currentPossible = seedData.filter(seed => {
-        const idNum = parseInt(seed.id, 10);
-        // restrict to this boss
-        const start = bIdx * 40, end = start + 40;
-        if (idNum < start || idNum >= end) return false;
-        // restrict to this shifting earth
-        const mod = idNum - start;
+        const bosses = Object.keys(bossFolders);
+        const bi = bosses.indexOf(currentSelections.boss);
+        const start = bi * 40, end = start + 40;
+        currentPossible = seedData.filter(s => {
+        const n = parseInt(s.id,10);
+        if (n<start||n>=end) return false;
+        const m = n - start;
         switch (currentSelections.earth) {
-            case 'None':
-            if (mod < 0 || mod >= 20) return false;
-            break;
-            case 'Mountains':
-            if (mod < 20 || mod >= 25) return false;
-            break;
-            case 'Crater':
-            if (mod < 25 || mod >= 30) return false;
-            break;
-            case 'Rotted Woods':
-            if (mod < 30 || mod >= 35) return false;
-            break;
-            case 'Noklateo':
-            if (mod < 35 || mod >= 40) return false;
-            break;
+            case 'None':        if (m>=20) return false; break;
+            case 'Mountains':   if (m<20||m>=25) return false; break;
+            case 'Crater':      if (m<25||m>=30) return false; break;
+            case 'Rotted Woods':if (m<30||m>=35) return false; break;
+            case 'Noklateo':    if (m<35||m>=40) return false; break;
         }
-        // match user selections
-        return userChurches.every(c => seed.churchLocations.includes(c)) &&
-                userRises.every(r => seed.riseLocations.includes(r));
+        return userChurches.every(c=>s.churchLocations.includes(c))
+            && userRises.every(r=>s.riseLocations.includes(r));
         });
 
         seedDisplay.textContent = `${currentPossible.length} possible seed${currentPossible.length===1?'':'s'}`;
         seedDisplay.classList.remove('hidden');
-        viewSeedButton.classList.toggle('hidden', currentPossible.length !== 1);
+        viewSeedButton.classList.toggle('hidden', currentPossible.length!==1);
         seedImage.classList.add('hidden');
     }
 
-    // --- Handle marker clicks (left = church, right = rise) ---
+    // --- Marker click handler ---
     function handleMarkerClick(e) {
         e.preventDefault();
         const id = e.currentTarget.dataset.locationId;
         const isC = userChurches.includes(id), isR = userRises.includes(id);
-
-        if (e.type === 'click') {
+        if (e.type==='click') {
         if (isC) { userChurches = userChurches.filter(x=>x!==id); e.currentTarget.classList.remove('church'); }
-        else {
-            if (isR) { userRises = userRises.filter(x=>x!==id); e.currentTarget.classList.remove('rise'); }
-            userChurches.push(id); e.currentTarget.classList.add('church');
-        }
+        else      { if(isR){userRises=userRises.filter(x=>x!==id);e.currentTarget.classList.remove('rise');}
+                    userChurches.push(id); e.currentTarget.classList.add('church'); }
         } else {
         if (isR) { userRises = userRises.filter(x=>x!==id); e.currentTarget.classList.remove('rise'); }
-        else {
-            if (isC) { userChurches = userChurches.filter(x=>x!==id); e.currentTarget.classList.remove('church'); }
-            userRises.push(id); e.currentTarget.classList.add('rise');
+        else      { if(isC){userChurches=userChurches.filter(x=>x!==id);e.currentTarget.classList.remove('church');}
+                    userRises.push(id); e.currentTarget.classList.add('rise'); }
         }
-        }
-
         updatePossibleSeeds();
     }
 
-    // --- Create markers overlay ---
+    // --- Create markers based on current earth ---
     function createMarkers() {
-        const overlay = document.getElementById('mapOverlay');
-        overlay.innerHTML = '';
-        mapLocations.forEach(loc => {
+        mapOverlay.innerHTML = '';
+        getCurrentMapLocations().forEach(loc => {
         const m = document.createElement('div');
         m.className = 'map-marker';
         m.dataset.locationId = loc.id;
-        m.style.left = loc.x + '%';
-        m.style.top  = loc.y + '%';
+        m.style.left = loc.x + '%'; m.style.top = loc.y + '%';
         m.addEventListener('click', handleMarkerClick);
         m.addEventListener('contextmenu', handleMarkerClick);
-        overlay.appendChild(m);
+        mapOverlay.appendChild(m);
         });
     }
 
     // --- Reset markers & UI ---
     function resetMarkers() {
-        userChurches = []; userRises = [];
+        userChurches=[]; userRises=[];
         document.querySelectorAll('.map-marker').forEach(m=>m.classList.remove('church','rise'));
         seedDisplay.classList.add('hidden');
         viewSeedButton.classList.add('hidden');
         seedImage.classList.add('hidden');
     }
 
-    // --- Display map and initialize markers ---
+    // --- Display map + markers ---
     function displayMap(earth) {
         errorMessage.classList.add('hidden');
-        mapImage.src = '';
-        imageWrapper.classList.add('hidden');
-        resetMarkersBtn.classList.add('hidden');
-        seedDisplay.classList.add('hidden');
-
-        const loader = new Image();
-        const path = `Maps/${encodeURIComponent(earth)}.png`;
-        loader.onload = () => {
-        mapImage.src = path;
-        imageWrapper.classList.remove('hidden');
+        mapImage.src=''; imageWrapper.classList.add('hidden');
+        resetMarkersBtn.classList.add('hidden'); seedDisplay.classList.add('hidden');
+        const loader=new Image(), path=`Maps/${encodeURIComponent(earth)}.png`;
+        loader.onload = ()=> {
+        mapImage.src=path; imageWrapper.classList.remove('hidden');
         resetMarkersBtn.classList.remove('hidden');
-        createMarkers();
-        resetMarkers();
+        createMarkers(); resetMarkers();
         };
-        loader.onerror = () => {
-        errorMessage.textContent = `Map not found: ${path}`;
+        loader.onerror = ()=> {
+        errorMessage.textContent=`Map not found: ${path}`;
         errorMessage.classList.remove('hidden');
         };
         loader.src = path;
     }
 
-    // --- Confirm selections and show map ---
+    // --- UI flow functions ---
     function confirmSelections() {
-        currentSelections.boss  = bossSelect.value;
+        currentSelections.boss = bossSelect.value;
         currentSelections.earth = earthSelect.value;
         selectionPanel.classList.add('hidden');
         backButton.classList.remove('hidden');
-        container.classList.add('fullscreen-map');
+        // container.classList.add('fullscreen-map');
         displayMap(currentSelections.earth);
     }
-
-    // --- Show selection panel again ---
     function showSelections() {
         selectionPanel.classList.remove('hidden');
         backButton.classList.add('hidden');
@@ -546,31 +575,21 @@
         errorMessage.classList.add('hidden');
         seedDisplay.classList.add('hidden');
         container.classList.remove('fullscreen-map');
-        bossSelect.value  = currentSelections.boss;
-        earthSelect.value = currentSelections.earth;
+        bossSelect.value=currentSelections.boss;
+        earthSelect.value=currentSelections.earth;
         resetMarkers();
     }
 
-    // --- View Seed button logic ---
+    // --- View Seed button ---
     viewSeedButton.addEventListener('click', () => {
-        if (currentPossible.length !== 1) return;
-        const seedId = currentPossible[0].id.padStart(3,'0');
-        const folder = bossFolders[currentSelections.boss];
-        seedImage.src = `Bosses/${folder}/${seedId}.jpg`;
+        if (currentPossible.length!==1) return;
+        const sid=currentPossible[0].id.padStart(3,'0'),
+            fld=bossFolders[currentSelections.boss];
+        console.log(`Seed ${sid}`);
+        seedImage.src=`Bosses/${fld}/${sid}.jpg`;
         seedImage.classList.remove('hidden');
     });
 
-    // --- Fullscreen toggle / Escape key ---
-    document.getElementById('mapContainer').addEventListener('dblclick', e => {
-        if (['mapImage','imageWrapper','mapOverlay'].includes(e.target.id)) {
-        container.classList.toggle('fullscreen-map');
-        }
-    });
-    document.addEventListener('keydown', e => {
-        if (e.key === 'Escape' && container.classList.contains('fullscreen-map')) {
-        container.classList.remove('fullscreen-map');
-        }
-    });
     </script>
 
 
