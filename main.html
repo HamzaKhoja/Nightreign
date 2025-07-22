@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feudal Selections & Map</title>
+    <link href="https://fonts.googleapis.com/css2?family=Almendra:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Almendra', serif;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .selection-panel {
+            background: #2d2d2d;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border: 2px solid #4a5568;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #68d391;
+        }
+
+        select {
+            font-family: 'Almendra', serif;
+            font-size: 16px;
+            padding: 10px 15px;
+            border: 2px solid #4a5568;
+            border-radius: 5px;
+            background-color: #2d2d2d;
+            color: #e0e0e0;
+            cursor: pointer;
+            min-width: 200px;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #68d391;
+        }
+
+        button {
+            font-family: 'Almendra', serif;
+            font-size: 16px;
+            font-weight: 700;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #68d391, #4fd1c7);
+            color: #1a1a1a;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #4fd1c7, #68d391);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(104, 211, 145, 0.3);
+        }
+
+        .map-container {
+            flex: 1;
+            width: 100%;
+            display: flex;
+            flex-direction: column; /* Changed to column to stack elements vertically */
+            justify-content: center;
+            align-items: center;
+            min-height: 400px; /* Ensures minimum height for the map area */
+            position: relative;
+        }
+
+        .map-image {
+            max-width: 80%; /* Default scaled-down size */
+            max-height: 80%;
+            width: auto;
+            height: auto;
+            object-fit: contain; /* Ensures the whole image is visible without cropping */
+            border-radius: 8px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .error-message {
+            color: #fc8181;
+            font-size: 18px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 8px 16px;
+            font-size: 14px;
+            background: rgba(45, 45, 45, 0.9);
+            border: 1px solid #4a5568;
+            z-index: 10; /* Ensure button is above map */
+        }
+
+        .back-button:hover {
+            background: rgba(45, 45, 45, 1);
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Fullscreen map mode */
+        .fullscreen-map {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #1a1a1a;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .fullscreen-map .map-image {
+            max-width: 100%; /* Override to fill screen when in fullscreen mode */
+            max-height: 100%;
+            width: auto; /* Ensure auto for natural aspect ratio */
+            height: auto;
+            object-fit: contain;
+            border-radius: 0; /* No border-radius in fullscreen */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="selectionPanel" class="selection-panel">
+            <div class="form-group">
+                <label for="bossSelect">Choose Your Foe:</label>
+                <select id="bossSelect">
+                    <option value="Gladius">Gladius</option>
+                    <option value="Adel">Adel</option>
+                    <option value="Gnoster">Gnoster</option>
+                    <option value="Maris">Maris</option>
+                    <option value="Libra">Libra</option>
+                    <option value="Fulghor">Fulghor</option>
+                    <option value="Caligo">Caligo</option>
+                    <option value="Heolstor">Heolstor</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="earthSelect">The Shifting Earth:</label>
+                <select id="earthSelect">
+                    <option value="None">None</option>
+                    <option value="Mountains">Mountains</option>
+                    <option value="Crater">Crater</option>
+                    <option value="Rotted Woods">Rotted Woods</option>
+                    <option value="Noklateo">Noklateo</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <button onclick="confirmSelections()">Confirm Fate</button>
+            </div>
+        </div>
+
+        <div id="mapContainer" class="map-container">
+            <button id="backButton" class="back-button hidden" onclick="showSelections()">← Change Selection</button>
+            <img id="mapImage" class="map-image hidden" alt="Map">
+            <div id="errorMessage" class="error-message hidden"></div>
+        </div>
+    </div>
+
+    <script>
+        let currentSelections = {
+            boss: 'Gladius',
+            earth: 'None'
+        };
+
+        function confirmSelections() {
+            const boss = document.getElementById('bossSelect').value;
+            const earth = document.getElementById('earthSelect').value;
+
+            currentSelections.boss = boss;
+            currentSelections.earth = earth;
+
+            console.log(`Boss Selected: ${boss}`);
+            console.log(`Shifting Earth Selected: ${earth}`);
+
+            // Hide selection panel
+            document.getElementById('selectionPanel').classList.add('hidden');
+            
+            // Show back button
+            document.getElementById('backButton').classList.remove('hidden');
+            
+            // Display the map
+            displayMap(earth);
+
+            // === NEW: Make the container fullscreen immediately ===
+            const container = document.querySelector('.container');
+            container.classList.add('fullscreen-map');
+            // Ensure image styles are set for fullscreen
+            const mapImage = document.getElementById('mapImage');
+            mapImage.style.maxWidth = '100%'; 
+            mapImage.style.maxHeight = '100%';
+        }
+
+        function displayMap(shiftingEarthName) {
+            const mapImage = document.getElementById('mapImage');
+            const errorMessage = document.getElementById('errorMessage');
+            const mapPath = `Maps/${shiftingEarthName}.png`;
+
+            // Hide error message
+            errorMessage.classList.add('hidden');
+            
+            // Clear current image src to prevent flicker on new load
+            mapImage.src = ''; 
+            mapImage.classList.add('hidden'); // Hide until new image loads
+
+            const testImage = new Image();
+            
+            testImage.onload = function() {
+                // Image loaded successfully
+                mapImage.src = mapPath;
+                mapImage.classList.remove('hidden');
+                
+                console.log(`Map loaded: ${shiftingEarthName} (${this.naturalWidth}x${this.naturalHeight})`);
+            };
+            
+            testImage.onerror = function() {
+                // Image failed to load
+                console.error(`Failed to load map: ${mapPath}`);
+                mapImage.classList.add('hidden');
+                errorMessage.textContent = `Map not found: ${shiftingEarthName}`;
+                errorMessage.classList.remove('hidden');
+            };
+            
+            // Start loading the image
+            testImage.src = mapPath;
+        }
+
+        function showSelections() {
+            // Show selection panel
+            document.getElementById('selectionPanel').classList.remove('hidden');
+            
+            // Hide map and back button
+            document.getElementById('mapImage').classList.add('hidden');
+            document.getElementById('backButton').classList.add('hidden');
+            document.getElementById('errorMessage').classList.add('hidden');
+            
+            // Restore selections
+            document.getElementById('bossSelect').value = currentSelections.boss;
+            document.getElementById('earthSelect').value = currentSelections.earth;
+
+            // === NEW: Exit fullscreen when going back to selections ===
+            const container = document.querySelector('.container');
+            container.classList.remove('fullscreen-map');
+            // Reset image sizing to default (non-fullscreen)
+            const mapImage = document.getElementById('mapImage');
+            mapImage.style.maxWidth = '80%'; 
+            mapImage.style.maxHeight = '80%';
+        }
+
+        // Double-click map to toggle fullscreen manually (still works)
+        document.getElementById('mapImage').addEventListener('dblclick', function() {
+            const container = document.querySelector('.container');
+            const mapImage = this; // Reference to the image itself
+            
+            if (container.classList.contains('fullscreen-map')) {
+                // Exit fullscreen
+                container.classList.remove('fullscreen-map');
+                // Re-apply original default sizing
+                mapImage.style.maxWidth = '80%';
+                mapImage.style.maxHeight = '80%';
+            } else {
+                // Enter fullscreen
+                container.classList.add('fullscreen-map');
+                // Temporarily set max-width/height to 100% to fill fullscreen
+                mapImage.style.maxWidth = '100%';
+                mapImage.style.maxHeight = '100%';
+            }
+        });
+
+        // Keyboard shortcut: Escape to exit fullscreen (still works)
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const container = document.querySelector('.container');
+                const mapImage = document.getElementById('mapImage');
+                if (container.classList.contains('fullscreen-map')) {
+                    container.classList.remove('fullscreen-map');
+                    // Re-apply original default sizing when exiting fullscreen
+                    mapImage.style.maxWidth = '80%';
+                    mapImage.style.maxHeight = '80%';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
