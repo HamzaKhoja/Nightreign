@@ -305,3 +305,27 @@ button:hover {
 .boss-option span {
   font-size: 16px !important;
 }
+
+/* --- structure overlay icons --- */
+.overlay-icon {
+  position: absolute;
+  width: 48px;           /* adjust to taste */
+  height: auto;
+  transform: translate(-50%, -50%);  /* center over the point */
+  pointer-events: none;  /* clicks pass through */
+  z-index: 60;
+}
+
+/* --- labels under each icon --- */
+.overlay-label {
+  position: absolute;
+  transform: translate(-50%, 50%);   /* center on x, drop below y */
+  white-space: nowrap;
+  font-size: 14px;
+  color: #e0e0e0;
+  text-shadow: 0 0 2px rgba(0,0,0,0.7);
+  pointer-events: none;
+  z-index: 60;
+  text-shadow: 2px 0 #000000, -2px 0 #000000, 0 2px #000000, 0 -2px #000000,
+             1px 1px #000000, -1px -1px #000000, 1px -1px #000000, -1px 1px #000000;
+}
