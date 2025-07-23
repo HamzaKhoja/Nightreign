@@ -1,48 +1,48 @@
 Area Type,Area Name,Relative Position,X Coord,Y Coord
-Castle,Castle,"46.88, 54.04",720,830
-Major Base,South Lake,"39.71, 78.13",610,1200
-Major Base,Groveside,"27.34, 67.71",420,1040
-Major Base,Gatefront,"30.6, 55.99",470,860
-Major Base,Stormhill North of Gate,"27.67, 45.57",425,700
-Major Base,Alexander Spot,"41.67, 31.25",640,480
-Major Base,Northwest Stormhill,"23.44, 28.65",360,440
-Major Base,Northeast Stormhill,"39.71, 18.23",610,280
-Major Base,South Mistwood,"74.87, 74.22",1150,1140
-Major Base,Waypoint Ruins,"61.85, 70.31",950,1080
-Major Base,Minor Erdtree,"75.52, 62.5",1160,960
-Major Base,West Mistwood,"63.8, 58.59",980,900
-Major Base,Northwest Mistwood,"68.36, 47.53",1050,730
-Major Base,Artist's Shack,"59.9, 42.32",920,650
-Major Base,Northeast Mistwood,"78.13, 42.32",1200,650
-Major Base,Summonwater Approach,"63.8, 29.95",980,460
-Major Base,Summonwater,"74.87, 21.48",1150,330
-Minor Base,Northeast of Saintsbridge,"53.13, 23.44",816,360
-Minor Base,West of Warmaster's Shack,"20.83, 36.46",320,560
-Minor Base,Below Summonwater Hawk,"68.68, 37.43",1055,575
-Minor Base,Third Church,"78.13, 36.46",1200,560
-Minor Base,Above Stormhill Tunnel Entrance,"36.46, 40.69",560,625
+Castle,Castle,"50, 50",720,830
+Major Base,South Lake,"41, 76",610,1200
+Major Base,Groveside,"30, 64",420,1040
+Major Base,Gatefront,"34, 52",470,860
+Major Base,Stormhill North of Gate,"31, 43",425,700
+Major Base,Alexander Spot,"43, 27",640,480
+Major Base,Northwest Stormhill,"26.5, 25",360,440
+Major Base,Northeast Stormhill,"41, 15",610,280
+Major Base,South Mistwood,"73, 71",1150,1140
+Major Base,Waypoint Ruins,"60, 67",950,1080
+Major Base,Minor Erdtree,"73, 59",1160,960
+Major Base,West Mistwood,"62, 56",980,900
+Major Base,Northwest Mistwood,"65, 43",1050,730
+Major Base,Artist's Shack,"58, 39",920,650
+Major Base,Northeast Mistwood,"74, 40",1200,650
+Major Base,Summonwater Approach,"61, 26",980,460
+Major Base,Summonwater,"69, 19",1150,330
+Minor Base,Northeast of Saintsbridge,"53.13, 19",816,360
+Minor Base,West of Warmaster's Shack,"24, 31",320,560
+Minor Base,Below Summonwater Hawk,"67, 32",1055,575
+Minor Base,Third Church,"75, 32",1200,560
+Minor Base,Above Stormhill Tunnel Entrance,"37, 35.5",560,625
 Minor Base,Stormhill South of Gate,"19.86, 57.29",305,880
 Minor Base,Minor Erdtree,"80.73, 59.24",1240,910
-Minor Base,East of Cavalry Bridge,"55.34, 64.45",850,990
-Minor Base,Far Southwest,"19.53, 71.61",300,1100
-Minor Base,Lake,"45.83, 70.83",704,1088
-Minor Base,Southeast of Lake,"57.29, 80.73",880,1240
-Evergaol,Northwest of Lake,"34.51, 63.15",530,970
-Evergaol,Murkwater Terminus,"44.6, 38.41",685,590
-Evergaol,Stormhill,"16.93, 31.9",260,490
-Evergaol,Highroad,"48.18, 19.53",740,300
-Evergaol,East of Lake,"61.85, 76.82",950,1180
-Evergaol,Mistwood,"79.1, 48.83",1215,750
-Evergaol,Northeast Tunnel Entrance,"63.15, 36.46",970,560
-Arena Boss,Castle Basement,"46.88, 58.59",720,900
-Field Boss,Castle Rooftop,"46.88, 49.48",720,760
-Field Boss,Far Southwest of Lake,"30.6, 81.38",470,1250
-Field Boss,Lake,"43.62, 72.27",670,1110
-Field Boss,North of Stormhill Tunnel Entrance,"31.9, 37.11",490,570
-Field Boss,North of Murkwater Terminus,"46.88, 36.46",720,560
-Field Boss,Stormhill Spectral Hawk,"33.85, 23.76",520,365
-Field Boss,Northwest Stormhill Cliffside,"29.3, 18.88",450,290
-Field Boss,Mistwood Spectral Hawk,"69.99, 76.82",1075,1180
-Field Boss,North Mistwood,"76.5, 50.46",1175,775
-Field Boss,East of Murkwater Terminus,"55.34, 37.76",850,580
-Field Boss,Northwest of Summonwater,"65.1, 21.48",1000,330
+Minor Base,East of Cavalry Bridge,"55, 60",850,990
+Minor Base,Far Southwest,"24, 68",300,1100
+Minor Base,Lake,"45.83, 64",704,1088
+Minor Base,Southeast of Lake,"56, 76",880,1240
+Evergaol,Northwest of Lake,"36, 60",530,970
+Evergaol,Murkwater Terminus,"44.5, 36",685,590
+Evergaol,Stormhill,"20, 30",260,490
+Evergaol,Highroad,"48.18, 17",740,300
+Evergaol,East of Lake,"61, 74",950,1180
+Evergaol,Mistwood,"77, 46",1215,750
+Evergaol,Northeast Tunnel Entrance,"62, 34",970,560
+Arena Boss,Castle Basement,"46, 53.5",720,900
+Field Boss,Castle Rooftop,"46, 46.5",720,760
+Field Boss,Far Southwest of Lake,"34, 78",470,1250
+Field Boss,Lake_Boss,"43, 69",670,1110
+Field Boss,North of Stormhill Tunnel Entrance,"34, 34",490,570
+Field Boss,North of Murkwater Terminus,"48, 34",720,560
+Field Boss,Stormhill Spectral Hawk,"33.85, 22",520,365
+Field Boss,Northwest Stormhill Cliffside,"29.3, 17",450,290
+Field Boss,Mistwood Spectral Hawk,"67, 75",1075,1180
+Field Boss,North Mistwood,"73, 49",1175,775
+Field Boss,East of Murkwater Terminus,"55.34, 35",850,580
+Field Boss,Northwest of Summonwater,"62, 20",1000,330

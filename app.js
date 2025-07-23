@@ -412,16 +412,16 @@ document.addEventListener('DOMContentLoaded', () => {
             for (let i = 2; i < rows.length; i++) {
                 const row = rows[i],
                     id = row[0].trim();
-                    seedStructures[id] = cols.map(c => {
-                        const raw = row[c.col].trim();
-                        const [structureType='', enemyType=''] = raw.split(' - ').map(s => s.trim());
-                        return {
-                            areaType:      c.areaType,
-                            areaName:      c.areaName,
-                            structureType,
-                            enemyType
-                        };
-                    });
+                seedStructures[id] = cols.map(c => {
+                    const raw = row[c.col].trim();
+                    const [structureType = '', enemyType = ''] = raw.split(' - ').map(s => s.trim());
+                    return {
+                        areaType: c.areaType,
+                        areaName: c.areaName,
+                        structureType,
+                        enemyType
+                    };
+                });
 
             }
         }
@@ -495,75 +495,86 @@ document.addEventListener('DOMContentLoaded', () => {
             .forEach(e => e.remove());
     }
 
-    // --- Draw structure icons when one seed remains ---
 function renderSeedMap(seedID) {
-  // clear old icons & labels
-  document.querySelectorAll('.overlay-icon, .overlay-label')
-          .forEach(e => e.remove());
+        // 1) clear any old icons & labels
+        document.querySelectorAll('.overlay-icon, .overlay-label')
+            .forEach(el => el.remove());
 
-  console.log(`🛠️  renderSeedMap for seed ${seedID}`);
-  const list = seedStructures[seedID] || [];
-  console.log('  structures for this seed:', list);
+        const list = seedStructures[seedID] || [];
+        list.forEach(({
+            areaType,
+            areaName,
+            structureType,
+            enemyType
+        }) => {
 
-  list.forEach(({ areaType, areaName, structureType, enemyType }, idx) => {
-    console.log(`  → entry[${idx}]`, { areaType, areaName, structureType, enemyType });
+            // 3) find the coords for this area
+            const meta = locationMeta.find(m => m.areaName === areaName);
+            if (!meta) return;
 
-    const meta = locationMeta.find(m => m.areaName === areaName);
-    if (!meta) {
-      console.warn(`    no coords for areaName="${areaName}"`);
-      return;
+            // 4) pick the correct icon file
+            let iconFile;
+            // IMPORTANT: If 'Small Camp' should truly skip icon creation, keep this line:
+            if (structureType === 'Small Camp') return; // skip Small Camp icons
+
+            if (areaType === 'Field Boss') {
+                const cls = fieldBosses[structureType] || 'Weak';
+                iconFile = cls === 'Strong' ?
+                    'Major Field Boss.png' :
+                    'Minor Field Boss.png';
+            } else if (areaType === 'Evergaol') { // Renamed from 'Evergaol' to 'Gaol' in CSS
+                const cls = evergaolBosses[structureType] || 'Weak';
+                iconFile = cls === 'Strong' ?
+                    'Strong Evergaol.png' :
+                    'Evergaol.png';
+            } else {
+                iconFile = `${structureType}.png`;
+            }
+
+            // 5) place the icon
+            const icn = document.createElement('img');
+            icn.src = `Icons/Locations/${iconFile}`;
+            icn.className = 'overlay-icon'; // Base class
+
+            // --- ADD THIS LINE: Add a specific class based on structureType ---
+            // Normalize structureType to be a valid CSS class name (e.g., "Small Camp" -> "small-camp")
+            const normalizedStructureType = structureType.toLowerCase().replace(/\s/g, '-');
+            if (areaType === 'Field Boss' || areaType === 'Evergaol') {
+                icn.classList.add(`icon-${areaType.toLowerCase().replace(/\s/g, '-')}`); // Add a common boss class  
+            }
+            else {
+                icn.classList.add(`icon-${normalizedStructureType}`); // Add specific class
+            }
+
+            icn.style.left = `${meta.xPct}%`;
+            icn.style.top = `${meta.yPct}%`;
+            // if the image 404s, quietly remove it
+            icn.onerror = () => icn.remove();
+            mapOverlay.appendChild(icn);
+
+            // 6) place the label
+            // --- MODIFIED LINE: Apply the new universal labeling rule ---
+            let labelText = enemyType || structureType;
+
+            if (structureType.includes('Church') && !structureType.includes('Great Church')) { // Check if structureType contains "Church"
+                labelText = ''; // Clear labelText to prevent label creation
+            }
+
+            if (structureType.includes('Township')){
+                labelText = ''; // Clear labelText to prevent label creation
+            }
+
+            if (labelText) {
+                const lbl = document.createElement('div');
+                lbl.className = 'overlay-label'; // Base class
+                lbl.style.left = `${meta.xPct}%`;
+                // drop it slightly below the icon
+                lbl.style.top = `${meta.yPct + 4}%`;
+                lbl.textContent = labelText;
+                mapOverlay.appendChild(lbl);
+            }
+        });
     }
-    console.log(`    coords:`, meta);
-
-    // pick correct icon file
-    let iconFile, classification;
-    if (areaType === 'Field Boss') {
-      classification = fieldBosses[structureType] || 'Weak';
-      iconFile       = classification === 'Strong'
-                     ? 'Major Field Boss.png'
-                     : 'Minor Field Boss.png';
-    }
-    else if (areaType === 'Evergaol') {
-      classification = evergaolBosses[structureType] || 'Weak';
-      iconFile       = classification === 'Strong'
-                     ? 'Strong Evergaol.png'
-                     : 'Evergaol.png';
-    }
-    else {
-      classification = null;
-      iconFile       = `${structureType}.png`;
-    }
-    console.log(`    using icon="${iconFile}" (class=${classification})`);
-
-    // --- place the structure icon, but quietly skip if missing ---
-    const icn = document.createElement('img');
-    icn.src       = `Icons/Locations/${iconFile}`;
-    icn.className = 'overlay-icon';
-    icn.style.left = `${meta.xPct}%`;
-    icn.style.top  = `${meta.yPct}%`;
-
-    // if the image fails to load (404), remove it and continue:
-    icn.onerror = () => {
-      console.warn(`    icon not found: ${iconFile}, skipping icon`);
-      icn.remove();
-    };
-
-    mapOverlay.appendChild(icn);
-
-    // --- place the enemy‐type label underneath ---
-    if (enemyType) {
-      const lbl = document.createElement('div');
-      lbl.className   = 'overlay-label';
-      lbl.style.left  = `${meta.xPct}%`;
-      lbl.style.top   = `${meta.yPct}%`;
-      lbl.textContent = enemyType;
-      mapOverlay.appendChild(lbl);
-      console.log(`    placed label="${enemyType}"`);
-    }
-  });
-}
-
-
 
 
     // --- Filter seeds & (re)render map overlays ---
@@ -602,12 +613,15 @@ function renderSeedMap(seedID) {
 
         // 3) Update the display text and “View Seed” button
         seedDisplay.textContent =
-            `${currentPossible.length} possible seed${currentPossible.length === 1 ? '' : 's'}`;
+            `${currentPossible.length} possible seed${currentPossible.length === 1 ? `: ${currentPossible[0].id}` : 's'}`;
         seedDisplay.classList.remove('hidden');
         viewSeedButton.classList.toggle('hidden', currentPossible.length !== 1);
 
         // 4) If exactly one seed, render its structures and hide markers
+
+
         if (currentPossible.length === 1) {
+            console.log(`🛠️  Found exactly one seed: ${currentPossible[0].id}`);
             renderSeedMap(currentPossible[0].id);
             document.querySelectorAll('.map-marker')
                 .forEach(m => m.classList.add('hidden'));
@@ -679,14 +693,14 @@ function renderSeedMap(seedID) {
     };
     window.resetMarkers = resetMarkers;
 
-    // viewSeedButton.addEventListener('click', () => {
-    //     if (currentPossible.length === 1) {
-    //         const sid = currentPossible[0].id.padStart(3, '0');
-    //         const fld = bossFolders[currentSelections.boss];
-    //         seedImage.src = `Bosses/${fld}/${sid}.jpg`;
-    //         seedImage.classList.remove('hidden');
-    //     }
-    // });
+    viewSeedButton.addEventListener('click', () => {
+        if (currentPossible.length === 1) {
+            const sid = currentPossible[0].id.padStart(3, '0');
+            const fld = bossFolders[currentSelections.boss];
+            seedImage.src = `Bosses/${fld}/${sid}.jpg`;
+            seedImage.classList.remove('hidden');
+        }
+    });
 
     document.getElementById('mapContainer').addEventListener('dblclick', e => {
         if (['mapImage', 'imageWrapper', 'mapOverlay'].includes(e.target.id)) {
@@ -699,6 +713,40 @@ function renderSeedMap(seedID) {
         }
     });
 
+    mapOverlay.addEventListener('click', e => {
+        const icon = e.target.closest('.overlay-icon');
+        if (areaName && pos) { // Ensure both are defined before logging
+    console.log(`🔍 Debug (delegated) — areaName="${areaName}", pos=(${pos.x}, ${pos.y})`);
+}
+    });
+
+
+
+
     // --- bootstrap ---
     initBossGrid();
+
+      // ─── DEBUG: Auto-load seed 1 on startup ───────────────────────────────────────
+  // 1) Kick off the map display for “None” (or whatever earth you want)
+//   displayMap(currentSelections.earth);
+
+//   // 2) When the <img> actually loads, draw seed 1 and hide markers
+//   mapImage.addEventListener('load', () => {
+//     // Hide the “Change Selection” UI, if you like:
+//     selectionPanel.classList.add('hidden');
+//     backButton.classList.add('hidden');
+//     resetMarkersBtn.classList.remove('hidden');
+
+//     // Draw seed 1’s overlays:
+//     renderSeedMap('3');
+
+//     // Hide all the little church/rise markers:
+//     document.querySelectorAll('.map-marker')
+//             .forEach(m => m.classList.add('hidden'));
+
+//     // Show a debug message:
+//     seedDisplay.textContent = '🔧 Debug: seed 1';
+//     seedDisplay.classList.remove('hidden');
+//   });
+
 });

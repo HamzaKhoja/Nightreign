@@ -111,7 +111,7 @@ button:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none;
+    /* pointer-events: none; */
 }
 .map-marker {
     position: absolute;
@@ -309,9 +309,9 @@ button:hover {
 /* --- structure overlay icons --- */
 .overlay-icon {
   position: absolute;
-  width: 48px;           /* adjust to taste */
-  height: auto;
-  transform: translate(-50%, -50%);  /* center over the point */
+  height: 35px;           /* adjust to taste */
+  /* height: auto; */
+  transform: translate(-50%, 0%);  /* center over the point */
   pointer-events: none;  /* clicks pass through */
   z-index: 60;
 }
@@ -319,13 +319,39 @@ button:hover {
 /* --- labels under each icon --- */
 .overlay-label {
   position: absolute;
-  transform: translate(-50%, 50%);   /* center on x, drop below y */
-  white-space: nowrap;
-  font-size: 14px;
+  transform: translate(-50%, -15%);
+  white-space: normal;
+  text-align: center;
+  font-size: 12px;
   color: #e0e0e0;
   text-shadow: 0 0 2px rgba(0,0,0,0.7);
   pointer-events: none;
   z-index: 60;
   text-shadow: 2px 0 #000000, -2px 0 #000000, 0 2px #000000, 0 -2px #000000,
              1px 1px #000000, -1px -1px #000000, 1px -1px #000000, -1px 1px #000000;
+  max-width: 62px; /* Adjust this value as needed. Use px, em, or ch */
+  word-wrap: break-word; /* For older browsers */
+  overflow-wrap: break-word; /* For modern browsers */
+  line-height: 1em;
+}
+
+.map-overlay,
+.overlay-icon {
+  pointer-events: auto !important;
+}
+
+.icon-church {
+  min-height: 55px !important;
+}
+
+.icon-great-church {
+  min-height: 55px !important;
+}
+
+.icon-sorcerer\'s-rise {
+  min-height: 65px !important;
+}
+
+.icon-evergaol {
+  max-height: 30px !important;
 }
