@@ -355,3 +355,38 @@ button:hover {
 .icon-evergaol {
   max-height: 30px !important;
 }
+
+/* bottom‑left “seed info” panel */
+.seed-info {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  display: flex;
+  align-items: flex-start;
+  background: rgba(0,0,0,0.5);
+  padding: 8px 12px;
+  border-radius: 6px;
+  z-index: 200;
+}
+.seed-info img {
+  width: auto;
+  height: 110px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.seed-info-text {
+  margin-top: 2rem;
+  margin-left: 20px;
+  color: #e0e0e0;
+  font-family: 'Almendra', serif;
+}
+.seed-info-text .seed-id {
+  font-size: 18px;
+  font-weight: 700;
+}
+.seed-info-text .seed-event {
+  font-size: 14px;
+  margin-top: 4px;
+  opacity: 0.85;
+}
+.hidden { display: none !important; }
