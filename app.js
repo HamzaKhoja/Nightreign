@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Map coordinates for each Shifting Earth ---
     const mapLocations = {
         None: [
-            { id: 'Northeast of Saintsbridge', x: 53.12, y: 23.44 },
+            { id: '1_Northeast of Saintsbridge', x: 53.12, y: 23.44 },
             { id: '2_West of Warmasters Shack', x: 22.83, y: 36.46 },
             { id: '3_Below Summonwater Hawk', x: 65.75, y: 37.50 },
             { id: '4_Third Church', x: 75.12, y: 36.46 },
@@ -119,10 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
         ]
     };
     const staticStructuresByEarth = {
-        Crater: [
-            // example entry:
-            // { areaName: 'Third Church', iconFile: 'Great Church.png', label: 'Great Church' },
-        ],
         Mountains: [
             { areaName: 'Mountains Minor Boss 1', iconFile: 'Minor Field Boss.png', label: 'Demi-Human Swordmaster' },
             { areaName: 'Mountains Minor Boss 2', iconFile: 'Minor Field Boss.png', label: 'Giant Crows' },
@@ -135,7 +131,32 @@ document.addEventListener('DOMContentLoaded', () => {
             { areaName: 'Mountains Major Boss 4', iconFile: 'Major Field Boss.png', label: 'Mountaintop Ice Dragon' },
             { areaName: 'Mountains Ruins', iconFile: 'Ruins.png', label: 'Albinauric Archers' },
         ],
+        Crater: [
+            { areaName: 'Crater Minor Boss 1', iconFile: 'Minor Field Boss.png', label: 'Red Wolf' },
+            { areaName: 'Crater Minor Boss 2', iconFile: 'Minor Field Boss.png', label: 'Demi-Human Queen' },
+            { areaName: 'Crater Minor Boss 3', iconFile: 'Minor Field Boss.png', label: 'Fire Prelates' },
+            { areaName: 'Crater Minor Boss 4', iconFile: 'Minor Field Boss.png', label: 'Flying Dragon' },
+            { areaName: 'Crater Minor Boss 5', iconFile: 'Minor Field Boss.png', label: 'Demi-Human Queen' },
+            { areaName: 'Crater Major Boss 1', iconFile: 'Major Field Boss.png', label: 'Valiant Gargoyle' },
+            { areaName: 'Crater Major Boss 2', iconFile: 'Major Field Boss.png', label: 'Fallingstar Beast' },
+            { areaName: 'Crater Major Boss 3', iconFile: 'Shifting Earth Boss.png', label: 'Magma Wyrm' },
+            { areaName: 'Crater Church', iconFile: 'Church.png', label: '' },
+        ],
         // Rotted Woods, Noklateo, None…
+        "Rotted Woods": [
+            { areaName: 'Woods Castle', iconFile: 'Fort.png', label: 'Lordsworn Captain' },
+        ],
+        Noklateo: [
+            { areaName: 'Noklateo Minor Boss 1', iconFile: 'Minor Field Boss.png', label: 'Golden Hippopotamus' },
+            { areaName: 'Noklateo Minor Boss 2', iconFile: 'Minor Field Boss.png', label: 'Black Knife Assassin' },
+            { areaName: 'Noklateo Minor Boss 3', iconFile: 'Minor Field Boss.png', label: 'Royal Revenant' },
+            { areaName: 'Noklateo Minor Boss 4', iconFile: 'Minor Field Boss.png', label: 'Headless Troll' },
+            { areaName: 'Noklateo Minor Boss 5', iconFile: 'Minor Field Boss.png', label: 'Black Knife Assassin' },
+            { areaName: 'Noklateo Major Boss 1', iconFile: 'Major Field Boss.png', label: 'Royal Carian Knight' },
+            { areaName: 'Noklateo Major Boss 2', iconFile: 'Major Field Boss.png', label: 'Dragonkin Soldier' },
+            { areaName: 'Noklateo Major Boss 3', iconFile: 'Major Field Boss.png', label: 'Flying Dragon' },
+            { areaName: 'Noklateo Major Boss 4', iconFile: 'Shifting Earth Boss.png', label: 'Astel' },
+        ],
     };
     
 
@@ -152,9 +173,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const icn = document.createElement('img');
             icn.src = `Icons/Locations/${iconFile}`;
             icn.className = 'overlay-icon';
+            
+            const typeKey = iconFile
+            .replace(/\.[^/.]+$/, '')     // strip “.png”
+            .toLowerCase()                // lowercase
+            .replace(/\s+/g, '-')         // spaces → hyphens
+            icn.classList.add(`icon-${typeKey}`);  // e.g. “icon-church”
             icn.style.left = `${meta.xPct}%`;
-            icn.style.top = `${meta.yPct}%`;
+            icn.style.top  = `${meta.yPct}%`;
             mapOverlay.appendChild(icn);
+
             // optional label
             if (label) {
             const lbl = document.createElement('div');
@@ -328,7 +356,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!structureType || structureType === 'Small Camp') return;
 
             let iconFile;
-            if (areaType === 'Field Boss') {
+            if (areaType === 'Field Boss' && areaName !== 'Castle Rooftop') {
                 iconFile = (fieldBosses[structureType] === 'Strong' ? 'Major Field Boss.png' : 'Minor Field Boss.png');
             } else if (areaType === 'Evergaol') {
                 iconFile = (evergaolBosses[structureType] === 'Strong' ? 'Strong Evergaol.png' : 'Evergaol.png');
@@ -463,14 +491,14 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     window.resetMarkers = resetMarkers;
 
-    viewSeedButton.addEventListener('click', () => {
-        if (currentPossible.length === 1) {
-            const sid = currentPossible[0].id.padStart(3, '0');
-            const fld = bossFolders[currentSelections.boss];
-            seedImage.src = `Bosses/${fld}/${sid}.jpg`;
-            seedImage.classList.remove('hidden');
-        }
-    });
+    // viewSeedButton.addEventListener('click', () => {
+    //     if (currentPossible.length === 1) {
+    //         const sid = currentPossible[0].id.padStart(3, '0');
+    //         const fld = bossFolders[currentSelections.boss];
+    //         seedImage.src = `Bosses/${fld}/${sid}.jpg`;
+    //         seedImage.classList.remove('hidden');
+    //     }
+    // });
 
     $('#mapContainer').addEventListener('dblclick', e => {
         if (['mapImage', 'imageWrapper', 'mapOverlay'].includes(e.target.id)) {
@@ -485,4 +513,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- bootstrap ---
     initBossGrid();
+
+  // ── DEBUG ──
+  const DEBUG_SEED = 33;
+
+  if (typeof DEBUG_SEED !== 'undefined') {
+    const seedNum   = DEBUG_SEED;
+    const seedID    = seedNum.toString();             // for renderSeedMap lookup
+    const paddedID  = seedNum.toString().padStart(3, '0'); // for seedImage filename
+
+    // 1) compute boss & earth exactly as updatePossibleSeeds does:
+    const bosses = Object.keys(bossFolders);
+    const bi     = Math.min(Math.floor(seedNum / 40), bosses.length - 1);
+    const boss   = bosses[bi];
+    const m      = seedNum - bi * 40;
+    let earth;
+    if      (m < 20) earth = 'None';
+    else if (m < 25) earth = 'Mountains';
+    else if (m < 30) earth = 'Crater';
+    else if (m < 35) earth = 'Rotted Woods';
+    else             earth = 'Noklateo';
+
+    // 2) apply to your selection state & UI
+    currentSelections.boss  = boss;
+    currentSelections.earth = earth;
+    $$('.boss-option.selected').forEach(el => el.classList.remove('selected'));
+    document
+      .querySelector(`.boss-option[data-boss="${boss}"]`)
+      ?.classList.add('selected');
+    earthSelect.value       = earth;
+    selectionPanel.classList.add('hidden');
+    backButton.classList.remove('hidden');
+
+    // 3) load the map
+    displayMap(earth);
+
+    // 4) once the map + raw markers are in place, draw both dynamic & static overlays
+    mapImage.addEventListener('load', function _dbg() {
+      mapImage.removeEventListener('load', _dbg);
+      // dynamic icons & labels for that seed
+      renderSeedMap(seedID);
+      // static structures for that earth
+      renderStaticStructures();
+      // hide the plain map‐markers
+      $$('.map-marker').forEach(m => m.classList.add('hidden'));
+    });
+  }
+
 });

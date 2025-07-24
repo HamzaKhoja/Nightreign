@@ -1,5 +1,7 @@
 Area Type,Area Name,Relative Position,X Coord,Y Coord
+
 Castle,Castle,"50, 50",720,830
+
 Major Base,South Lake,"41, 76",610,1200
 Major Base,Groveside,"30, 64",420,1040
 Major Base,Gatefront,"34, 52",470,860
@@ -16,6 +18,7 @@ Major Base,Artist's Shack,"58, 39",920,650
 Major Base,Northeast Mistwood,"74, 40",1200,650
 Major Base,Summonwater Approach,"61, 26",980,460
 Major Base,Summonwater,"69, 19",1150,330
+
 Minor Base,Northeast of Saintsbridge,"53.13, 19",816,360
 Minor Base,West of Warmaster's Shack,"24, 31",320,560
 Minor Base,Below Summonwater Hawk,"67, 32",1055,575
@@ -27,6 +30,7 @@ Minor Base,East of Cavalry Bridge,"55, 60",850,990
 Minor Base,Far Southwest,"24, 68",300,1100
 Minor Base,Lake,"45.83, 64",704,1088
 Minor Base,Southeast of Lake,"56, 76",880,1240
+
 Evergaol,Northwest of Lake,"36, 60",530,970
 Evergaol,Murkwater Terminus,"44.5, 36",685,590
 Evergaol,Stormhill,"20, 30",260,490
@@ -34,7 +38,9 @@ Evergaol,Highroad,"48.18, 17",740,300
 Evergaol,East of Lake,"61, 74",950,1180
 Evergaol,Mistwood,"77, 46",1215,750
 Evergaol,Northeast Tunnel Entrance,"62, 34",970,560
+
 Arena Boss,Castle Basement,"46, 53.5",720,900
+
 Field Boss,Castle Rooftop,"46, 46.5",720,760
 Field Boss,Far Southwest of Lake,"34, 78",470,1250
 Field Boss,Lake_Boss,"43, 69",670,1110
@@ -46,21 +52,44 @@ Field Boss,Mistwood Spectral Hawk,"67, 75",1075,1180
 Field Boss,North Mistwood,"73, 49",1175,775
 Field Boss,East of Murkwater Terminus,"55.34, 35",850,580
 Field Boss,Northwest of Summonwater,"62, 20",1000,330
-Rotted Woods,Southwest,"64.78, 74.22",995,1140
-Rotted Woods,Southeast,"78.45, 69.34",1205,1065
-Rotted Woods,Center West,"60.55, 62.5",930,960
-Rotted Woods,Center East,"72.27, 64.13",1110,985
-Rotted Woods,Far Northwest,"57.29, 56.64",880,870	
-Rotted Woods,Northwest,"62.83, 55.99",965,860
-Rotted Woods,Northeast,"76.5, 60.55",1175,930
-Rotted Woods,Far Northeast,"78.13, 55.66",1200,855
-Mountains,Mountains Minor Boss 1,"24.74, 21.16", 380,325
-Mountains,Mountains Minor Boss 2,"33.85, 19.53", 520,300
-Mountains,Mountains Minor Boss 3,"44.92, 19.86", 690,305
-Mountains,Mountains Minor Boss 4,"30.92, 35.48", 475,545
-Mountains,Mountains Minor Boss 5,"41.99, 33.85", 645,520
-Mountains,Mountains Major Boss 1,"19.53, 25.39", 300,390
-Mountains,Mountains Major Boss 2,"39.39, 20.18", 605,310
-Mountains,Mountains Major Boss 3,"36.46, 28.65", 560,440
-Mountains,Mountains Major Boss 4,"23.44, 35.81", 360,550
+
+Rotted Woods,Southwest,"63, 72",995,1140
+Rotted Woods,Southeast,"75, 67",1205,1065
+Rotted Woods,Center West,"60.5, 59",930,960
+Rotted Woods,Center East,"70, 62",1110,985
+Rotted Woods,Far Northwest,"57, 54",880,870	
+Rotted Woods,Northwest,"63, 53",965,860
+Rotted Woods,Northeast,"75, 58",1175,930
+Rotted Woods,Far Northeast,"76, 53",1200,855
+Rotted Woods,Woods Castle,"70, 71",1095,1150
+
+Mountains,Mountains Minor Boss 1,"28, 19", 380,325
+Mountains,Mountains Minor Boss 2,"35, 17", 520,300
+Mountains,Mountains Minor Boss 3,"46, 17", 690,305
+Mountains,Mountains Minor Boss 4,"33, 33", 475,545
+Mountains,Mountains Minor Boss 5,"43, 31", 645,520
+Mountains,Mountains Major Boss 1,"22, 23", 300,390
+Mountains,Mountains Major Boss 2,"41, 17", 605,310
+Mountains,Mountains Major Boss 3,"38, 26", 560,440
+Mountains,Mountains Major Boss 4,"26, 32", 360,550
 Mountains,Mountains Ruins,"21.48, 45.57", 330,700
+
+Crater,Crater Minor Boss 1,"37, 28",550,470
+Crater,Crater Minor Boss 2,"42, 24",630,405
+Crater,Crater Minor Boss 3,"52, 23",780,390
+Crater,Crater Minor Boss 4,"62, 20",995,335
+Crater,Crater Minor Boss 5,"60, 30",930,490
+Crater,Crater Major Boss 1,"41, 42",610,675
+Crater,Crater Major Boss 2,"51, 41",785,670
+Crater,Crater Major Boss 3,"56, 39",880,650
+Crater,Crater Church,"41, 33",620,570
+
+Noklateo,Noklateo Minor Boss 1,"49.5, 53.32",755,865
+Noklateo,Noklateo Minor Boss 2,"23.83, 63.73",320,1025
+Noklateo,Noklateo Minor Boss 3,"27.09, 66.99",370,1075
+Noklateo,Noklateo Minor Boss 4,"34.58, 72.85",485,1165
+Noklateo,Noklateo Minor Boss 5,"34.58, 75.45",485,1205
+Noklateo,Noklateo Major Boss 1,"36.85, 50.19",520,817
+Noklateo,Noklateo Major Boss 2,"33.27, 66.99",465,1075
+Noklateo,Noklateo Major Boss 3,"50, 73.82",750,1180
+Noklateo,Noklateo Major Boss 4,"23.51, 76.75",315,1225

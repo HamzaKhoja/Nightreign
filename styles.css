@@ -322,7 +322,7 @@ button:hover {
   transform: translate(-50%, -15%);
   white-space: normal;
   text-align: center;
-  font-size: 12px;
+  font-size: 11px;
   color: #e0e0e0;
   text-shadow: 0 0 2px rgba(0,0,0,0.7);
   pointer-events: none;
