@@ -33,6 +33,14 @@
             <button id="resetMarkersButton" class="reset-markers-button hidden" onclick="resetMarkers()">Reset Markers</button>
             <button id="backButton" class="back-button hidden" onclick="showSelections()">← Change Selection</button>
             <div id="imageWrapper" class="image-wrapper hidden">
+                <div id="mapInstructions" class="map-instructions hidden">
+                    <p><strong>How to use:</strong></p>
+                    <ul>
+                        <li>Left‑click a marker to mark a Church.</li>
+                        <li>Right‑click to mark a Rise.</li>
+                        <li>Click “Reset Markers” to start over.</li>
+                    </ul>
+                </div>
                 <img id="mapImage" class="map-image" alt="Map">
                 <div id="mapOverlay" class="map-overlay"></div>
             </div>

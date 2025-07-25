@@ -2,7 +2,7 @@ Area Type,Area Name,Relative Position,X Coord,Y Coord
 
 Castle,Castle,"50, 50",720,830
 
-Major Base,South Lake,"41, 76",610,1200
+Major Base,South Lake Base,"41, 76",610,1200
 Major Base,Groveside,"30, 64",420,1040
 Major Base,Gatefront,"34, 52",470,860
 Major Base,Stormhill North of Gate,"31, 43",425,700
@@ -93,3 +93,21 @@ Noklateo,Noklateo Major Boss 1,"36.85, 50.19",520,817
 Noklateo,Noklateo Major Boss 2,"33.27, 66.99",465,1075
 Noklateo,Noklateo Major Boss 3,"50, 73.82",750,1180
 Noklateo,Noklateo Major Boss 4,"23.51, 76.75",315,1225
+
+Circle,West Stormhill Graveyard,"24, 40",330,620,1
+Circle,Northwest Corner,"24, 21",330,320,1
+Circle,Southwest Corner,"29, 75",410,1155,1
+Circle,East of Saintsbridge,"56, 27",865,405,1
+Circle,Northeast Corner,"76, 23",1235,366,1
+Circle,Northeast of Lake,"55.01, 55",845,830,1
+Circle,Northwest Mistwood Pond,"70, 54",1105,815,1
+Circle,Southwest Mistwood,"68, 67",1065,1056,1
+Circle,Northwest Lake,"38, 70",567,1065,1
+Circle,South Lake,"48, 77",730,1180,1
+Circle,South of Castle,"42, 62",657,954,1
+Circle,Northwest of Castle,"38, 46",557,704,1
+Circle,Southeast Mountaintop,"41, 39",615,605,1
+Circle,North of Crater,"48, 21",730,290,1
+Circle,Southeast Rotted Woods,"60.5, 69",945,1060,1
+Circle,Noklateo Entrance,"44, 54",670,850,1
+Circle,Northwest Rotted Woods,"70.5, 54.69",1120,840

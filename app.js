@@ -1,3 +1,13 @@
+/*
+TODO:
+- [ ] Implement other Special Events (i.e. Meteor Strike)
+- [ ] Add spawn point locations to map
+- [ ] Add info on hover over icons
+- [ ] Add Objective marker for Rotted Woods
+- [ ] Remove 'View Seed' button
+- [ ] Fix marker locations to use csv instead of hardcoded
+*/
+
 // app.js
 document.addEventListener('DOMContentLoaded', () => {
     // --- DOM references ---
@@ -17,7 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const seedDisplay = $('#seedDisplay');
     const viewSeedButton = $('#viewSeedButton');
     const seedEvents = {};
-    
+    const nightCircles = {};
+    const nightBosses  = {};
+
     // --- Application state ---
     let selectedBoss = 'Gladius';
     let currentSelections = { boss: 'Gladius', earth: 'None' };
@@ -267,6 +279,13 @@ Papa.parse('sheets/seedStructures.csv', {
   skipEmptyLines: true,
   complete(results) {
     const [types, names, ...rows] = results.data;
+    // figure out which indices hold the “Night 1 Circle” & “Night 2 Circle” columns
+    const night1Idx = types.findIndex(t => t.trim() === 'Night 1 Circle');
+    const night2Idx = types.findIndex(t => t.trim() === 'Night 2 Circle');
+    const night1BossIdx = types.findIndex(t => t.trim() === 'Night 1 Boss');
+    const night2BossIdx = types.findIndex(t => t.trim() === 'Night 2 Boss');
+    const extraBossIdx = types.findIndex(t => t.trim() === 'Extra Night Boss');
+
 
     // find the Special Event column (case‑insensitive)
     const specialEventCol = types
@@ -283,6 +302,18 @@ Papa.parse('sheets/seedStructures.csv', {
     rows.forEach(row => {
       const rawID = row[0].trim();
       const padID = rawID.padStart(3, '0');
+
+        if (rawID) {
+            nightCircles[rawID] = {
+                night1: night1Idx  >= 0 ? (row[night1Idx]?.trim() || '') : '',
+                night2: night2Idx  >= 0 ? (row[night2Idx]?.trim() || '') : ''
+            };
+            nightBosses[rawID] = {
+                night1: night1BossIdx >= 0 ? row[night1BossIdx].trim() : '',
+                night2: night2BossIdx >= 0 ? row[night2BossIdx].trim() : '',
+                extra : extraBossIdx  >= 0 ? row[extraBossIdx].trim()  : ''
+            };
+        }
 
       // extract & normalize event
       let ev = 'None';
@@ -340,6 +371,8 @@ Papa.parse('sheets/seedStructures.csv', {
                 e.currentTarget.classList.add('rise');
             }
         }
+        document.getElementById('mapInstructions').classList.add('hidden');
+
         updatePossibleSeeds();
     }
 
@@ -371,7 +404,8 @@ Papa.parse('sheets/seedStructures.csv', {
         viewSeedButton.classList.add('hidden');
 
         // remove every overlay-icon and overlay-label (static + dynamic)
-        $$('.overlay-icon, .overlay-label').forEach(el => el.remove());
+         $$('.overlay-icon, .overlay-label, .boss-event-text, .circle-wrapper, .circle-label')
+    .forEach(el => el.remove());
     }
 
     function renderSeedMap(seedID) {
@@ -455,6 +489,7 @@ Papa.parse('sheets/seedStructures.csv', {
             renderSeedMap(currentPossible[0].id);
             renderStaticStructures();
             showSpecialEvent(currentPossible[0].id);
+            showNightCircles(currentPossible[0].id);
 
             $$('.map-marker').forEach(m => m.classList.add('hidden'));
         } else {
@@ -522,6 +557,61 @@ Papa.parse('sheets/seedStructures.csv', {
   mapOverlay.appendChild(div);
 }
 
+function showNightCircles(seedID) {
+  // clean up old
+  mapOverlay.querySelectorAll('.circle-wrapper, .circle-label').forEach(el => el.remove());
+
+  const circles = nightCircles[seedID] || {};
+  const bosses  = nightBosses[seedID]  || {};
+  const evt     = seedEvents[seedID] || '';
+
+  // decide which night gets the extra boss
+  const extraOnNight1 = evt.includes('Day 1 Extra Night Boss');
+  const extraOnNight2 = evt.includes('Day 2 Extra Night Boss');
+
+  ['night1','night2'].forEach(key => {
+    const area = circles[key];
+    if (!area) return;
+    const meta = locationMeta.find(m => m.areaName === area);
+    if (!meta) return;
+
+    // wrapper
+    const wrap = document.createElement('div');
+    wrap.className = 'circle-wrapper';
+    wrap.style.left = `${meta.xPct}%`;
+    wrap.style.top  = `${meta.yPct}%`;
+    mapOverlay.appendChild(wrap);
+
+    // icon
+    const img = document.createElement('img');
+    img.src       = 'Icons/Locations/Storm.png';
+    img.className = 'circle-icon';
+    wrap.appendChild(img);
+
+    // build label
+    let text;
+    if (key === 'night1') {
+      text = `1. ${bosses.night1}`;
+      if (extraOnNight1 && bosses.extra && bosses.extra!=='None') {
+        text += ` & ${bosses.extra}`;
+      }
+    } else {
+      text = `2. ${bosses.night2}`;
+      if (extraOnNight2 && bosses.extra && bosses.extra!=='None') {
+        text += ` & ${bosses.extra}`;
+      }
+    }
+
+    // label element
+    const lbl = document.createElement('div');
+    lbl.className = 'circle-label';
+    lbl.textContent = text;
+    lbl.style.left = `${meta.xPct}%`;
+    lbl.style.top  = `${meta.yPct}%`;
+    mapOverlay.appendChild(lbl);
+  });
+}
+
 
     // --- UI flow ---
     window.confirmSelections = () => {
@@ -530,6 +620,7 @@ Papa.parse('sheets/seedStructures.csv', {
         selectionPanel.classList.add('hidden');
         backButton.classList.remove('hidden');
         displayMap(currentSelections.earth);
+        document.getElementById('mapInstructions').classList.remove('hidden');
     };
     window.showSelections = () => {
         selectionPanel.classList.remove('hidden');
@@ -540,6 +631,7 @@ Papa.parse('sheets/seedStructures.csv', {
         seedDisplay.classList.add('hidden');
         container.classList.remove('fullscreen-map');
         earthSelect.value = currentSelections.earth;
+        document.getElementById('mapInstructions').classList.add('hidden');
         resetMarkers();
     };
     window.resetMarkers = resetMarkers;
@@ -564,22 +656,20 @@ Papa.parse('sheets/seedStructures.csv', {
         }
     });
 
-    // --- bootstrap ---
     initBossGrid();
 
   // ── DEBUG ──
-//   const DEBUG_SEED = 33;
-
+//   const DEBUG_SEED = 70;
 //   if (typeof DEBUG_SEED !== 'undefined') {
-//     const seedNum   = DEBUG_SEED;
-//     const seedID    = seedNum.toString();             // for renderSeedMap lookup
-//     const paddedID  = seedNum.toString().padStart(3, '0'); // for seedImage filename
+//     const seedNum  = DEBUG_SEED;
+//     const seedID   = seedNum.toString();               // for renderSeedMap lookup
+//     const paddedID = seedID.padStart(3, '0');          // if you ever need zero‑pad
 
 //     // 1) compute boss & earth exactly as updatePossibleSeeds does:
-//     const bosses = Object.keys(bossFolders);
-//     const bi     = Math.min(Math.floor(seedNum / 40), bosses.length - 1);
-//     const boss   = bosses[bi];
-//     const m      = seedNum - bi * 40;
+//     const bossesArr = Object.keys(bossFolders);
+//     const bi        = Math.min(Math.floor(seedNum / 40), bossesArr.length - 1);
+//     const boss      = bossesArr[bi];
+//     const m         = seedNum - bi * 40;
 //     let earth;
 //     if      (m < 20) earth = 'None';
 //     else if (m < 25) earth = 'Mountains';
@@ -601,16 +691,21 @@ Papa.parse('sheets/seedStructures.csv', {
 //     // 3) load the map
 //     displayMap(earth);
 
-//     // 4) once the map + raw markers are in place, draw both dynamic & static overlays
+//     // 4) once the map + raw markers are in place, draw all overlays
 //     mapImage.addEventListener('load', function _dbg() {
 //       mapImage.removeEventListener('load', _dbg);
-//       // dynamic icons & labels for that seed
+
+//       // dynamic icons & labels
 //       renderSeedMap(seedID);
-//       // static structures for that earth
 //       renderStaticStructures();
-//       // hide the plain map‐markers
+//       showBossOverlay();
+//       showSpecialEvent(seedID);
+//       showNightCircles(seedID);
+
+//       // hide the plain map‑markers
 //       $$('.map-marker').forEach(m => m.classList.add('hidden'));
 //     });
 //   }
+
 
 });
