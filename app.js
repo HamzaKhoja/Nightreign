@@ -16,8 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const resetMarkersBtn = $('#resetMarkersButton');
     const seedDisplay = $('#seedDisplay');
     const viewSeedButton = $('#viewSeedButton');
-    const seedImage = $('#seedImage');
-
+    const seedEvents = {};
+    
     // --- Application state ---
     let selectedBoss = 'Gladius';
     let currentSelections = { boss: 'Gladius', earth: 'None' };
@@ -260,27 +260,54 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- Load seed→structures table ---
-    Papa.parse('sheets/seedStructures.csv', {
-        download: true,
-        header: false,
-        skipEmptyLines: true,
-        complete(results) {
-            const [types, names, ...rows] = results.data;
-            const cols = names.slice(1).map((nm, i) => ({
-                areaType: types[i + 1].trim(),
-                areaName: nm.trim(),
-                col: i + 1
-            }));
-            rows.forEach(row => {
-                const id = row[0].trim();
-                seedStructures[id] = cols.map(c => {
-                    const raw = row[c.col].trim();
-                    const [structureType = '', enemyType = ''] = raw.split(' - ').map(s => s.trim());
-                    return { areaType: c.areaType, areaName: c.areaName, structureType, enemyType };
-                });
-            });
-        }
+
+Papa.parse('sheets/seedStructures.csv', {
+  download: true,
+  header: false,
+  skipEmptyLines: true,
+  complete(results) {
+    const [types, names, ...rows] = results.data;
+
+    // find the Special Event column (case‑insensitive)
+    const specialEventCol = types
+      .map(n => n.trim().toLowerCase())
+      .indexOf('special event');
+
+    // build the area‑cols as before
+    const cols = names.slice(1).map((nm, i) => ({
+      areaType: types[i + 1].trim(),
+      areaName: nm.trim(),
+      col: i + 1
+    }));
+
+    rows.forEach(row => {
+      const rawID = row[0].trim();
+      const padID = rawID.padStart(3, '0');
+
+      // extract & normalize event
+      let ev = 'None';
+      if (specialEventCol >= 0) {
+        const r = row[specialEventCol].trim();
+        if (r !== '') ev = r;
+      }
+
+      // record it under both keys
+      seedEvents[rawID] = ev;
+      seedEvents[padID] = ev;
+
+      // your existing structure mapping
+      seedStructures[rawID] = cols.map(c => {
+        const raw = row[c.col].trim();
+        const [structureType = '', enemyType = ''] = raw
+          .split(' - ')
+          .map(s => s.trim());
+        return { areaType: c.areaType, areaName: c.areaName, structureType, enemyType };
+      });
     });
+  }
+});
+
+
 
     // --- Church/Rise handler ---
     function handleMarkerClick(e) {
@@ -427,6 +454,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (currentPossible.length === 1) {
             renderSeedMap(currentPossible[0].id);
             renderStaticStructures();
+            showSpecialEvent(currentPossible[0].id);
+
             $$('.map-marker').forEach(m => m.classList.add('hidden'));
         } else {
             $$('.map-marker').forEach(m => m.classList.remove('hidden'));
@@ -462,6 +491,7 @@ document.addEventListener('DOMContentLoaded', () => {
             imageWrapper.classList.remove('hidden');
             resetMarkersBtn.classList.remove('hidden');
             createMarkers();
+            showBossOverlay();
         };
         loader.onerror = () => {
             errorMessage.textContent = `Map not found: ${path}`;
@@ -469,6 +499,29 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         loader.src = path;
     }
+
+    function showBossOverlay() {
+        // remove old
+        mapOverlay.querySelectorAll('.boss-overlay').forEach(el => el.remove());
+        const imgFile = bossIconFiles[currentSelections.boss];
+        if (!imgFile) return;
+        const el = document.createElement('img');
+        el.src = `Icons/Boss Icons/${imgFile}`;
+        el.className = 'boss-overlay';
+        mapOverlay.appendChild(el);
+    }
+
+    function showSpecialEvent(seedID) {
+  // remove any old text
+  mapOverlay.querySelectorAll('.boss-event-text').forEach(el => el.remove());
+  // look up event (or “None”)
+  const text = seedEvents[seedID] || 'None';
+  const div = document.createElement('div');
+  div.className = 'boss-event-text';
+  div.textContent = 'Special Event: ' + text;
+  mapOverlay.appendChild(div);
+}
+
 
     // --- UI flow ---
     window.confirmSelections = () => {

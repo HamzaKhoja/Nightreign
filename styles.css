@@ -344,6 +344,10 @@ button:hover {
   min-height: 55px !important;
 }
 
+.icon-fort {
+  min-height: 55px !important;
+}
+
 .icon-great-church {
   min-height: 55px !important;
 }
@@ -390,3 +394,26 @@ button:hover {
   opacity: 0.85;
 }
 .hidden { display: none !important; }
+
+.boss-overlay {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  width: 150px;      /* adjust size as needed */
+  height: auto;
+  pointer-events: none;
+  z-index: 20;      /* above markers */
+}
+
+.boss-event-text {
+  position: absolute;
+  bottom: 20px;
+  left: 30px;           /* or wherever beside your overlay image */
+  color: white;
+  font-size: 14px;
+  text-shadow: 0 0 4px black;
+  pointer-events: none;
+  z-index: 21;
+    text-shadow: 2px 0 #000000, -2px 0 #000000, 0 2px #000000, 0 -2px #000000,
+             1px 1px #000000, -1px -1px #000000, 1px -1px #000000, -1px 1px #000000;
+}
