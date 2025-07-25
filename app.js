@@ -1,11 +1,12 @@
 /*
 TODO:
+- [ ] Fix marker locations to use csv instead of hardcoded
 - [ ] Implement other Special Events (i.e. Meteor Strike)
 - [ ] Add spawn point locations to map
-- [ ] Add info on hover over icons
+- [ ] Fix draggable images
 - [ ] Add Objective marker for Rotted Woods
 - [ ] Remove 'View Seed' button
-- [ ] Fix marker locations to use csv instead of hardcoded
+- [ ] Add info on hover over icons
 */
 
 // app.js
