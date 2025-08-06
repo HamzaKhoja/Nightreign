@@ -8,8 +8,6 @@ TODO:
 
 document.addEventListener('DOMContentLoaded', () => {
     const dummyHTML = `
-
-
   <table>
     <thead>
       <tr>
@@ -21,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     </thead>
     <tbody>
       <tr>
-        <td>Drops</td>
+        <td>Runes Dropped</td>
         <td><img />63,000</td>
       </tr>
       <tr>
@@ -136,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // --- Application state ---
-    
+    let hideTimeout;
     let selectedBoss = 'Gladius';
     let currentSelections = { boss: 'Gladius', earth: 'None' };
     let userChurches = [];
@@ -635,6 +633,8 @@ Papa.parse('sheets/seedStructures.csv', {
         el.src = `Icons/Boss Icons/${imgFile}`;
         el.className = 'boss-overlay';
         mapOverlay.appendChild(el);
+        attachInfoHover(el, dummyHTML);
+
     }
 
     function showSpecialEvent(seedID) {
@@ -652,22 +652,66 @@ closeBtn.addEventListener('click', () => {
   popup.classList.add('hidden');
 });
 
+
 function attachInfoHover(iconEl, html) {
+  let hideTimeout;
+
   iconEl.addEventListener('mouseenter', () => {
+    clearTimeout(hideTimeout);
     content.innerHTML = html;
-    const rect = iconEl.getBoundingClientRect();
-    // position fixed popup to the right of the icon
-    popup.style.left = `${rect.right + 10}px`;
-    popup.style.top  = `${rect.top - 20}px`;
+    popup.scrollTop = 0; // reset on show
     popup.classList.remove('hidden');
+
+    const iconRect = iconEl.getBoundingClientRect();
+    const popupRect = popup.getBoundingClientRect();
+
+    let newLeft = iconRect.right + 8;
+    let newTop = iconRect.top;
+
+    // Check if the popup goes off the right side of the screen
+    if (newLeft + popupRect.width > window.innerWidth) {
+      newLeft = iconRect.left - popupRect.width - 8;
+    }
+
+    // Check if the popup goes off the left side of the screen
+    if (newLeft < 0) {
+        newLeft = 8; // A small margin from the left edge
+    }
+
+    // Check if the popup goes off the bottom of the screen
+    if (newTop + popupRect.height > window.innerHeight) {
+        newTop = window.innerHeight - popupRect.height - 8;
+    }
+
+    // Check if the popup goes off the top of the screen
+    if (newTop < 0) {
+        newTop = 8; // A small margin from the top edge
+    }
+
+    popup.style.left = `${newLeft}px`;
+    popup.style.top  = `${newTop}px`;
   });
+
   iconEl.addEventListener('mouseleave', () => {
-    popup.classList.add('hidden');
+    hideTimeout = setTimeout(() => {
+      popup.scrollTop = 0; // reset before hiding
+      popup.classList.add('hidden');
+    }, 200);
   });
 
-  
+  popup.addEventListener('mouseenter', () => {
+    clearTimeout(hideTimeout);
+  });
 
+  popup.addEventListener('mouseleave', () => {
+    hideTimeout = setTimeout(() => {
+      popup.scrollTop = 0; // reset before hiding
+      popup.classList.add('hidden');
+    }, 200);
+  });
 }
+
+
 
 function showNightCircles(seedID) {
   // clean up old
@@ -721,6 +765,8 @@ function showNightCircles(seedID) {
     lbl.style.left = `${meta.xPct}%`;
     lbl.style.top  = `${meta.yPct}%`;
     mapOverlay.appendChild(lbl);
+    attachInfoHover(lbl, dummyHTML);
+
   });
 }
 

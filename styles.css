@@ -462,7 +462,7 @@ button:hover {
   left: 10px;
   width: 150px;      /* adjust size as needed */
   height: auto;
-  pointer-events: none;
+  pointer-events: auto;
   z-index: 20;      /* above markers */
 }
 
@@ -518,7 +518,7 @@ button:hover {
   width: 60px;            /* exactly the same width as .circle-icon */
   height: 60px;           /* exactly the same height (or set via JS to match) */
   transform: translate(-50%, -50%);
-  pointer-events: none;
+  pointer-events: auto;
 }
 
 /* 2) Make the storm icon fill the wrapper */
@@ -543,7 +543,7 @@ button:hover {
     0 2px #000, 0 -2px #000,
     1px 1px #000, -1px -1px #000,
     1px -1px #000, -1px 1px #000;
-  pointer-events: none;
+  pointer-events: auto;
   z-index: 101;
 }
 
