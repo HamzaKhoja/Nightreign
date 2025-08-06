@@ -19,6 +19,13 @@ img {
 
 .hidden { display: none; }
 
+.res-icon {
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
 .popup-window {
   position: fixed;
   background: #000;
@@ -29,13 +36,35 @@ img {
   max-height: 80vh;
   overflow-y: auto;
   z-index: 10000;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: #8f7e4f #1a1a1a;
-  max-height: 50vh;
+
+  /* let it size to content but not overflow the screen */
+  width: auto;
+  max-width: 90vw;
+  /* remove your old min-width here */
 }
 
+.popup-sections {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
 
+.popup-section {
+  /* allow each section to shrink/grow between 180px and 260px */
+  flex: 1 1 200px;
+  min-width: 180px;
+  max-width: 260px;
+}
+
+.popup-section table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.popup-section table td:first-child,
+.popup-section table th:first-child {
+  width: 40%;  /* narrower first column */
+}
 /* WebKit browsers */
 .popup-window::-webkit-scrollbar {
   width: 6px;

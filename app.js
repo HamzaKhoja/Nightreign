@@ -4,109 +4,15 @@ TODO:
 - [ ] Add spawn point locations to map
 - [ ] Add Objective marker for Rotted Woods
 - [ ] Add info on hover over icons
+- [ ] Add Radio Button for Solo/Duo/Trio
+    - [ ] Add info of Field Bosses, Evergaols, and Static Bosses to csv
+    - [ ] Fetch correct data depending on boss type
+    - [ ] Add Logic for Statuses (What the boss is Weak/Strong to)
+    - [ ] Add values for runes/hp for duos and trios
 */
 
 document.addEventListener('DOMContentLoaded', () => {
-    const dummyHTML = `
-  <table>
-    <thead>
-      <tr>
-        <th colspan="2">
-          <h2>Dancer of the Boreal Valley</h2>
-          <br>
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Runes Dropped</td>
-        <td><img />63,000</td>
-      </tr>
-      <tr>
-        <td>HP</td>
-        <td>4,838</td>
-      </tr>
-      <tr>
-        <td>Weak To</td>
-        <td><img />Holy</td>
-      </tr>
-      <tr>
-        <td>Strong Against</td>
-        <td>—</td>
-      </tr>
-    </tbody>
-  </table>
 
-  <br>
-
-  <h3 style="text-align: center;">Resistances</h3>
-  <table>
-    <tbody>
-      <tr class="sep-row">
-        <td>Standard</td>
-        <td>0</td>
-      </tr>
-      <tr>
-        <td>Slash</td>
-        <td>-10</td>
-      </tr>
-      <tr>
-        <td>Strike</td>
-        <td>0</td>
-      </tr>
-      <tr>
-        <td>Pierce</td>
-        <td>0</td>
-      </tr>
-      <tr class="sep-row">
-        <td>Magic</td>
-        <td>0</td>
-      </tr>
-      <tr>
-        <td>Fire</td>
-        <td>0</td>
-      </tr>
-      <tr>
-        <td>Lightning</td>
-        <td>0</td>
-      </tr>
-      <tr>
-        <td>Holy</td>
-        <td>40</td>
-      </tr>
-      <tr class="sep-row">
-        <td>Poison</td>
-        <td>308 / 598 / 1055</td>
-      </tr>
-      <tr>
-        <td>Scarlet Rot</td>
-        <td>231 / 329 / 619 / 1076</td>
-      </tr>
-      <tr>
-        <td>Blood Loss</td>
-        <td>231 / 329 / 619 / 1076</td>
-      </tr>
-      <tr>
-        <td>Frostbite</td>
-        <td>231 / 329 / 619 / 1076</td>
-      </tr>
-      <tr>
-        <td>Sleep</td>
-        <td>231 / 329 / 619 / 1076</td>
-      </tr>
-      <tr>
-        <td>Madness</td>
-        <td>—</td>
-      </tr>
-      <tr>
-        <td>Death Blight</td>
-        <td>—</td>
-      </tr>
-    </tbody>
-  </table>
-
-
-`;
     // --- DOM references ---
     const $ = sel => document.querySelector(sel);
     const $$ = sel => document.querySelectorAll(sel);
@@ -128,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const nightBosses  = {};
     const popup    = document.getElementById('infoPopup');
     const content  = document.getElementById('infoContent');
-    const closeBtn = document.getElementById('infoClose');
+    const bossInfoMap = {};
 
 
 
@@ -250,6 +156,17 @@ document.addEventListener('DOMContentLoaded', () => {
             { areaName: 'Noklateo Major Boss 3', iconFile: 'Major Field Boss.png', label: 'Flying Dragon' },
             { areaName: 'Noklateo Major Boss 4', iconFile: 'Shifting Earth Boss.png', label: 'Astel' },
         ],
+    };
+
+    const nightLordVariants = {
+        Gnoster: [
+            'Gnoster (Moth)',
+            'Gnoster (Scorpion)'
+        ],
+        Heolstor: [
+            'Heolstor the Nightlord Phase 1',
+            'Heolstor the Nightlord Phase 2'
+        ]
     };
     
 
@@ -543,7 +460,7 @@ Papa.parse('sheets/seedStructures.csv', {
             }
 
             if (areaType === 'Field Boss' || areaType === 'Evergaol') {
-                attachInfoHover(icn, dummyHTML);
+                attachInfoHover(icn, buildPopupHTML(structureType || enemyType));
             }
         });
     }
@@ -600,6 +517,42 @@ Papa.parse('sheets/seedStructures.csv', {
         }
     });
 
+    // ── 1) Parse bosses_info.csv into a lookup map ────────────────────────────────
+Papa.parse('sheets/bosses_info.csv', {
+  download: true,
+  header: true,
+  skipEmptyLines: true,
+  complete(results) {
+    results.data.forEach(r => {
+      const name = r['Boss Name'].trim();
+      bossInfoMap[name] = {
+        drops:         r['Runes'].trim(),
+        hp:            r['HP'].trim(),
+        weakTo:        r['Weak To']?.trim()       || '—',
+        strongAgainst: r['Strong Against']?.trim()|| '—',
+        resistances: {
+          Standard:    r['Standard'].trim(),
+          Slash:       r['Slash'].trim(),
+          Strike:      r['Strike'].trim(),
+          Pierce:      r['Pierce'].trim(),
+          Magic:       r['Magic'].trim(),
+          Fire:        r['Fire'].trim(),
+          Lightning:   r['Lightning'].trim(),
+          Holy:        r['Holy'].trim(),
+          Poison:      r['Poison'].trim(),
+          'Scarlet Rot': r['Scarlet Rot'].trim(),
+          'Blood Loss':  r['Blood Loss'].trim(),
+          Frostbite:     r['Frostbite'].trim(),
+          Sleep:         r['Sleep'].trim(),
+          Madness:       r['Madness'].trim(),
+          'Death Blight':r['Death Blight'].trim()
+        }
+      };
+    });
+  }
+});
+
+
     // --- Load and show map + markers ---
     function displayMap(earth) {
         errorMessage.classList.add('hidden');
@@ -625,17 +578,34 @@ Papa.parse('sheets/seedStructures.csv', {
     }
 
     function showBossOverlay() {
-        // remove old
-        mapOverlay.querySelectorAll('.boss-overlay').forEach(el => el.remove());
-        const imgFile = bossIconFiles[currentSelections.boss];
-        if (!imgFile) return;
-        const el = document.createElement('img');
-        el.src = `Icons/Boss Icons/${imgFile}`;
-        el.className = 'boss-overlay';
-        mapOverlay.appendChild(el);
-        attachInfoHover(el, dummyHTML);
+  // 1) clear any old overlay
+  mapOverlay.querySelectorAll('.boss-overlay').forEach(el => el.remove());
 
-    }
+  // 2) draw the big boss icon
+  const base = currentSelections.boss;  // e.g. "Gnoster" or "Heolstor"
+  const imgFile = bossIconFiles[base];
+  if (!imgFile) return;
+
+  const el = document.createElement('img');
+  el.src = `Icons/Boss Icons/${imgFile}`;
+  el.className = 'boss-overlay';
+  mapOverlay.appendChild(el);
+
+  // 3) decide which CSV rows to show in the popup
+  //    use our hard-coded list if it exists, otherwise just the base name
+  const names = nightLordVariants[base] || [base];
+
+  // 4) build HTML only for rows that really are Night Lords
+  const html = names
+    .filter(name => bossInfoMap[name]?.type === 'Night Lord')
+    .map(name => buildPopupHTML(name))
+    .join('<hr>');
+
+  // 5) wire up the hover
+  attachInfoHover(el, buildPopupHTML(currentSelections.boss));
+
+}
+
 
     function showSpecialEvent(seedID) {
   // remove any old text
@@ -648,9 +618,6 @@ Papa.parse('sheets/seedStructures.csv', {
   mapOverlay.appendChild(div);
 }
 
-closeBtn.addEventListener('click', () => {
-  popup.classList.add('hidden');
-});
 
 
 function attachInfoHover(iconEl, html) {
@@ -742,6 +709,7 @@ function showNightCircles(seedID) {
     const img = document.createElement('img');
     img.src       = 'Icons/Locations/Storm.png';
     img.className = 'circle-icon';
+    
     wrap.appendChild(img);
 
     // build label
@@ -765,9 +733,119 @@ function showNightCircles(seedID) {
     lbl.style.left = `${meta.xPct}%`;
     lbl.style.top  = `${meta.yPct}%`;
     mapOverlay.appendChild(lbl);
-    attachInfoHover(lbl, dummyHTML);
+    attachInfoHover(lbl, buildPopupHTML(bosses[key]));
 
   });
+}
+
+// ── 2) Build the popup’s HTML from bossInfoMap ────────────────────────────────
+function singleSection(name) {
+  const info = bossInfoMap[name] || {};
+  const R    = info.resistances || {};
+
+  const dmgTypes = [
+    'Magic','Fire','Lightning','Holy'
+  ];
+  const statusTypes = [
+    'Poison','Scarlet Rot','Blood Loss',
+    'Frostbite','Sleep','Madness'
+  ];
+  const sepKeys = new Set(['Standard','Magic','Poison']);
+
+  // build HTML for "Weak To"
+  const weakHTML = dmgTypes
+    .filter(k => parseFloat(R[k] || 0) < 0)
+    .map(k => `
+      <img class="res-icon"
+           src="Icons/Resistance Icons/${k}.png"
+           alt="${k}">
+    `).join('') || '—';
+
+  // build HTML for "Strong Against"
+  const strongHTML = dmgTypes
+    .filter(k => parseFloat(R[k] || 0) >= 20)
+    .map(k => `
+      <img class="res-icon"
+           src="Icons/Resistance Icons/${k}.png"
+           alt="${k}">
+    `).join('') || '—';
+
+  // start building the HTML
+  let html = `
+    <table>
+      <thead>
+        <tr>
+          <th colspan="2">
+            <h2>${name}</h2><br>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Runes Dropped</td>
+          <td>${info.drops || '—'}</td>
+        </tr>
+        <tr>
+          <td>HP</td>
+          <td>${info.hp || '—'}</td>
+        </tr>
+        <tr>
+          <td>Weak To</td>
+          <td>${weakHTML}</td>
+        </tr>
+        <tr>
+          <td>Strong Against</td>
+          <td>${strongHTML}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <br>
+    <h3 style="text-align: center;">Resistances</h3>
+    <table>
+      <tbody>
+  `;
+
+  // append both damage-type and status-effect rows
+  [...dmgTypes, ...statusTypes].forEach(key => {
+    const val = R[key] || '—';
+    const cls = sepKeys.has(key) ? ' class="sep-row"' : '';
+    html += `
+      <tr${cls}>
+        <td>
+          <img class="res-icon"
+               src="Icons/Resistance Icons/${key}.png"
+               alt="${key}">
+          ${key}
+        </td>
+        <td>${val}</td>
+      </tr>
+    `;
+  });
+
+  html += `
+      </tbody>
+    </table>
+  `;
+  return html;
+}
+
+
+// main builder, now flex‐aware
+function buildPopupHTML(bossKey) {
+  // pick one or many
+  const names = nightLordVariants[bossKey] || [bossKey];
+
+  // if just one, render it by itself
+  if (names.length === 1) {
+    return singleSection(names[0]);
+  }
+
+  // otherwise wrap them side by side
+  const parts = names.map(name =>
+    `<div class="popup-section">${singleSection(name)}</div>`
+  );
+  return `<div class="popup-sections">${parts.join('')}</div>`;
 }
 
 
@@ -800,7 +878,7 @@ function showNightCircles(seedID) {
     initBossGrid();
 
   // ── DEBUG ──
-  const DEBUG_SEED = 1;
+  const DEBUG_SEED = 300;
   if (typeof DEBUG_SEED !== 'undefined') {
     const seedNum  = DEBUG_SEED;
     const seedID   = seedNum.toString();               // for renderSeedMap lookup
