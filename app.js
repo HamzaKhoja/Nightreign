@@ -1,15 +1,11 @@
 /*
 TODO:
-- [ ] Fix marker locations to use csv instead of hardcoded
 - [ ] Implement other Special Events (i.e. Meteor Strike)
 - [ ] Add spawn point locations to map
-- [ ] Fix draggable images
 - [ ] Add Objective marker for Rotted Woods
-- [ ] Remove 'View Seed' button
 - [ ] Add info on hover over icons
 */
 
-// app.js
 document.addEventListener('DOMContentLoaded', () => {
     // --- DOM references ---
     const $ = sel => document.querySelector(sel);
@@ -76,61 +72,38 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Map coordinates for each Shifting Earth ---
     const mapLocations = {
         None: [
-            { id: '1_Northeast of Saintsbridge', x: 53.12, y: 23.44 },
-            { id: '2_West of Warmasters Shack', x: 22.83, y: 36.46 },
-            { id: '3_Below Summonwater Hawk', x: 65.75, y: 37.50 },
-            { id: '4_Third Church', x: 75.12, y: 36.46 },
-            { id: '5_Above Stormhill Tunnel Entrance', x: 36.46, y: 40.62 },
-            { id: '6_Stormhill South of Gate', x: 23.79, y: 57.29 },
-            { id: '7_Minor Erdtree', x: 76.73, y: 59.38 },
-            { id: '8_East of Cavalry Bridge', x: 55.21, y: 64.58 },
-            { id: '9_Far Southwest', x: 23.79, y: 71.88 },
-            { id: '10_Lake', x: 45.83, y: 70.83 },
-            { id: '11_Southeast of Lake', x: 57.29, y: 80.73 }
+            'Northeast of Saintsbridge','West of Warmasters Shack',
+            'Below Summonwater Hawk','Third Church',
+            'Above Stormhill Tunnel Entrance','Stormhill South of Gate',
+            'Minor Erdtree','East of Cavalry Bridge',
+            'Far Southwest','Lake','Southeast of Lake'
         ],
         Mountains: [
-            { id: '1_Northeast of Saintsbridge', x: 53.12, y: 23.44 },
-            { id: '3_Below Summonwater Hawk', x: 65.75, y: 37.50 },
-            { id: '4_Third Church', x: 75.12, y: 36.46 },
-            { id: '6_Stormhill South of Gate', x: 23.79, y: 57.29 },
-            { id: '7_Minor Erdtree', x: 76.73, y: 59.38 },
-            { id: '8_East of Cavalry Bridge', x: 55.21, y: 64.58 },
-            { id: '9_Far Southwest', x: 23.79, y: 71.88 },
-            { id: '10_Lake', x: 45.83, y: 70.83 },
-            { id: '11_Southeast of Lake', x: 57.29, y: 80.73 }
+            'Northeast of Saintsbridge','Below Summonwater Hawk',
+            'Third Church','Stormhill South of Gate',
+            'Minor Erdtree','East of Cavalry Bridge',
+            'Far Southwest','Lake','Southeast of Lake'
         ],
         Crater: [
-            { id: '2_West of Warmasters Shack', x: 22.83, y: 36.46 },
-            { id: '3_Below Summonwater Hawk', x: 65.75, y: 37.50 },
-            { id: '4_Third Church', x: 75.12, y: 36.46 },
-            { id: '6_Stormhill South of Gate', x: 23.79, y: 57.29 },
-            { id: '7_Minor Erdtree', x: 76.73, y: 59.38 },
-            { id: '8_East of Cavalry Bridge', x: 55.21, y: 64.58 },
-            { id: '9_Far Southwest', x: 23.79, y: 71.88 },
-            { id: '10_Lake', x: 45.83, y: 70.83 },
-            { id: '11_Southeast of Lake', x: 57.29, y: 80.73 }
+            'West of Warmasters Shack','Below Summonwater Hawk',
+            'Third Church','Stormhill South of Gate',
+            'Minor Erdtree','East of Cavalry Bridge',
+            'Far Southwest','Lake','Southeast of Lake'
         ],
         'Rotted Woods': [
-            { id: '1_Northeast of Saintsbridge', x: 53.12, y: 23.44 },
-            { id: '2_West of Warmasters Shack', x: 22.83, y: 36.46 },
-            { id: '3_Below Summonwater Hawk', x: 65.75, y: 37.50 },
-            { id: '4_Third Church', x: 75.12, y: 36.46 },
-            { id: '5_Above Stormhill Tunnel Entrance', x: 36.46, y: 40.62 },
-            { id: '6_Stormhill South of Gate', x: 23.79, y: 57.29 },
-            { id: '9_Far Southwest', x: 23.79, y: 71.88 },
-            { id: '10_Lake', x: 45.83, y: 70.83 }
+            'Northeast of Saintsbridge','West of Warmasters Shack',
+            'Below Summonwater Hawk','Third Church',
+            'Above Stormhill Tunnel Entrance','Stormhill South of Gate',
+            'Far Southwest','Lake'
         ],
         Noklateo: [
-            { id: '1_Northeast of Saintsbridge', x: 53.12, y: 23.44 },
-            { id: '2_West of Warmasters Shack', x: 22.83, y: 36.46 },
-            { id: '3_Below Summonwater Hawk', x: 65.75, y: 37.50 },
-            { id: '4_Third Church', x: 75.12, y: 36.46 },
-            { id: '5_Above Stormhill Tunnel Entrance', x: 36.46, y: 40.62 },
-            { id: '7_Minor Erdtree', x: 76.73, y: 59.38 },
-            { id: '8_East of Cavalry Bridge', x: 55.21, y: 64.58 },
-            { id: '11_Southeast of Lake', x: 57.29, y: 80.73 }
+            'Northeast of Saintsbridge','West of Warmasters Shack',
+            'Below Summonwater Hawk','Third Church',
+            'Above Stormhill Tunnel Entrance','Minor Erdtree',
+            'East of Cavalry Bridge','Southeast of Lake'
         ]
     };
+
     const staticStructuresByEarth = {
         Mountains: [
             { areaName: 'Mountains Minor Boss 1', iconFile: 'Minor Field Boss.png', label: 'Demi-Human Swordmaster' },
@@ -209,8 +182,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function getCurrentMapLocations() {
-        return mapLocations[currentSelections.earth] || mapLocations.None;
+        return (mapLocations[currentSelections.earth] || []).map(name => {
+            const meta = locationMeta.find(m => m.areaName === name);
+            return meta && { id: name, x: meta.xPct, y: meta.yPct };
+        }).filter(Boolean);
     }
+
 
     // --- Array equality (order‐agnostic) ---
     function arraysEqual(a, b) {
@@ -484,7 +461,7 @@ Papa.parse('sheets/seedStructures.csv', {
         seedDisplay.textContent =
             `${currentPossible.length} possible seed${currentPossible.length === 1 ? `: ${currentPossible[0].id}` : 's'}`;
         seedDisplay.classList.remove('hidden');
-        viewSeedButton.classList.toggle('hidden', currentPossible.length !== 1);
+        // viewSeedButton.classList.toggle('hidden', currentPossible.length !== 1);
 
         if (currentPossible.length === 1) {
             renderSeedMap(currentPossible[0].id);
@@ -636,26 +613,6 @@ function showNightCircles(seedID) {
         resetMarkers();
     };
     window.resetMarkers = resetMarkers;
-
-    // viewSeedButton.addEventListener('click', () => {
-    //     if (currentPossible.length === 1) {
-    //         const sid = currentPossible[0].id.padStart(3, '0');
-    //         const fld = bossFolders[currentSelections.boss];
-    //         seedImage.src = `Bosses/${fld}/${sid}.jpg`;
-    //         seedImage.classList.remove('hidden');
-    //     }
-    // });
-
-    $('#mapContainer').addEventListener('dblclick', e => {
-        if (['mapImage', 'imageWrapper', 'mapOverlay'].includes(e.target.id)) {
-            container.classList.toggle('fullscreen-map');
-        }
-    });
-    document.addEventListener('keydown', e => {
-        if (e.key === 'Escape' && container.classList.contains('fullscreen-map')) {
-            container.classList.remove('fullscreen-map');
-        }
-    });
 
     initBossGrid();
 
