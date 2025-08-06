@@ -17,6 +17,62 @@ img {
   -webkit-user-drag: none;
 }
 
+.hidden { display: none; }
+
+.popup-window {
+  position: fixed;
+  background: #000;
+  border: 1px solid #333;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  padding: 20px;
+  max-height: 80vh;
+  overflow-y: auto;
+  z-index: 10000;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #8f7e4f #1a1a1a;
+  max-height: 50vh;
+}
+
+
+/* WebKit browsers */
+.popup-window::-webkit-scrollbar {
+  width: 6px;
+}
+
+.popup-window::-webkit-scrollbar-track {
+  background: #1a1a1a;
+  border-radius: 3px;
+}
+
+.popup-window::-webkit-scrollbar-thumb {
+  background: #8f7e4f;                /* muted gold */
+  border-radius: 3px;
+  border: 1px solid #1a1a1a;         /* inset effect */
+}
+
+.popup-window::-webkit-scrollbar-thumb:hover {
+  background: #bfa96c;                /* brighten on hover */
+  box-shadow: 0 0 2px #bfa96c;        /* subtle glow */
+}
+
+tr.sep-row td {
+  border-top: 1px solid #8f7e4f; /* Elden‐Ring gold */
+  padding-top: 0px;              /* give the line some breathing room */
+}
+
+.popup-close {
+  position: absolute;
+  top: 4px; right: 4px;
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+
+
 .container {
     flex: 1;
     display: flex;
@@ -510,3 +566,4 @@ button:hover {
 .map-instructions.hidden {
   display: none;
 }
+

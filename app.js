@@ -7,6 +7,108 @@ TODO:
 */
 
 document.addEventListener('DOMContentLoaded', () => {
+    const dummyHTML = `
+
+
+  <table>
+    <thead>
+      <tr>
+        <th colspan="2">
+          <h2>Dancer of the Boreal Valley</h2>
+          <br>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Drops</td>
+        <td><img />63,000</td>
+      </tr>
+      <tr>
+        <td>HP</td>
+        <td>4,838</td>
+      </tr>
+      <tr>
+        <td>Weak To</td>
+        <td><img />Holy</td>
+      </tr>
+      <tr>
+        <td>Strong Against</td>
+        <td>—</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+
+  <h3 style="text-align: center;">Resistances</h3>
+  <table>
+    <tbody>
+      <tr class="sep-row">
+        <td>Standard</td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <td>Slash</td>
+        <td>-10</td>
+      </tr>
+      <tr>
+        <td>Strike</td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <td>Pierce</td>
+        <td>0</td>
+      </tr>
+      <tr class="sep-row">
+        <td>Magic</td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <td>Fire</td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <td>Lightning</td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <td>Holy</td>
+        <td>40</td>
+      </tr>
+      <tr class="sep-row">
+        <td>Poison</td>
+        <td>308 / 598 / 1055</td>
+      </tr>
+      <tr>
+        <td>Scarlet Rot</td>
+        <td>231 / 329 / 619 / 1076</td>
+      </tr>
+      <tr>
+        <td>Blood Loss</td>
+        <td>231 / 329 / 619 / 1076</td>
+      </tr>
+      <tr>
+        <td>Frostbite</td>
+        <td>231 / 329 / 619 / 1076</td>
+      </tr>
+      <tr>
+        <td>Sleep</td>
+        <td>231 / 329 / 619 / 1076</td>
+      </tr>
+      <tr>
+        <td>Madness</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>Death Blight</td>
+        <td>—</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+`;
     // --- DOM references ---
     const $ = sel => document.querySelector(sel);
     const $$ = sel => document.querySelectorAll(sel);
@@ -26,8 +128,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const seedEvents = {};
     const nightCircles = {};
     const nightBosses  = {};
+    const popup    = document.getElementById('infoPopup');
+    const content  = document.getElementById('infoContent');
+    const closeBtn = document.getElementById('infoClose');
+
+
+
 
     // --- Application state ---
+    
     let selectedBoss = 'Gladius';
     let currentSelections = { boss: 'Gladius', earth: 'None' };
     let userChurches = [];
@@ -434,6 +543,10 @@ Papa.parse('sheets/seedStructures.csv', {
                 lbl.textContent = labelText;
                 mapOverlay.appendChild(lbl);
             }
+
+            if (areaType === 'Field Boss' || areaType === 'Evergaol') {
+                attachInfoHover(icn, dummyHTML);
+            }
         });
     }
 
@@ -535,6 +648,27 @@ Papa.parse('sheets/seedStructures.csv', {
   mapOverlay.appendChild(div);
 }
 
+closeBtn.addEventListener('click', () => {
+  popup.classList.add('hidden');
+});
+
+function attachInfoHover(iconEl, html) {
+  iconEl.addEventListener('mouseenter', () => {
+    content.innerHTML = html;
+    const rect = iconEl.getBoundingClientRect();
+    // position fixed popup to the right of the icon
+    popup.style.left = `${rect.right + 10}px`;
+    popup.style.top  = `${rect.top - 20}px`;
+    popup.classList.remove('hidden');
+  });
+  iconEl.addEventListener('mouseleave', () => {
+    popup.classList.add('hidden');
+  });
+
+  
+
+}
+
 function showNightCircles(seedID) {
   // clean up old
   mapOverlay.querySelectorAll('.circle-wrapper, .circle-label').forEach(el => el.remove());
@@ -614,56 +748,59 @@ function showNightCircles(seedID) {
     };
     window.resetMarkers = resetMarkers;
 
+
+    
+
     initBossGrid();
 
   // ── DEBUG ──
-//   const DEBUG_SEED = 70;
-//   if (typeof DEBUG_SEED !== 'undefined') {
-//     const seedNum  = DEBUG_SEED;
-//     const seedID   = seedNum.toString();               // for renderSeedMap lookup
-//     const paddedID = seedID.padStart(3, '0');          // if you ever need zero‑pad
+  const DEBUG_SEED = 1;
+  if (typeof DEBUG_SEED !== 'undefined') {
+    const seedNum  = DEBUG_SEED;
+    const seedID   = seedNum.toString();               // for renderSeedMap lookup
+    const paddedID = seedID.padStart(3, '0');          // if you ever need zero‑pad
 
-//     // 1) compute boss & earth exactly as updatePossibleSeeds does:
-//     const bossesArr = Object.keys(bossFolders);
-//     const bi        = Math.min(Math.floor(seedNum / 40), bossesArr.length - 1);
-//     const boss      = bossesArr[bi];
-//     const m         = seedNum - bi * 40;
-//     let earth;
-//     if      (m < 20) earth = 'None';
-//     else if (m < 25) earth = 'Mountains';
-//     else if (m < 30) earth = 'Crater';
-//     else if (m < 35) earth = 'Rotted Woods';
-//     else             earth = 'Noklateo';
+    // 1) compute boss & earth exactly as updatePossibleSeeds does:
+    const bossesArr = Object.keys(bossFolders);
+    const bi        = Math.min(Math.floor(seedNum / 40), bossesArr.length - 1);
+    const boss      = bossesArr[bi];
+    const m         = seedNum - bi * 40;
+    let earth;
+    if      (m < 20) earth = 'None';
+    else if (m < 25) earth = 'Mountains';
+    else if (m < 30) earth = 'Crater';
+    else if (m < 35) earth = 'Rotted Woods';
+    else             earth = 'Noklateo';
 
-//     // 2) apply to your selection state & UI
-//     currentSelections.boss  = boss;
-//     currentSelections.earth = earth;
-//     $$('.boss-option.selected').forEach(el => el.classList.remove('selected'));
-//     document
-//       .querySelector(`.boss-option[data-boss="${boss}"]`)
-//       ?.classList.add('selected');
-//     earthSelect.value       = earth;
-//     selectionPanel.classList.add('hidden');
-//     backButton.classList.remove('hidden');
+    // 2) apply to your selection state & UI
+    currentSelections.boss  = boss;
+    currentSelections.earth = earth;
+    $$('.boss-option.selected').forEach(el => el.classList.remove('selected'));
+    document
+      .querySelector(`.boss-option[data-boss="${boss}"]`)
+      ?.classList.add('selected');
+    earthSelect.value       = earth;
+    selectionPanel.classList.add('hidden');
+    backButton.classList.remove('hidden');
 
-//     // 3) load the map
-//     displayMap(earth);
+    // 3) load the map
+    displayMap(earth);
 
-//     // 4) once the map + raw markers are in place, draw all overlays
-//     mapImage.addEventListener('load', function _dbg() {
-//       mapImage.removeEventListener('load', _dbg);
+    // 4) once the map + raw markers are in place, draw all overlays
+    mapImage.addEventListener('load', function _dbg() {
+      mapImage.removeEventListener('load', _dbg);
 
-//       // dynamic icons & labels
-//       renderSeedMap(seedID);
-//       renderStaticStructures();
-//       showBossOverlay();
-//       showSpecialEvent(seedID);
-//       showNightCircles(seedID);
+      // dynamic icons & labels
+      renderSeedMap(seedID);
+      renderStaticStructures();
+      showBossOverlay();
+      showSpecialEvent(seedID);
+      showNightCircles(seedID);
 
-//       // hide the plain map‑markers
-//       $$('.map-marker').forEach(m => m.classList.add('hidden'));
-//     });
-//   }
+      // hide the plain map‑markers
+      $$('.map-marker').forEach(m => m.classList.add('hidden'));
+    });
+  }
 
 
 });
