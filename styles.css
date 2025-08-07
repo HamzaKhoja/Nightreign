@@ -19,6 +19,17 @@ img {
 
 .hidden { display: none; }
 
+
+
+#infoPopup table {
+  margin: 0 auto;
+}
+
+#infoPopup th,
+#infoPopup td {
+  padding-right: 15px;
+}
+
 .res-icon {
   width: 16px;
   height: 16px;

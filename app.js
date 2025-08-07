@@ -5,9 +5,8 @@ TODO:
 - [ ] Add Objective marker for Rotted Woods
 - [ ] Add info on hover over icons
 - [ ] Add Radio Button for Solo/Duo/Trio
-    - [ ] Add info of Field Bosses, Evergaols, and Static Bosses to csv
+    - [ ] Add info of Static Bosses to csv
     - [ ] Fetch correct data depending on boss type
-    - [ ] Add Logic for Statuses (What the boss is Weak/Strong to)
     - [ ] Add values for runes/hp for duos and trios
 */
 
@@ -168,8 +167,23 @@ document.addEventListener('DOMContentLoaded', () => {
             'Heolstor the Nightlord Phase 2'
         ]
     };
-    
 
+    const gaolBossDuos = {
+        'Demi-Human Queen & Demi-Human Swordmaster': 
+            ['Demi-Human Queen', 'Demi-Human Swordmaster'],
+        'Crucible Knight & Golden Hippopotamus': 
+            ['Crucible Knight', 'Golden Hippopotamus'],
+        'Godskin Duo':
+            ['Godskin Noble', 'Godskin Apostle'],
+        'Nameless King': 
+            ['Nameless King (Phase 1)', 'Nameless King (Phase 2)']
+    };
+
+    const multiPhaseVariants = {
+        ...nightLordVariants,
+        ...gaolBossDuos
+    };
+    
 // helper to draw them
     function renderStaticStructures() {
         document.querySelectorAll('.static-icon, .static-label').forEach(el => el.remove());
@@ -830,18 +844,12 @@ function singleSection(name) {
   return html;
 }
 
-
-// main builder, now flex‐aware
+// replace your existing buildPopupHTML with this:
 function buildPopupHTML(bossKey) {
-  // pick one or many
-  const names = nightLordVariants[bossKey] || [bossKey];
-
-  // if just one, render it by itself
+  const names = multiPhaseVariants[bossKey] || [bossKey];
   if (names.length === 1) {
     return singleSection(names[0]);
   }
-
-  // otherwise wrap them side by side
   const parts = names.map(name =>
     `<div class="popup-section">${singleSection(name)}</div>`
   );
@@ -878,7 +886,7 @@ function buildPopupHTML(bossKey) {
     initBossGrid();
 
   // ── DEBUG ──
-  const DEBUG_SEED = 300;
+  const DEBUG_SEED = 2;
   if (typeof DEBUG_SEED !== 'undefined') {
     const seedNum  = DEBUG_SEED;
     const seedID   = seedNum.toString();               // for renderSeedMap lookup
