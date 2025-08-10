@@ -49,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let seedStructures = {};
     let selectedNightfarer = 'Duchess';
     let currentSelections = { boss: 'Gladius', earth: 'None', nightfarer: 'Wylder', players: '1' };
+    let weaponsData = [];
 
 
     // --- Classification maps ---
@@ -343,6 +344,45 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log('✅ locationMeta parsed with clean floats:', locationMeta);
         }
     });
+
+Papa.parse('sheets/weapons.csv', {
+  download: true,
+  header: true,
+  skipEmptyLines: true,
+  complete(results) {
+    // Keep only class + name (trimmed)
+    weaponsData = results.data
+      .map(r => ({
+        cls: (r['Weapon Class'] || '').trim(),
+        name: (r['Weapon Name'] || '').trim()
+      }))
+      .filter(w => w.cls && w.name);
+  }
+});
+
+// --- render weapons list for current nightfarer
+function renderPreferredWeapons() {
+  const grid = document.querySelector('#weaponsGrid');
+  if (!grid) return;
+
+  grid.innerHTML = ''; // clear previous
+
+  const prefs = preferredWeapons[currentSelections.nightfarer] || [];
+  if (!prefs.length || !weaponsData.length) return;
+
+  const list = weaponsData.filter(w => prefs.includes(w.cls));
+
+  list.forEach(w => {
+    const item = document.createElement('div');
+    item.className = 'weapon-tile';
+    item.innerHTML = `
+      <img src="Icons/Weapons/${w.name}.png" alt="${w.name}" onerror="this.style.display='none'">
+      <span>${w.name}</span>
+    `;
+    grid.appendChild(item);
+  });
+}
+
 
     // --- Load seed→structures table ---
 
@@ -932,6 +972,7 @@ function buildPopupHTML(nameOrCombo, contextType) {
         selectionPanel.classList.add('hidden');
         backButton.classList.remove('hidden');
         displayMap(currentSelections.earth);
+        renderPreferredWeapons();           // <-- add this
         document.getElementById('mapInstructions').classList.remove('hidden');
     };
     window.showSelections = () => {
@@ -1015,8 +1056,17 @@ document.querySelectorAll('.info-tab').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.info-tab').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    document.querySelectorAll('#infoTables table').forEach(tbl => tbl.classList.add('hidden'));
+
+    // hide all tables + the weapons grid
+    document.querySelectorAll('#infoTables .info-table, #weaponsGrid')
+      .forEach(el => el.classList.add('hidden'));
+
     const tab = btn.getAttribute('data-tab');
-    document.getElementById(tab + 'Table').classList.remove('hidden');
+    if (tab === 'weapons') {
+      document.getElementById('weaponsGrid').classList.remove('hidden');
+      renderPreferredWeapons(); // ensure fresh render
+    } else {
+      document.getElementById(tab + 'Table').classList.remove('hidden');
+    }
   });
 });

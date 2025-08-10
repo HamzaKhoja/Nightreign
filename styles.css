@@ -590,3 +590,34 @@ button:hover {
 	color: #1a1a1a;
 	border: none;
 }
+
+.weapons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 10px;
+  padding: 5px;
+}
+
+.weapon-tile {
+  text-align: center;
+  background: rgba(0,0,0,0.4);
+  border-radius: 6px;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.weapon-tile img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  border-radius: 4px;
+  margin-bottom: 4px;
+}
+
+.weapon-tile span {
+  font-size: 1rem;
+  color: #e6dfd0;
+  line-height: 1.1;
+}

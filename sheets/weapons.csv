@@ -1,317 +1,317 @@
 Weapon Class,Weapon Name,Attack Affinity,Status Ailment,Unique Weapon Effect,Attack Phy,Attack Mag,Attack Fire,Attack Ligt,Attack Holy,Scaling STR,Scaling DEX,Scaling INT,Scaling FAI,Scaling ARC,Rarity
-Dagger,Black Knife,Slash / Pierce,n/a,None,46,0,0,0,46,E,A,-,D,-,Epic
-Dagger,Blade of Calling,Slash / Pierce,n/a,None,57,0,0,0,35,E,A,-,D,-,Epic
-Dagger,Bloodstained Dagger,Slash / Pierce,(34),None,66,0,0,0,0,E,S,-,-,-,Rare
-Dagger,Celebrant's Sickle,Slash / Pierce,n/a,None,73,0,0,0,0,E,S,-,-,-,Rare
-Dagger,Cinquedea,Slash / Pierce,n/a,None,87,0,0,0,0,E,S,-,-,-,Rare
-Dagger,Crystal Knife,Slash / Pierce,n/a,None,44,30,0,0,0,E,A,D,-,-,Rare
-Dagger,Dagger,Slash / Pierce,n/a,None,58,0,0,0,0,E,S,-,-,-,Rare
-Dagger,Duchess' Dagger,Slash / Pierce,n/a,None,55,0,0,0,0,E,S,-,-,-,Rare
-Dagger,Erdsteel Dagger,Slash / Pierce,n/a,None,75,0,0,0,0,E,A,-,D,-,Rare
-Dagger,Glintstone Kris,Slash / Pierce,n/a,None,40,48,0,0,0,E,A,D,-,-,Rare
-Dagger,Great Knife,Slash / Pierce,(30),None,56,0,0,0,0,E,S,-,-,-,Rare
-Dagger,Ivory Sickle,Slash / Pierce,n/a,None,37,37,0,0,0,E,C,D,-,-,Rare
-Dagger,Misericorde,Slash / Pierce,n/a,None,72,0,0,0,0,E,S,-,-,-,Rare
-Dagger,Reduvia,Slash / Pierce,(56),None,71,0,0,0,0,E,A,-,-,C,Rare
-Dagger,Parrying Dagger,Slash / Pierce,n/a,None,60,0,0,0,0,E,S,-,-,-,Rare
-Dagger,Scorpion's Stinger,Slash / Pierce,(56),None,71,0,0,0,0,E,S,-,-,-,Rare
-Dagger,Wakizashi,Slash / Pierce,(34),None,67,0,0,0,0,E,S,-,-,-,Rare
-Straight Sword,Broadsword,Standard / Pierce,n/a,None,70,0,0,0,0,B,B,-,-,-,Rare
-Straight Sword,Cane Sword,Standard / Pierce,n/a,None,88,0,0,0,0,B,B,-,-,-,Rare
-Straight Sword,Carian Knight's Sword,Standard / Pierce,n/a,None,60,30,0,0,0,C,C,C,-,-,Rare
-Straight Sword,Coded Sword,Standard / Pierce,n/a,None,0,0,0,0,108,-,-,-,S,-,Rare
-Straight Sword,Crystal Sword,Standard / Pierce,n/a,None,38,49,0,0,0,C,C,C,-,-,Rare
-Straight Sword,Golden Epitaph,Standard / Pierce,n/a,None,53,0,0,0,53,C,C,-,C,-,Rare
-Straight Sword,Lazuli Glintstone Sword,Standard / Pierce,n/a,None,36,53,0,0,0,C,C,C,-,-,Rare
-Straight Sword,Longsword,Standard / Pierce,n/a,None,70,0,0,0,0,B,B,-,-,-,Rare
-Straight Sword,Lordsworn's Straight Sword,Standard / Pierce,n/a,None,87,0,0,0,0,B,B,-,-,-,Rare
-Straight Sword,Miquellan Knight's Sword,Standard / Pierce,n/a,None,49,0,0,0,62,C,C,-,C,-,Rare
-Straight Sword,Noble's Slender Sword,Standard / Pierce,n/a,None,73,0,0,0,0,B,B,-,-,-,Rare
-Straight Sword,Ornamental Straight Sword,Standard / Pierce,n/a,None,105,0,0,0,0,B,B,-,-,-,Rare
-Straight Sword,Regalia of Eochaid,Standard / Pierce,n/a,None,73,38,0,0,0,C,C,-,-,B,Rare
-Straight Sword,Rotten Crystal Sword,Standard / Pierce,(34),None,36,46,0,0,0,C,C,C,-,-,Rare
-Straight Sword,Short Sword,Standard / Pierce,n/a,None,70,0,0,0,0,B,B,-,-,-,Rare
-Straight Sword,Sword of Night and Flame,Standard / Pierce,n/a,Power of Night and Flame,36,42,42,0,0,C,C,C,C,-,Rare
-Straight Sword,Sword of St Trina,Standard / Pierce,(56),None,58,29,0,0,0,D,D,C,-,-,Rare
-Straight Sword,Warhawk's Talon,Standard / Pierce,n/a,None,90,0,0,0,0,B,B,-,-,-,Rare
-Straight Sword,Weathered Straight Sword,Standard / Pierce,n/a,None,72,0,0,0,0,B,B,-,-,-,Rare
-Greatsword,Alabaster Lord's Sword,Standard / Pierce,n/a,None,66,66,0,0,0,B,C,C,-,-,Rare
-Greatsword,Banished Knight's Greatsword,Standard / Pierce,n/a,None,107,0,0,0,0,B,C,-,-,-,Rare
-Greatsword,Bastard Sword,Standard / Pierce,n/a,None,85,0,0,0,0,B,C,-,-,-,Rare
-Greatsword,Blasphemous Blade,Standard / Pierce,n/a,Power of the Blasphemous,73,0,73,0,0,B,C,-,C,-,Rare
-Greatsword,Claymore,Standard / Pierce,n/a,None,107,0,0,0,0,B,C,-,-,-,Rare
-Greatsword,Dark Moon Greatsword,Standard / Pierce,(52),Power of Dark Moon,53,79,0,0,0,B,C,C,-,-,Rare
-Greatsword,Death's Poker,Standard / Pierce,(47),None,78,40,0,0,0,B,D,C,-,-,Rare
-Greatsword,Flamberge,Standard / Pierce,(42),None,95,0,0,0,0,B,C,-,-,-,Rare
-Greatsword,Forked Greatsword,Standard / Pierce,(42),None,95,0,0,0,0,B,C,-,-,-,Rare
-Greatsword,Gargoyle's Blackblade,Standard / Pierce,n/a,None,51,0,0,0,77,B,C,-,C,-,Rare
-Greatsword,Gargoyle's Greatsword,Standard / Pierce,n/a,None,109,0,0,0,0,B,C,-,-,-,Rare
-Greatsword,Golden Order Greatsword,Standard / Pierce,n/a,Power of the Golden Order,44,0,0,0,102,B,C,-,C,-,Rare
-Greatsword,Helphen's Steeple,Standard / Pierce,n/a,None,67,67,0,0,0,B,C,C,-,-,Rare
-Greatsword,Inseparable Sword,Standard / Pierce,n/a,None,72,0,0,0,37,B,C,-,C,-,Rare
-Greatsword,Iron Greatsword,Standard / Pierce,n/a,None,88,0,0,0,0,B,C,-,-,-,Rare
-Greatsword,Knight's Greatsword,Standard / Pierce,n/a,None,107,0,0,0,0,B,C,-,-,-,Rare
-Greatsword,Lordsworn's Greatsword,Standard / Pierce,n/a,None,85,0,0,0,0,B,C,-,-,-,Rare
-Greatsword,Marais Executioner's Sword,Standard / Pierce,n/a,Power of House Marais,87,58,0,0,0,B,C,-,-,B,Rare
-Greatsword,Ordovis's Greatsword,Standard / Pierce,n/a,None,67,0,0,0,67,B,C,-,C,-,Rare
-Greatsword,Sacred Relic Sword,Standard / Pierce,n/a,Power of the Greater Will,97,0,0,0,48,B,D,-,C,-,Rare
-Greatsword,Sword of Milos,Standard / Pierce,(47),None,115,0,0,0,0,B,C,-,-,-,Rare
-Greatsword,Wylder's Greatsword,Standard / Pierce,n/a,None,80,0,0,0,0,B,D,-,-,-,Rare
-Colossal Sword,Godslayer's Greatsword,Standard / Pierce,n/a,None,108,0,56,0,0,B,D,-,D,-,Rare
-Colossal Sword,Grafted Blade Greatsword,Standard / Pierce,n/a,Power of Vengeance,177,0,0,0,0,A,C,-,-,-,Rare
-Colossal Sword,Greatsword,Standard / Pierce,n/a,None,109,0,0,0,0,A,C,-,-,-,Rare
-Colossal Sword,Maliketh's Black Blade,Standard / Pierce,n/a,Power of Destined Death,119,0,0,0,59,B,D,-,D,-,Rare
-Colossal Sword,Royal Greatsword,Standard / Pierce,n/a,None,64,96,0,0,0,B,D,D,-,-,Rare
-Colossal Sword,Ruins Greatsword,Standard / Pierce,n/a,Power of Destruction,142,36,0,0,0,B,D,D,-,-,Rare
-Colossal Sword,Starscourge Greatsword,Standard / Pierce,n/a,Power of the Starscourge,117,61,0,0,0,B,D,D,-,-,Rare
-Colossal Sword,Troll's Golden Sword,Standard / Pierce,n/a,None,131,0,0,0,0,A,C,-,-,-,Rare
-Colossal Sword,Troll Knight's Sword,Standard / Pierce,n/a,None,88,46,0,0,0,B,D,D,-,-,Rare
-Colossal Sword,Watchdog's Greatsword,Standard / Pierce,n/a,None,128,0,0,0,0,A,C,-,-,-,Rare
-Colossal Sword,Zweihander,Standard / Pierce,n/a,None,104,0,0,0,0,A,C,-,-,-,Rare
-Thrusting Sword,Antspur Rapier,Standard / Pierce,(56),None,88,0,0,0,0,E,S,-,-,-,Rare
-Thrusting Sword,Cleanrot Knight's Sword,Standard / Pierce,n/a,None,87,0,0,0,0,E,S,-,-,-,Rare
-Thrusting Sword,Estoc,Standard / Pierce,n/a,None,70,0,0,0,0,E,S,-,-,-,Rare
-Thrusting Sword,Frozen Needle,Standard / Pierce,(56),None,84,0,0,0,0,E,S,-,-,-,Rare
-Thrusting Sword,Noble's Estoc,Standard / Pierce,n/a,None,73,0,0,0,0,E,S,-,-,-,Rare
-Thrusting Sword,Rapier,Standard / Pierce,n/a,None,73,0,0,0,0,E,S,-,-,-,Rare
-Thrusting Sword,Rogier's Rapier,Standard / Pierce,n/a,None,90,0,0,0,0,E,S,-,-,-,Rare
-Heavy Thrusting Sword,Bloody Helice,Standard / Pierce,(70),None,101,0,0,0,0,C,B,-,-,C,Rare
-Heavy Thrusting Sword,Dragon King's Cragblade,Standard / Pierce,n/a,Power of the Dragonlord,84,0,0,56,0,C,B,-,-,-,Rare
-Heavy Thrusting Sword,Godskin Stitcher,Standard / Pierce,n/a,None,105,0,0,0,0,C,B,-,-,-,Rare
-Heavy Thrusting Sword,Great Epee,Standard / Pierce,n/a,None,82,0,0,0,0,C,B,-,-,-,Rare
-Curved Sword,Bandit's Curved Sword,Slash,n/a,None,73,0,0,0,0,D,A,-,-,-,Rare
-Curved Sword,Beastman's Curved Sword,Slash,n/a,None,88,0,0,0,0,D,A,-,-,-,Rare
-Curved Sword,Eclipse Shotel,Slash,n/a,Power of Despair,60,0,0,0,60,D,B,-,D,-,Rare
-Curved Sword,Falchion,Slash,n/a,None,70,0,0,0,0,D,A,-,-,-,Rare
-Curved Sword,Flowing Curved Sword,Slash,n/a,None,105,0,0,0,0,D,A,-,-,-,Rare
-Curved Sword,Grossmesser,Slash,n/a,None,87,0,0,0,0,D,A,-,-,-,Rare
-Curved Sword,Magma Blade,Slash,n/a,None,66,0,42,0,0,D,B,-,D,-,Rare
-Curved Sword,Mantis Blade,Slash,n/a,None,90,0,0,0,0,D,A,-,-,-,Rare
-Curved Sword,Nox Flowing Sword,Slash,n/a,None,108,0,0,0,0,D,A,-,-,-,Rare
-Curved Sword,Scavenger's Curved Sword,Slash,(34),None,80,0,0,0,0,D,A,-,-,-,Rare
-Curved Sword,Scimitar,Slash,n/a,None,72,0,0,0,0,D,A,-,-,-,Rare
-Curved Sword,Serpent-God's Curved Sword,Slash,n/a,None,90,0,0,0,0,D,A,-,-,-,Rare
-Curved Sword,Shamshir,Slash,n/a,None,87,0,0,0,0,D,A,-,-,-,Rare
-Curved Sword,Shotel,Slash,n/a,None,70,0,0,0,0,D,A,-,-,-,Rare
-Curved Sword,Wing of Astel,Slash,n/a,None,44,66,0,0,0,D,B,D,-,-,Rare
-Curved Greatsword,Beastman's Cleaver,Slash,n/a,None,108,0,0,0,0,B,B,-,-,-,Rare
-Curved Greatsword,Bloodhound's Fang,Slash,(42),None,100,0,0,0,0,B,B,-,-,-,Rare
-Curved Greatsword,Dismounter,Slash,n/a,None,86,0,0,0,0,B,B,-,-,-,Rare
-Curved Greatsword,Magma Wyrm's Scalesword,Slash,n/a,None,87,0,45,0,0,C,C,-,C,-,Rare
-Curved Greatsword,Monk's Flameblade,Slash,n/a,None,106,0,0,0,0,B,B,-,-,-,Rare
-Curved Greatsword,Morgott's Cursed Sword,Slash,(41),Power of the Omen King,132,0,0,0,0,C,C,-,-,B,Rare
-Curved Greatsword,Omen Cleaver,Slash,n/a,None,108,0,0,0,0,B,B,-,-,-,Rare
-Curved Greatsword,Onyx Lord's Greatsword,Slash,n/a,None,88,47,0,0,0,C,C,C,-,-,Rare
-Curved Greatsword,Zamor Curved Sword,Slash,(70),None,104,0,0,0,0,B,B,-,-,-,Rare
-Katana,Dragonscale Blade,Slash / Pierce,n/a,None,110,0,0,0,0,E,S,-,-,-,Rare
-Katana,Executor's Blade,Slash / Pierce,(30),None,62,0,0,0,0,E,S,-,-,-,Rare
-Katana,Hand of Malenia,Slash / Pierce,(41),Power of the Undefeated,112,0,0,0,0,E,S,-,-,-,Rare
-Katana,Meteoric Ore Blade,Slash / Pierce,(34),None,52,33,0,0,0,E,A,D,-,-,Rare
-Katana,Moonveil,Slash / Pierce,(38),None,60,42,0,0,0,E,A,D,-,-,Rare
-Katana,Nagakiba,Slash / Pierce,(34),None,83,0,0,0,0,E,S,-,-,-,Rare
-Katana,Rivers of Blood,Slash / Pierce,(56),None,46,0,46,0,0,E,A,-,-,C,Rare
-Katana,Serpentbone Blade,Slash / Pierce,(51),None,72,0,0,0,0,E,S,-,-,-,Rare
-Katana,Uchigatana,Slash / Pierce,(30),None,66,0,0,0,0,E,S,-,-,-,Rare
-Twinblade,Eleonora's Poleblade,Standard / Pierce,(56),None,45,0,45,0,0,C,B,-,-,B,Rare
-Twinblade,Gargoyle's Black Blades,Standard / Pierce,n/a,None,72,0,0,0,37,C,B,-,C,-,Rare
-Twinblade,Gargoyle's Twinblade,Standard / Pierce,n/a,None,91,0,0,0,0,C,B,-,-,-,Rare
-Twinblade,Godskin Peeler,Standard / Pierce,n/a,None,93,0,0,0,0,C,B,-,-,-,Rare
-Twinblade,Twinblade,Standard / Pierce,n/a,None,72,0,0,0,0,C,B,-,-,-,Rare
-Twinblade,Twinned Knight Swords,Standard / Pierce,n/a,None,89,0,0,0,0,C,B,-,-,-,Rare
-Axe,Battle Axe,Standard,n/a,None,77,0,0,0,0,B,C,-,-,-,Rare
-Axe,Celebrant's Cleaver,Standard,n/a,None,97,0,0,0,0,B,C,-,-,-,Rare
-Axe,Forked Hatchet,Standard / Pierce,(30),None,73,0,0,0,0,B,C,-,-,-,Rare
-Axe,Hand Axe,Standard,n/a,None,77,0,0,0,0,B,C,-,-,-,Rare
-Axe,Highland Axe,Standard,n/a,None,95,0,0,0,0,B,C,-,-,-,Rare
-Axe,Icerind Hatchet,Standard,(56),None,95,0,0,0,0,B,C,-,-,-,Rare
-Axe,Iron Cleaver,Standard,n/a,None,95,0,0,0,0,B,C,-,-,-,Rare
-Axe,Jawbone Axe,Strike,n/a,None,79,0,0,0,0,B,C,-,-,-,Rare
-Axe,Ripple Blade,Standard,n/a,None,124,0,0,0,0,-,-,-,-,S,Rare
-Axe,Rosus' Axe,Standard,n/a,None,68,51,0,0,0,C,B,D,-,-,Rare
-Axe,Sacrificial Axe,Standard,n/a,None,116,0,0,0,0,B,C,-,-,-,Rare
-Axe,Stormhawk Axe,Standard,n/a,None,121,0,0,0,0,B,C,-,-,-,Rare
-Axe,Warped Axe,Standard,n/a,None,99,0,0,0,0,B,C,-,-,-,Rare
-Greataxe,Axe of Godrick,Standard,n/a,Power of the Golden Lineage,155,0,0,0,0,S,E,-,-,-,Rare
-Greataxe,Butchering Knife,Standard,n/a,None,137,0,0,0,0,S,E,-,-,-,Rare
-Greataxe,Crescent Moon Axe,Standard,n/a,None,91,0,0,0,0,S,E,-,-,-,Rare
-Greataxe,Executioner's Greataxe,Standard,n/a,None,112,0,0,0,0,S,E,-,-,-,Rare
-Greataxe,Gargoyle's Black Axe,Standard,n/a,None,64,0,0,0,79,A,E,-,D,-,Rare
-Greataxe,Gargoyle's Great Axe,Standard,n/a,None,117,0,0,0,0,S,E,-,-,-,Rare
-Greataxe,Greataxe,Standard,n/a,None,91,0,0,0,0,S,E,-,-,-,Rare
-Greataxe,Great Omenkiller Cleaver,Standard,(42),None,105,0,0,0,0,S,E,-,-,-,Rare
-Greataxe,Longhaft Axe,Standard,n/a,None,91,0,0,0,0,S,E,-,-,-,Rare
-Greataxe,Rusted Anchor,Pierce,n/a,None,115,0,0,0,0,S,E,-,-,-,Rare
-Greataxe,Winged Greathorn,Standard,n/a,Power of the Ancestral Spirit,155,0,0,0,0,S,E,-,-,-,Rare
-Hammer,Club,Strike,n/a,None,72,0,0,0,0,S,-,-,-,-,Rare
-Hammer,Curved Club,Strike,n/a,None,74,0,0,0,0,A,D,-,-,-,Rare
-Hammer,Envoy's Horn,Strike,n/a,None,64,0,0,0,45,B,D,-,D,-,Rare
-Hammer,Hammer,Strike,n/a,None,89,0,0,0,0,A,D,-,-,-,Rare
-Hammer,Mace,Strike,n/a,None,74,0,0,0,0,A,D,-,-,-,Rare
-Hammer,Marika's Hammer,Strike,n/a,Power of the Queen,74,0,0,0,49,B,D,-,D,-,Rare
-Hammer,Monk's Flamemace,Strike,n/a,None,91,0,0,0,0,A,D,-,-,-,Rare
-Hammer,Morning Star,Strike,(34),None,83,0,0,0,0,A,D,-,-,-,Rare
-Hammer,Nox Flowing Hammer,Strike,n/a,None,108,0,0,0,0,A,D,-,-,-,Rare
-Hammer,Ringed Finger,Strike,n/a,None,111,0,0,0,0,A,D,-,-,-,Rare
-Hammer,Scepter of the All-Knowing,Strike / Pierce,n/a,None,66,48,0,0,0,B,D,D,-,-,Rare
-Hammer,Spiked Club,Strike,(34),None,82,0,0,0,0,A,D,-,-,-,Rare
-Hammer,Stone Club,Strike,n/a,None,75,0,0,0,0,A,D,-,-,-,Rare
-Hammer,Varre's Bouquet,Strike,(51),None,74,0,0,0,0,B,D,-,-,C,Rare
-Hammer,Warpick,Pierce,n/a,None,89,0,0,0,0,A,D,-,-,-,Rare
-Flail,Bastard's Stars,Strike,n/a,Power of the Lightless Void,58,68,0,0,0,C,B,D,-,-,Rare
-Flail,Chainlink Flail,Strike,(34),None,86,0,0,0,0,B,C,-,-,-,Rare
-Flail,Family Heads,Strike,n/a,None,68,46,0,0,0,C,B,D,-,-,Rare
-Flail,Flail,Strike,(30),None,67,0,0,0,0,C,B,-,-,-,Rare
-Flail,Nightrider Flail,Strike,(50),None,96,0,0,0,0,D,D,-,-,-,Rare
-Great Hammer,Battle Hammer,Strike,n/a,None,109,0,0,0,0,S,E,-,-,-,Rare
-Great Hammer,Beastclaw Greathammer,Strike,n/a,None,83,0,0,0,55,A,E,-,D,-,Rare
-Great Hammer,Brick Hammer,Strike,n/a,None,109,0,0,0,0,S,E,-,-,-,Rare
-Great Hammer,Celebrant's Skull,Strike,n/a,None,111,0,0,0,0,S,E,-,-,-,Rare
-Great Hammer,Cranial Vessel Candlestand,Strike,n/a,None,68,0,68,0,0,C,E,-,D,-,Rare
-Great Hammer,Curved Great Club,Strike,n/a,None,88,0,0,0,0,S,E,-,-,-,Rare
-Great Hammer,Devourer's Scepter,Strike,n/a,Power of the Blasphemous,93,0,57,0,0,A,E,-,D,-,Rare
-Great Hammer,Envoy's Long Horn,Strike,n/a,None,80,0,0,0,53,A,E,-,D,-,Rare
-Great Hammer,Great Mace,Strike,n/a,None,88,0,0,0,0,S,E,-,-,-,Rare
-Great Hammer,Great Stars,Strike,(42),None,102,0,0,0,0,S,E,-,-,-,Rare
-Great Hammer,Greathorn Hammer,Strike,n/a,None,115,0,0,0,0,C,E,-,-,-,Rare
-Great Hammer,Large Club,Strike,n/a,None,88,0,0,0,0,S,-,-,-,-,Rare
-Great Hammer,Pickaxe,Pierce,n/a,None,88,0,0,0,0,S,E,-,-,-,Rare
-Great Hammer,Rotten Battle Hammer,Strike,(42),None,102,0,0,0,0,S,E,-,-,-,Rare
-Colossal Weapon,Axe of Godfrey,Standard,n/a,Power of the First Lord,181,0,0,0,0,S,-,-,-,-,Rare
-Colossal Weapon,Dragon Greatclaw,Standard,n/a,None,98,0,0,65,0,S,-,-,-,-,Rare
-Colossal Weapon,Duelist Greataxe,Standard,n/a,None,106,0,0,0,0,S,-,-,-,-,Rare
-Colossal Weapon,Envoy's Greathorn,Strike,n/a,None,96,0,0,0,64,A,-,-,D,-,Rare
-Colossal Weapon,Fallingstar Beast Jaw,Pierce,n/a,None,100,76,0,0,0,A,-,D,-,-,Rare
-Colossal Weapon,Ghiza's Wheel,Standard,(56),None,149,0,0,0,0,S,-,-,-,-,Rare
-Colossal Weapon,Giant-Crusher,Strike,n/a,None,136,0,0,0,0,S,-,-,-,-,Rare
-Colossal Weapon,Great Club,Strike,n/a,None,101,0,0,0,30,A,-,-,D,-,Rare
-Colossal Weapon,Golem's Halberd,Standard / Pierce,n/a,None,133,0,0,0,0,S,-,-,-,-,Rare
-Colossal Weapon,Prelate's Inferno Crozier,Strike,n/a,None,163,0,0,0,0,S,-,-,-,-,Rare
-Colossal Weapon,Raider's Greataxe,Standard,n/a,None,100,0,0,0,0,S,-,-,-,-,Rare
-Colossal Weapon,Rotten Greataxe,Standard,(76),None,123,0,0,0,0,S,-,-,-,-,Rare
-Colossal Weapon,Rotten Staff,Strike,(84),None,149,0,0,0,0,S,-,-,-,-,Rare
-Colossal Weapon,Staff of the Avatar,Strike,n/a,None,98,0,0,0,49,A,-,-,D,-,Rare
-Colossal Weapon,Troll's Hammer,Strike,n/a,None,101,0,30,0,0,A,-,-,D,-,Rare
-Colossal Weapon,Watchdog's Staff,Strike,n/a,None,159,0,0,0,0,S,-,-,-,-,Rare
-Spear,Bolt of Gransax,Pierce,n/a,Power of the Great Ancient Dragon,74,0,0,49,0,C,B,-,-,-,Rare
-Spear,Celebrant's Rib-Rake,Pierce,n/a,None,89,0,0,0,0,C,B,-,-,-,Rare
-Spear,Clayman's Harpoon,Pierce,n/a,None,54,36,0,0,0,C,B,C,-,-,Rare
-Spear,Cleanrot Spear,Pierce,n/a,None,65,0,0,0,36,C,B,-,C,-,Rare
-Spear,Cross-Naginata,Slash / Pierce,(34),None,83,0,0,0,0,C,B,-,-,-,Rare
-Spear,Crystal Spear,Pierce,n/a,None,69,22,0,0,0,D,D,C,-,-,Rare
-Spear,Death Ritual Spear,Pierce,n/a,None,68,45,0,0,0,C,B,C,-,-,Rare
-Spear,Inquisitor's Girandole,Pierce,(38),None,60,0,40,0,0,C,B,-,C,-,Rare
-Spear,Iron Spear,Pierce,n/a,None,75,0,0,0,0,C,B,-,-,-,Rare
-Spear,Partisan,Slash / Pierce,n/a,None,89,0,0,0,0,C,B,-,-,-,Rare
-Spear,Pike,Pierce,n/a,None,93,0,0,0,0,C,B,-,-,-,Rare
-Spear,Rotten Crystal Spear,Pierce,(34),None,64,20,0,0,0,C,B,C,-,-,Rare
-Spear,Short Spear,Pierce,n/a,None,72,0,0,0,0,C,B,-,-,-,Rare
-Spear,Spear,Pierce,n/a,None,74,0,0,0,0,C,B,-,-,-,Rare
-Spear,Spiked Spear,Strike / Pierce,(34),None,82,0,0,0,0,C,B,-,-,-,Rare
-Spear,Torchpole,Pierce,n/a,None,58,0,35,0,0,C,B,-,-,-,Rare
-Great Spear,Lance,Pierce,n/a,None,95,0,0,0,0,B,C,-,-,-,Rare
-Great Spear,Mohgwyn's Sacred Spear,Pierce,(77),Power of the Blood Lord,79,0,51,0,0,B,C,-,-,C,Rare
-Great Spear,Serpent-Hunter,Pierce,n/a,None,122,0,0,0,0,B,C,-,-,-,Rare
-Great Spear,Siluria's Tree,Pierce,n/a,None,75,0,0,0,75,B,C,-,D,-,Rare
-Great Spear,Treespear,Pierce,n/a,None,71,0,0,0,47,C,B,-,D,-,Rare
-Great Spear,Vyke's War Spear,Pierce,(70),None,86,0,57,0,0,B,C,-,D,-,Rare
-Halberd,Banished Knight's Halberd,Standard / Pierce,n/a,None,86,0,0,0,0,B,C,-,-,-,Rare
-Halberd,Commander's Standard,Standard / Pierce,n/a,None,128,0,0,0,0,B,C,-,-,-,Rare
-Halberd,Dragon Halberd,Standard / Pierce,n/a,None,123,0,0,0,0,B,C,-,-,-,Rare
-Halberd,Gargoyle's Black Halberd,Standard / Pierce,n/a,None,56,0,0,0,68,B,C,-,C,-,Rare
-Halberd,Gargoyle's Halberd,Standard / Pierce,n/a,None,105,0,0,0,0,B,C,-,-,-,Rare
-Halberd,Glaive,Slash / Pierce,n/a,None,86,0,0,0,0,B,C,-,-,-,Rare
-Halberd,Golden Halberd,Standard / Pierce,n/a,None,76,0,0,0,51,B,C,-,C,-,Rare
-Halberd,Guardian's Swordspear,Standard / Pierce,n/a,None,103,0,0,0,0,E,S,-,-,-,Rare
-Halberd,Guardian's Halberd,Standard / Pierce,n/a,None,78,0,0,0,0,B,C,-,-,-,Rare
-Halberd,Halberd,Standard / Pierce,n/a,None,82,0,0,0,0,B,C,-,-,-,Rare
-Halberd,Loretta's War Sickle,Slash / Pierce,n/a,None,76,51,0,0,0,B,C,C,-,-,Rare
-Halberd,Lucerne,Pierce,n/a,None,82,0,0,0,0,B,C,-,-,-,Rare
-Halberd,Nightrider Glaive,Slash / Pierce,n/a,None,103,0,0,0,0,B,C,-,-,-,Rare
-Halberd,Pest's Glaive,Slash / Pierce,n/a,None,101,0,0,0,0,B,C,-,-,-,Rare
-Halberd,Ripple Crescent Halberd,Standard / Pierce,n/a,None,132,0,0,0,0,-,-,-,-,S,Rare
-Halberd,Vulgar Militia Saw,Standard / Pierce,(38),None,79,0,0,0,0,B,C,-,-,-,Rare
-Halberd,Vulgar Militia Shotel,Standard / Pierce,n/a,None,87,0,0,0,0,B,C,-,-,-,Rare
-Reaper,Grave Scythe,Slash,(42),None,87,0,0,0,0,D,A,-,-,-,Rare
-Reaper,Halo Scythe,Slash,(38),None,65,0,0,0,44,D,B,-,D,-,Rare
-Reaper,Scythe,Slash,(38),None,70,0,0,0,0,D,A,-,-,-,Rare
-Reaper,Winged Scythe,Slash,(38),None,47,0,0,0,58,D,B,-,D,-,Rare
-Whip,Giant's Red Braid,Strike,n/a,Power of the Giant,74,0,49,0,0,D,A,-,D,-,Rare
-Whip,Hoslow's Petal Whip,Strike,(38),None,102,0,0,0,0,D,A,-,-,-,Rare
-Whip,Magma Whip Candlestick,Strike,n/a,None,56,0,56,0,0,D,A,-,D,-,Rare
-Whip,Thorned Whip,Strike,(34),None,82,0,0,0,0,D,A,-,-,-,Rare
-Whip,Urumi,Slash,n/a,None,93,0,0,0,0,D,A,-,-,-,Rare
-Whip,Whip,Strike,n/a,None,72,0,0,0,0,D,A,-,-,-,Rare
-Fist,Caestus,Strike,n/a,None,61,0,0,0,0,B,C,-,-,-,Rare
-Fist,Cipher Pata,Slash / Pierce,n/a,None,0,0,0,0,92,-,-,-,S,-,Rare
-Fist,Clinging Bone,Slash / Pierce,n/a,None,71,23,0,0,0,B,C,-,-,B,Rare
-Fist,Grafted Dragon,Strike,n/a,Power of the Flying Dragon,63,0,42,0,0,B,C,-,C,-,Rare
-Fist,Iron Ball,Strike,n/a,None,77,0,0,0,0,B,C,-,-,-,Rare
-Fist,Katar,Slash / Pierce,n/a,None,64,0,0,0,0,B,C,-,-,-,Rare
-Claw,Revenant's Cursed Claw,Strike / Slash,n/a,None,12,54,0,0,0,E,-,-,S,-,Rare
-Fist,Spiked Caestus,Strike,(34),None,68,0,0,0,0,B,C,-,-,-,Rare
-Fist,Star Fist,Strike,(34),None,71,0,0,0,0,B,C,-,-,-,Rare
-Fist,Veteran's Prosthesis,Slash / Pierce,n/a,None,59,0,0,37,0,B,C,-,-,-,Rare
-Claw,Bloodhound Claws,Slash / Pierce,(34),None,72,0,0,0,0,D,A,-,-,-,Rare
-Claw,Hookclaws,Slash / Pierce,(30),None,56,0,0,0,0,D,A,-,-,-,Rare
-Claw,Raptor Talons,Slash / Pierce,(38),None,86,0,0,0,0,D,C,-,-,-,Rare
-Claw,Venomous Fang,Slash / Pierce,(51),None,63,0,0,0,0,D,A,-,-,-,Rare
-Bow,Composite Bow,Pierce,--,None,59,0,0,0,0,E,S,-,-,-,Rare
-Bow,Harp Bow,Pierce,--,None,59,0,0,0,0,E,S,-,-,-,Rare
-Bow,Misbegotten Shortbow,Pierce,--,None,50,0,0,0,0,E,S,-,-,-,Rare
-Bow,Red Branch Shortbow,Pierce,--,None,57,0,0,0,0,E,S,-,-,-,Rare
-Bow,Shortbow,Pierce,--,None,46,0,0,0,0,E,C,-,-,-,Rare
-Bow,Albinauric Bow,Pierce,--,None,61,0,0,0,0,E,S,-,-,-,Rare
-Bow,Black Bow,Pierce,--,None,73,0,0,0,0,E,S,-,-,-,Rare
-Bow,Erdtree Bow,Pierce,--,None,46,0,0,0,26,E,A,-,D,-,Rare
-Bow,Horn Bow,Pierce,--,None,41,22,0,0,0,E,A,D,-,-,Rare
-Bow,Longbow,Pierce,--,None,48,0,0,0,0,E,S,-,-,-,Rare
-Bow,Pulley Bow,Pierce,--,None,72,0,0,0,0,E,S,-,-,-,Rare
-Bow,Serpent Bow,Pierce,--,None,59,0,0,0,0,E,A,-,-,C,Rare
-Bow,Ironeye's Bow,Pierce,--,None,45,0,0,0,0,E,S,-,-,-,Rare
-Greatbow,Erdtree Greatbow,Pierce,--,None,95,0,0,0,84,C,C,-,C,-,Rare
-Greatbow,Golem Greatbow,Pierce,--,None,146,0,0,0,0,B,C,-,-,-,Rare
-Greatbow,Greatbow,Pierce,--,None,116,0,0,0,0,B,C,-,-,-,Rare
-Greatbow,Lion Greatbow,Pierce,--,Power of the General,182,0,0,0,0,B,C,-,-,-,Rare
-Crossbow,Arbalest,Pierce,--,None,154,0,0,0,0,-,-,-,-,-,Rare
-Crossbow,Crepus's Black-Key Crossbow,Pierce,--,None,186,0,0,0,0,-,-,-,-,-,Rare
-Crossbow,Heavy Crossbow,Pierce,--,None,151,0,0,0,0,-,-,-,-,-,Rare
-Crossbow,Light Crossbow,Pierce,--,None,149,0,0,0,0,-,-,-,-,-,Rare
-Crossbow,Soldier's Crossbow,Pierce,--,None,148,0,0,0,0,-,-,-,-,-,Rare
-Crossbow,Pulley Crossbow,Pierce,--,None,106,0,0,0,0,-,-,-,-,-,Rare
-Crossbow,Full Moon Crossbow,Pierce,--,None,93,93,0,0,0,-,-,-,-,-,Rare
-Ballista,Hand Ballista,Pierce,--,None,431,0,0,0,0,-,-,-,-,-,Rare
-Ballista,Jar Cannon,Pierce,--,None,584,0,0,0,0,-,-,-,-,-,Rare
-Glintstone Staff,Academy Glintstone Staff,Strike,--,-,25,0,0,0,0,-,-,S,-,-,Rare
-Glintstone Staff,Albinauric Staff,Strike,--,-,17,0,0,0,0,-,-,S,-,-,Rare
-Glintstone Staff,Astrologer's Staff,Strike,--,-,25,0,0,0,0,-,-,S,-,-,Rare
-Glintstone Staff,Azur's Glintstone Staff,Strike,--,-,24,0,0,0,0,-,-,S,-,-,Rare
-Glintstone Staff,Carian Glintblade Staff,Strike,--,-,22,0,0,0,0,-,-,S,-,-,Rare
-Glintstone Staff,Carian Glintstone Staff,Strike,--,-,25,0,0,0,0,-,-,S,-,-,Rare
-Glintstone Staff,Carian Regal Scepter,Strike,--,-,23,0,0,0,0,-,-,S,-,-,Rare
-Glintstone Staff,Crystal Staff,Strike,--,-,31,0,0,0,0,-,-,S,-,-,Rare
-Glintstone Staff,Demi-Human Queen's Staff,Strike,--,-,31,0,0,0,0,-,-,S,-,-,Rare
-Glintstone Staff,Digger's Staff,Strike,--,-,38,0,0,0,0,-,-,S,-,-,Rare
-Glintstone Staff,Gelmir Glintstone Staff,Strike,--,-,29,0,0,0,0,-,-,S,-,-,Rare
-Glintstone Staff,Glintstone Staff,Strike,--,-,25,0,0,0,0,-,-,S,-,-,Rare
-Glintstone Staff,Lusat's Glintstone Staff,Strike,--,-,24,0,0,0,0,-,-,S,-,-,Rare
-Glintstone Staff,Meteorite Staff,Strike,--,-,39,0,0,0,0,-,-,S,-,-,Rare
-Glintstone Staff,Prince of Death's Staff,Strike,--,-,25,0,0,0,0,-,-,S,-,-,Rare
-Glintstone Staff,Recluse's Staff,Strike,--,-,25,0,0,0,0,-,-,S,-,-,Rare
-Glintstone Staff,Rotten Crystal Staff,Strike,(34),-,42,0,0,0,0,-,-,S,-,-,Rare
-Glintstone Staff,Staff of Loss,Strike,--,-,22,0,0,0,0,-,-,S,-,-,Rare
-Glintstone Staff,Staff of the Guilty,Strike,(34),-,38,0,0,0,0,-,-,S,-,-,Rare
-Sacred Seal,Clawmark Seal,Strike,--,-,31,0,0,0,0,-,-,-,S,-,Rare
-Sacred Seal,Dragon Communion Seal,Strike,--,-,25,0,0,0,0,-,-,-,S,-,Rare
-Sacred Seal,Erdtree Seal,Strike,--,-,25,0,0,0,0,-,-,-,S,-,Rare
-Sacred Seal,Finger Seal,Strike,--,-,25,0,0,0,0,-,-,-,S,-,Rare
-Sacred Seal,Frenzied Flame Seal,Strike,(65),-,25,0,0,0,0,-,-,-,B,-,Rare
-Sacred Seal,Giant's Seal,Strike,--,-,25,0,0,0,0,-,-,-,S,-,Rare
-Sacred Seal,Godslayer's Seal,Strike,--,-,25,0,0,0,0,-,-,-,S,-,Rare
-Sacred Seal,Golden Order Seal,Strike,--,-,24,0,0,0,0,-,-,-,S,-,Rare
-Sacred Seal,Gravel Stone Seal,Strike,--,-,25,0,0,0,0,-,-,-,S,-,Rare
-Torch,Torch,Strike,n/a,None,19,0,36,0,0,B,-,-,-,-,Rare
-Torch,Beast-Repellent Torch,Strike,n/a,None,20,0,37,0,0,B,B,-,-,-,Rare
-Torch,Steel-Wire Torch,Strike,n/a,None,24,0,44,0,0,B,B,-,-,-,Rare
-Torch,Sentry's Torch,Strike,n/a,None,11,0,18,0,42,B,B,-,D,-,Rare
-Torch,Ghostflame Torch,Strike,(56),None,26,48,0,0,0,C,C,D,-,-,Rare
-Torch,St. Trina's Torch,Strike,(56),None,24,0,44,0,0,C,C,-,D,-,Rare
+Dagger,Black Knife,Slash / Pierce,-,None,46,0,0,0,46,E,A,-,D,-,Epic
+Dagger,Blade of Calling,Slash / Pierce,-,None,57,0,0,0,35,E,A,-,D,-,Epic
+Dagger,Bloodstained Dagger,Slash / Pierce,Bleed: 34,None,66,0,0,0,0,E,S,-,-,-,Rare
+Dagger,Celebrant's Sickle,Slash / Pierce,-,None,73,0,0,0,0,E,S,-,-,-,Rare
+Dagger,Cinquedea,Slash / Pierce,-,None,87,0,0,0,0,E,S,-,-,-,Epic
+Dagger,Crystal Knife,Slash / Pierce,-,None,44,30,0,0,0,E,A,D,-,-,Rare
+Dagger,Dagger,Slash / Pierce,-,None,58,0,0,0,0,E,S,-,-,-,Common
+Dagger,Duchess' Dagger,Slash / Pierce,-,None,55,0,0,0,0,E,S,-,-,-,Common
+Dagger,Erdsteel Dagger,Slash / Pierce,-,None,75,0,0,0,0,E,A,-,D,-,Rare
+Dagger,Glintstone Kris,Slash / Pierce,-,None,40,48,0,0,0,E,A,D,-,-,Epic
+Dagger,Great Knife,Slash / Pierce, ,None,56,0,0,0,0,E,S,-,-,-,Common
+Dagger,Ivory Sickle,Slash / Pierce,-,None,37,37,0,0,0,E,C,D,-,-,Rare
+Dagger,Misericorde,Slash / Pierce,-,None,72,0,0,0,0,E,S,-,-,-,Rare
+Dagger,Reduvia,Slash / Pierce,Bleed: 56,None,71,0,0,0,0,E,A,-,-,C,Epic
+Dagger,Parrying Dagger,Slash / Pierce,-,None,60,0,0,0,0,E,S,-,-,-,Common
+Dagger,Scorpion's Stinger,Slash / Pierce,Rot: 56,None,71,0,0,0,0,E,S,-,-,-,Epic
+Dagger,Wakizashi,Slash / Pierce,Bleed: 34,None,67,0,0,0,0,E,S,-,-,-,Rare
+Straight Sword,Broadsword,Standard / Pierce,-,None,70,0,0,0,0,B,B,-,-,-,Common
+Straight Sword,Cane Sword,Standard / Pierce,-,None,88,0,0,0,0,B,B,-,-,-,Rare
+Straight Sword,Carian Knight's Sword,Standard / Pierce,-,None,60,30,0,0,0,C,C,C,-,-,Rare
+Straight Sword,Coded Sword,Standard / Pierce,-,None,0,0,0,0,108,-,-,-,S,-,Epic
+Straight Sword,Crystal Sword,Standard / Pierce,-,None,38,49,0,0,0,C,C,C,-,-,Rare
+Straight Sword,Golden Epitaph,Standard / Pierce,-,None,53,0,0,0,53,C,C,-,C,-,Epic
+Straight Sword,Lazuli Glintstone Sword,Standard / Pierce,-,None,36,53,0,0,0,C,C,C,-,-,Rare
+Straight Sword,Longsword,Standard / Pierce,-,None,70,0,0,0,0,B,B,-,-,-,Common
+Straight Sword,Lordsworn's Straight Sword,Standard / Pierce,-,None,87,0,0,0,0,B,B,-,-,-,Rare
+Straight Sword,Miquellan Knight's Sword,Standard / Pierce,-,None,49,0,0,0,62,C,C,-,C,-,Epic
+Straight Sword,Noble's Slender Sword,Standard / Pierce,-,None,73,0,0,0,0,B,B,-,-,-,Common
+Straight Sword,Ornamental Straight Sword,Standard / Pierce,-,None,105,0,0,0,0,B,B,-,-,-,Epic
+Straight Sword,Regalia of Eochaid,Standard / Pierce,-,None,73,38,0,0,0,C,C,-,-,B,Epic
+Straight Sword,Rotten Crystal Sword,Standard / Pierce,Rot: 34,None,36,46,0,0,0,C,C,C,-,-,Rare
+Straight Sword,Short Sword,Standard / Pierce,-,None,70,0,0,0,0,B,B,-,-,-,Common
+Straight Sword,Sword of Night and Flame,Standard / Pierce,-,Power of Night and Flame,36,42,42,0,0,C,C,C,C,-,Legendary
+Straight Sword,Sword of St Trina,Standard / Pierce,Sleep: 56,None,58,29,0,0,0,D,D,C,-,-,Epic
+Straight Sword,Warhawk's Talon,Standard / Pierce,-,None,90,0,0,0,0,B,B,-,-,-,Rare
+Straight Sword,Weathered Straight Sword,Standard / Pierce,-,None,72,0,0,0,0,B,B,-,-,-,Common
+Greatsword,Alabaster Lord's Sword,Standard / Pierce,-,None,66,66,0,0,0,B,C,C,-,-,Epic
+Greatsword,Banished Knight's Greatsword,Standard / Pierce,-,None,107,0,0,0,0,B,C,-,-,-,Rare
+Greatsword,Bastard Sword,Standard / Pierce,-,None,85,0,0,0,0,B,C,-,-,-,Common
+Greatsword,Blasphemous Blade,Standard / Pierce,-,Power of the Blasphemous,73,0,73,0,0,B,C,-,C,-,Legendary
+Greatsword,Claymore,Standard / Pierce,-,None,107,0,0,0,0,B,C,-,-,-,Rare
+Greatsword,Dark Moon Greatsword,Standard / Pierce,Frost: 52,Power of Dark Moon,53,79,0,0,0,B,C,C,-,-,Legendary
+Greatsword,Death's Poker,Standard / Pierce,Frost: 47,None,78,40,0,0,0,B,D,C,-,-,Epic
+Greatsword,Flamberge,Standard / Pierce,Bleed: 42,None,95,0,0,0,0,B,C,-,-,-,Rare
+Greatsword,Forked Greatsword,Standard / Pierce,Bleed: 42,None,95,0,0,0,0,B,C,-,-,-,Rare
+Greatsword,Gargoyle's Blackblade,Standard / Pierce,-,None,51,0,0,0,77,B,C,-,C,-,Epic
+Greatsword,Gargoyle's Greatsword,Standard / Pierce,-,None,109,0,0,0,0,B,C,-,-,-,Rare
+Greatsword,Golden Order Greatsword,Standard / Pierce,-,Power of the Golden Order,44,0,0,0,102,B,C,-,C,-,Legendary
+Greatsword,Helphen's Steeple,Standard / Pierce,-,None,67,67,0,0,0,B,C,C,-,-,Epic
+Greatsword,Inseparable Sword,Standard / Pierce,-,None,72,0,0,0,37,B,C,-,C,-,Rare
+Greatsword,Iron Greatsword,Standard / Pierce,-,None,88,0,0,0,0,B,C,-,-,-,Common
+Greatsword,Knight's Greatsword,Standard / Pierce,-,None,107,0,0,0,0,B,C,-,-,-,Rare
+Greatsword,Lordsworn's Greatsword,Standard / Pierce,-,None,85,0,0,0,0,B,C,-,-,-,Common
+Greatsword,Marais Executioner's Sword,Standard / Pierce,-,Power of House Marais,87,58,0,0,0,B,C,-,-,B,Legendary
+Greatsword,Ordovis's Greatsword,Standard / Pierce,-,None,67,0,0,0,67,B,C,-,C,-,Epic
+Greatsword,Sacred Relic Sword,Standard / Pierce,-,Power of the Greater Will,97,0,0,0,48,B,D,-,C,-,Legendary
+Greatsword,Sword of Milos,Standard / Pierce,Bleed: 47,None,115,0,0,0,0,B,C,-,-,-,Epic
+Greatsword,Wylder's Greatsword,Standard / Pierce,-,None,80,0,0,0,0,B,D,-,-,-,Common
+Colossal Sword,Godslayer's Greatsword,Standard / Pierce,-,None,108,0,56,0,0,B,D,-,D,-,Epic
+Colossal Sword,Grafted Blade Greatsword,Standard / Pierce,-,Power of Vengeance,177,0,0,0,0,A,C,-,-,-,Legendary
+Colossal Sword,Greatsword,Standard / Pierce,-,None,109,0,0,0,0,A,C,-,-,-,Common
+Colossal Sword,Maliketh's Black Blade,Standard / Pierce,-,Power of Destined Death,119,0,0,0,59,B,D,-,D,-,Legendary
+Colossal Sword,Royal Greatsword,Standard / Pierce,-,None,64,96,0,0,0,B,D,D,-,-,Epic
+Colossal Sword,Ruins Greatsword,Standard / Pierce,-,Power of Destruction,142,36,0,0,0,B,D,D,-,-,Legendary
+Colossal Sword,Starscourge Greatsword,Standard / Pierce,-,Power of the Starscourge,117,61,0,0,0,B,D,D,-,-,Legendary
+Colossal Sword,Troll's Golden Sword,Standard / Pierce,-,None,131,0,0,0,0,A,C,-,-,-,Rare
+Colossal Sword,Troll Knight's Sword,Standard / Pierce,-,None,88,46,0,0,0,B,D,D,-,-,Rare
+Colossal Sword,Watchdog's Greatsword,Standard / Pierce,-,None,128,0,0,0,0,A,C,-,-,-,Rare
+Colossal Sword,Zweihander,Standard / Pierce,-,None,104,0,0,0,0,A,C,-,-,-,Common
+Thrusting Sword,Antspur Rapier,Standard / Pierce,Rot: 56,None,88,0,0,0,0,E,S,-,-,-,Epic
+Thrusting Sword,Cleanrot Knight's Sword,Standard / Pierce,-,None,87,0,0,0,0,E,S,-,-,-,Rare
+Thrusting Sword,Estoc,Standard / Pierce,-,None,70,0,0,0,0,E,S,-,-,-,Common
+Thrusting Sword,Frozen Needle,Standard / Pierce,Frost: 56,None,84,0,0,0,0,E,S,-,-,-,Epic
+Thrusting Sword,Noble's Estoc,Standard / Pierce,-,None,73,0,0,0,0,E,S,-,-,-,Common
+Thrusting Sword,Rapier,Standard / Pierce,-,None,73,0,0,0,0,E,S,-,-,-,Common
+Thrusting Sword,Rogier's Rapier,Standard / Pierce,-,None,90,0,0,0,0,E,S,-,-,-,Rare
+Heavy Thrusting Sword,Bloody Helice,Standard / Pierce,Bleed: 70,None,101,0,0,0,0,C,B,-,-,C,Epic
+Heavy Thrusting Sword,Dragon King's Cragblade,Standard / Pierce,-,Power of the Dragonlord,84,0,0,56,0,C,B,-,-,-,Legendary
+Heavy Thrusting Sword,Godskin Stitcher,Standard / Pierce,-,None,105,0,0,0,0,C,B,-,-,-,Rare
+Heavy Thrusting Sword,Great Epee,Standard / Pierce,-,None,82,0,0,0,0,C,B,-,-,-,Common
+Curved Sword,Bandit's Curved Sword,Slash,-,None,73,0,0,0,0,D,A,-,-,-,Common
+Curved Sword,Beastman's Curved Sword,Slash,-,None,88,0,0,0,0,D,A,-,-,-,Rare
+Curved Sword,Eclipse Shotel,Slash,-,Power of Despair,60,0,0,0,60,D,B,-,D,-,Legendary
+Curved Sword,Falchion,Slash,-,None,70,0,0,0,0,D,A,-,-,-,Common
+Curved Sword,Flowing Curved Sword,Slash,-,None,105,0,0,0,0,D,A,-,-,-,Epic
+Curved Sword,Grossmesser,Slash,-,None,87,0,0,0,0,D,A,-,-,-,Rare
+Curved Sword,Magma Blade,Slash,-,None,66,0,42,0,0,D,B,-,D,-,Epic
+Curved Sword,Mantis Blade,Slash,-,None,90,0,0,0,0,D,A,-,-,-,Rare
+Curved Sword,Nox Flowing Sword,Slash,-,None,108,0,0,0,0,D,A,-,-,-,Epic
+Curved Sword,Scavenger's Curved Sword,Slash,Bleed: 34,None,80,0,0,0,0,D,A,-,-,-,Rare
+Curved Sword,Scimitar,Slash,-,None,72,0,0,0,0,D,A,-,-,-,Common
+Curved Sword,Serpent-God's Curved Sword,Slash,-,None,90,0,0,0,0,D,A,-,-,-,Rare
+Curved Sword,Shamshir,Slash,-,None,87,0,0,0,0,D,A,-,-,-,Rare
+Curved Sword,Shotel,Slash,-,None,70,0,0,0,0,D,A,-,-,-,Common
+Curved Sword,Wing of Astel,Slash,-,None,44,66,0,0,0,D,B,D,-,-,Epic
+Curved Greatsword,Beastman's Cleaver,Slash,-,None,108,0,0,0,0,B,B,-,-,-,Rare
+Curved Greatsword,Bloodhound's Fang,Slash,Bleed: 42,None,100,0,0,0,0,B,B,-,-,-,Rare
+Curved Greatsword,Dismounter,Slash,-,None,86,0,0,0,0,B,B,-,-,-,Common
+Curved Greatsword,Magma Wyrm's Scalesword,Slash,-,None,87,0,45,0,0,C,C,-,C,-,Epic
+Curved Greatsword,Monk's Flameblade,Slash,-,None,106,0,0,0,0,B,B,-,-,-,Rare
+Curved Greatsword,Morgott's Cursed Sword,Slash,Bleed: 41,Power of the Omen King,132,0,0,0,0,C,C,-,-,B,Legendary
+Curved Greatsword,Omen Cleaver,Slash,-,None,108,0,0,0,0,B,B,-,-,-,Rare
+Curved Greatsword,Onyx Lord's Greatsword,Slash,-,None,88,47,0,0,0,C,C,C,-,-,Epic
+Curved Greatsword,Zamor Curved Sword,Slash,Frost: 70,None,104,0,0,0,0,B,B,-,-,-,Epic
+Katana,Dragonscale Blade,Slash / Pierce,-,None,110,0,0,0,0,E,S,-,-,-,Epic
+Katana,Executor's Blade,Slash / Pierce,Bleed: 30,None,62,0,0,0,0,E,S,-,-,-,Common
+Katana,Hand of Malenia,Slash / Pierce,Bleed: 41,Power of the Undefeated,112,0,0,0,0,E,S,-,-,-,Legendary
+Katana,Meteoric Ore Blade,Slash / Pierce,Bleed: 34,None,52,33,0,0,0,E,A,D,-,-,Rare
+Katana,Moonveil,Slash / Pierce,Bleed: 38,None,60,42,0,0,0,E,A,D,-,-,Epic
+Katana,Nagakiba,Slash / Pierce,Bleed: 34,None,83,0,0,0,0,E,S,-,-,-,Rare
+Katana,Rivers of Blood,Slash / Pierce,Bleed: 56,None,46,0,46,0,0,E,A,-,-,C,Epic
+Katana,Serpentbone Blade,Slash / Pierce,Poison: 51,None,72,0,0,0,0,E,S,-,-,-,Rare
+Katana,Uchigatana,Slash / Pierce,Bleed: 30,None,66,0,0,0,0,E,S,-,-,-,Common
+Twinblade,Eleonora's Poleblade,Standard / Pierce,Bleed: 56,None,45,0,45,0,0,C,B,-,-,B,Epic
+Twinblade,Gargoyle's Black Blades,Standard / Pierce,-,None,72,0,0,0,37,C,B,-,C,-,Epic
+Twinblade,Gargoyle's Twinblade,Standard / Pierce,-,None,91,0,0,0,0,C,B,-,-,-,Rare
+Twinblade,Godskin Peeler,Standard / Pierce,-,None,93,0,0,0,0,C,B,-,-,-,Rare
+Twinblade,Twinblade,Standard / Pierce,-,None,72,0,0,0,0,C,B,-,-,-,Rare
+Twinblade,Twinned Knight Swords,Standard / Pierce,-,None,89,0,0,0,0,C,B,-,-,-,Rare
+Axe,Battle Axe,Standard,-,None,77,0,0,0,0,B,C,-,-,-,Common
+Axe,Celebrant's Cleaver,Standard,-,None,97,0,0,0,0,B,C,-,-,-,Rare
+Axe,Forked Hatchet,Standard / Pierce,Bleed: 30,None,73,0,0,0,0,B,C,-,-,-,Rare
+Axe,Hand Axe,Standard,-,None,77,0,0,0,0,B,C,-,-,-,Common
+Axe,Highland Axe,Standard,-,None,95,0,0,0,0,B,C,-,-,-,Rare
+Axe,Icerind Hatchet,Standard,Frost: 56,None,95,0,0,0,0,B,C,-,-,-,Epic
+Axe,Iron Cleaver,Standard,-,None,95,0,0,0,0,B,C,-,-,-,Rare
+Axe,Jawbone Axe,Strike,-,None,79,0,0,0,0,B,C,-,-,-,Common
+Axe,Ripple Blade,Standard,-,None,124,0,0,0,0,-,-,-,-,S,Rare
+Axe,Rosus' Axe,Standard,-,None,68,51,0,0,0,C,B,D,-,-,Epic
+Axe,Sacrificial Axe,Standard,-,None,116,0,0,0,0,B,C,-,-,-,Epic
+Axe,Stormhawk Axe,Standard,-,None,121,0,0,0,0,B,C,-,-,-,Epic
+Axe,Warped Axe,Standard,-,None,99,0,0,0,0,B,C,-,-,-,Rare
+Greataxe,Axe of Godrick,Standard,-,Power of the Golden Lineage,155,0,0,0,0,S,E,-,-,-,Legendary
+Greataxe,Butchering Knife,Standard,-,None,137,0,0,0,0,S,E,-,-,-,Epic
+Greataxe,Crescent Moon Axe,Standard,-,None,91,0,0,0,0,S,E,-,-,-,Common
+Greataxe,Executioner's Greataxe,Standard,-,None,112,0,0,0,0,S,E,-,-,-,Rare
+Greataxe,Gargoyle's Black Axe,Standard,-,None,64,0,0,0,79,A,E,-,D,-,Epic
+Greataxe,Gargoyle's Great Axe,Standard,-,None,117,0,0,0,0,S,E,-,-,-,Rare
+Greataxe,Greataxe,Standard,-,None,91,0,0,0,0,S,E,-,-,-,Common
+Greataxe,Great Omenkiller Cleaver,Standard,Bleed: 42,None,105,0,0,0,0,S,E,-,-,-,Rare
+Greataxe,Longhaft Axe,Standard,-,None,91,0,0,0,0,S,E,-,-,-,Common
+Greataxe,Rusted Anchor,Pierce,-,None,115,0,0,0,0,S,E,-,-,-,Rare
+Greataxe,Winged Greathorn,Standard,-,Power of the Ancestral Spirit,155,0,0,0,0,S,E,-,-,-,Legendary
+Hammer,Club,Strike,-,None,72,0,0,0,0,S,-,-,-,-,Common
+Hammer,Curved Club,Strike,-,None,74,0,0,0,0,A,D,-,-,-,Common
+Hammer,Envoy's Horn,Strike,-,None,64,0,0,0,45,B,D,-,D,-,Epic
+Hammer,Hammer,Strike,-,None,89,0,0,0,0,A,D,-,-,-,Rare
+Hammer,Mace,Strike,-,None,74,0,0,0,0,A,D,-,-,-,Common
+Hammer,Marika's Hammer,Strike,-,Power of the Queen,74,0,0,0,49,B,D,-,D,-,Legendary
+Hammer,Monk's Flamemace,Strike,-,None,91,0,0,0,0,A,D,-,-,-,Rare
+Hammer,Morning Star,Strike,Bleed: 34,None,83,0,0,0,0,A,D,-,-,-,Rare
+Hammer,Nox Flowing Hammer,Strike,-,None,108,0,0,0,0,A,D,-,-,-,Epic
+Hammer,Ringed Finger,Strike,-,None,111,0,0,0,0,A,D,-,-,-,Epic
+Hammer,Scepter of the All-Knowing,Strike / Pierce,-,None,66,48,0,0,0,B,D,D,-,-,Epic
+Hammer,Spiked Club,Strike,Bleed: 34,None,82,0,0,0,0,A,D,-,-,-,Rare
+Hammer,Stone Club,Strike,-,None,75,0,0,0,0,A,D,-,-,-,Common
+Hammer,Varre's Bouquet,Strike,Bleed: 51,None,74,0,0,0,0,B,D,-,-,C,Rare
+Hammer,Warpick,Pierce,-,None,89,0,0,0,0,A,D,-,-,-,Rare
+Flail,Bastard's Stars,Strike,-,Power of the Lightless Void,58,68,0,0,0,C,B,D,-,-,Legendary
+Flail,Chainlink Flail,Strike,Bleed: 34,None,86,0,0,0,0,B,C,-,-,-,Rare
+Flail,Family Heads,Strike,-,None,68,46,0,0,0,C,B,D,-,-,Epic
+Flail,Flail,Strike,Bleed: 30,None,67,0,0,0,0,C,B,-,-,-,Common
+Flail,Nightrider Flail,Strike,Bleed: 50,None,96,0,0,0,0,D,D,-,-,-,Rare
+Great Hammer,Battle Hammer,Strike,-,None,109,0,0,0,0,S,E,-,-,-,Rare
+Great Hammer,Beastclaw Greathammer,Strike,-,None,83,0,0,0,55,A,E,-,D,-,Epic
+Great Hammer,Brick Hammer,Strike,-,None,109,0,0,0,0,S,E,-,-,-,Rare
+Great Hammer,Celebrant's Skull,Strike,-,None,111,0,0,0,0,S,E,-,-,-,Rare
+Great Hammer,Cranial Vessel Candlestand,Strike,-,None,68,0,68,0,0,C,E,-,D,-,Epic
+Great Hammer,Curved Great Club,Strike,-,None,88,0,0,0,0,S,E,-,-,-,Common
+Great Hammer,Devourer's Scepter,Strike,-,Power of the Blasphemous,93,0,57,0,0,A,E,-,D,-,Legendary
+Great Hammer,Envoy's Long Horn,Strike,-,None,80,0,0,0,53,A,E,-,D,-,Epic
+Great Hammer,Great Mace,Strike,-,None,88,0,0,0,0,S,E,-,-,-,Common
+Great Hammer,Great Stars,Strike,Bleed: 42,None,102,0,0,0,0,S,E,-,-,-,Rare
+Great Hammer,Greathorn Hammer,Strike,-,None,115,0,0,0,0,C,E,-,-,-,Rare
+Great Hammer,Large Club,Strike,-,None,88,0,0,0,0,S,-,-,-,-,Common
+Great Hammer,Pickaxe,Pierce,-,None,88,0,0,0,0,S,E,-,-,-,Common
+Great Hammer,Rotten Battle Hammer,Strike,Rot: 42,None,102,0,0,0,0,S,E,-,-,-,Rare
+Colossal Weapon,Axe of Godfrey,Standard,-,Power of the First Lord,181,0,0,0,0,S,-,-,-,-,Legendary
+Colossal Weapon,Dragon Greatclaw,Standard,-,None,98,0,0,65,0,S,-,-,-,-,Epic
+Colossal Weapon,Duelist Greataxe,Standard,-,None,106,0,0,0,0,S,-,-,-,-,Common
+Colossal Weapon,Envoy's Greathorn,Strike,-,None,96,0,0,0,64,A,-,-,D,-,Epic
+Colossal Weapon,Fallingstar Beast Jaw,Pierce,-,None,100,76,0,0,0,A,-,D,-,-,Epic
+Colossal Weapon,Ghiza's Wheel,Standard,Bleed: 56,None,149,0,0,0,0,S,-,-,-,-,Epic
+Colossal Weapon,Giant-Crusher,Strike,-,None,136,0,0,0,0,S,-,-,-,-,Rare
+Colossal Weapon,Great Club,Strike,-,None,101,0,0,0,30,A,-,-,D,-,Rare
+Colossal Weapon,Golem's Halberd,Standard / Pierce,-,None,133,0,0,0,0,S,-,-,-,-,Rare
+Colossal Weapon,Prelate's Inferno Crozier,Strike,-,None,163,0,0,0,0,S,-,-,-,-,Epic
+Colossal Weapon,Raider's Greataxe,Standard,-,None,100,0,0,0,0,S,-,-,-,-,Common
+Colossal Weapon,Rotten Greataxe,Standard,Rot: 76,None,123,0,0,0,0,S,-,-,-,-,Rare
+Colossal Weapon,Rotten Staff,Strike,Rot: 84,None,149,0,0,0,0,S,-,-,-,-,Epic
+Colossal Weapon,Staff of the Avatar,Strike,-,None,98,0,0,0,49,A,-,-,D,-,Epic
+Colossal Weapon,Troll's Hammer,Strike,-,None,101,0,30,0,0,A,-,-,D,-,Rare
+Colossal Weapon,Watchdog's Staff,Strike,-,None,159,0,0,0,0,S,-,-,-,-,Epic
+Spear,Bolt of Gransax,Pierce,-,Power of the Great Ancient Dragon,74,0,0,49,0,C,B,-,-,-,Legendary
+Spear,Celebrant's Rib-Rake,Pierce,-,None,89,0,0,0,0,C,B,-,-,-,Rare
+Spear,Clayman's Harpoon,Pierce,-,None,54,36,0,0,0,C,B,C,-,-,Rare
+Spear,Cleanrot Spear,Pierce,-,None,65,0,0,0,36,C,B,-,C,-,Epic
+Spear,Cross-Naginata,Slash / Pierce,Bleed: 34,None,83,0,0,0,0,C,B,-,-,-,Rare
+Spear,Crystal Spear,Pierce,-,None,69,22,0,0,0,D,D,C,-,-,Rare
+Spear,Death Ritual Spear,Pierce,-,None,68,45,0,0,0,C,B,C,-,-,Epic
+Spear,Inquisitor's Girandole,Pierce,Bleed: 38,None,60,0,40,0,0,C,B,-,C,-,Epic
+Spear,Iron Spear,Pierce,-,None,75,0,0,0,0,C,B,-,-,-,Rare
+Spear,Partisan,Slash / Pierce,-,None,89,0,0,0,0,C,B,-,-,-,Rare
+Spear,Pike,Pierce,-,None,93,0,0,0,0,C,B,-,-,-,Rare
+Spear,Rotten Crystal Spear,Pierce,Rot: 34,None,64,20,0,0,0,C,B,C,-,-,Rare
+Spear,Short Spear,Pierce,-,None,72,0,0,0,0,C,B,-,-,-,Common
+Spear,Spear,Pierce,-,None,74,0,0,0,0,C,B,-,-,-,Common
+Spear,Spiked Spear,Strike / Pierce,Bleed: 34,None,82,0,0,0,0,C,B,-,-,-,Rare
+Spear,Torchpole,Pierce,-,None,58,0,35,0,0,C,B,-,-,-,Rare
+Great Spear,Lance,Pierce,-,None,95,0,0,0,0,B,C,-,-,-,Common
+Great Spear,Mohgwyn's Sacred Spear,Pierce,Bleed: 77,Power of the Blood Lord,79,0,51,0,0,B,C,-,-,C,Legendary
+Great Spear,Serpent-Hunter,Pierce,-,None,122,0,0,0,0,B,C,-,-,-,Rare
+Great Spear,Siluria's Tree,Pierce,-,None,75,0,0,0,75,B,C,-,D,-,Epic
+Great Spear,Treespear,Pierce,-,None,71,0,0,0,47,C,B,-,D,-,Rare
+Great Spear,Vyke's War Spear,Pierce,Madness: 70,None,86,0,57,0,0,B,C,-,D,-,Epic
+Halberd,Banished Knight's Halberd,Standard / Pierce,-,None,86,0,0,0,0,B,C,-,-,-,Common
+Halberd,Commander's Standard,Standard / Pierce,-,None,128,0,0,0,0,B,C,-,-,-,Epic
+Halberd,Dragon Halberd,Standard / Pierce,-,None,123,0,0,0,0,B,C,-,-,-,Epic
+Halberd,Gargoyle's Black Halberd,Standard / Pierce,-,None,56,0,0,0,68,B,C,-,C,-,Epic
+Halberd,Gargoyle's Halberd,Standard / Pierce,-,None,105,0,0,0,0,B,C,-,-,-,Rare
+Halberd,Glaive,Slash / Pierce,-,None,86,0,0,0,0,B,C,-,-,-,Common
+Halberd,Golden Halberd,Standard / Pierce,-,None,76,0,0,0,51,B,C,-,C,-,Epic
+Halberd,Guardian's Swordspear,Standard / Pierce,-,None,103,0,0,0,0,E,S,-,-,-,Rare
+Halberd,Guardian's Halberd,Standard / Pierce,-,None,78,0,0,0,0,B,C,-,-,-,Common
+Halberd,Halberd,Standard / Pierce,-,None,82,0,0,0,0,B,C,-,-,-,Common
+Halberd,Loretta's War Sickle,Slash / Pierce,-,None,76,51,0,0,0,B,C,C,-,-,Epic
+Halberd,Lucerne,Pierce,-,None,82,0,0,0,0,B,C,-,-,-,Common
+Halberd,Nightrider Glaive,Slash / Pierce,-,None,103,0,0,0,0,B,C,-,-,-,Rare
+Halberd,Pest's Glaive,Slash / Pierce,-,None,101,0,0,0,0,B,C,-,-,-,Rare
+Halberd,Ripple Crescent Halberd,Standard / Pierce,-,None,132,0,0,0,0,-,-,-,-,S,Rare
+Halberd,Vulgar Militia Saw,Standard / Pierce,Bleed: 38,None,79,0,0,0,0,B,C,-,-,-,Common
+Halberd,Vulgar Militia Shotel,Standard / Pierce,-,None,87,0,0,0,0,B,C,-,-,-,Common
+Reaper,Grave Scythe,Slash,Bleed: 42,None,87,0,0,0,0,D,A,-,-,-,Rare
+Reaper,Halo Scythe,Slash,Bleed: 38,None,65,0,0,0,44,D,B,-,D,-,Epic
+Reaper,Scythe,Slash,Bleed: 38,None,70,0,0,0,0,D,A,-,-,-,Common
+Reaper,Winged Scythe,Slash,Bleed: 38,None,47,0,0,0,58,D,B,-,D,-,Epic
+Whip,Giant's Red Braid,Strike,-,Power of the Giant,74,0,49,0,0,D,A,-,D,-,Legendary
+Whip,Hoslow's Petal Whip,Strike,Bleed: 38,None,102,0,0,0,0,D,A,-,-,-,Epic
+Whip,Magma Whip Candlestick,Strike,-,None,56,0,56,0,0,D,A,-,D,-,Epic
+Whip,Thorned Whip,Strike,Bleed: 34,None,82,0,0,0,0,D,A,-,-,-,Rare
+Whip,Urumi,Slash,-,None,93,0,0,0,0,D,A,-,-,-,Rare
+Whip,Whip,Strike,-,None,72,0,0,0,0,D,A,-,-,-,Common
+Fist,Caestus,Strike,-,None,61,0,0,0,0,B,C,-,-,-,Common
+Fist,Cipher Pata,Slash / Pierce,-,None,0,0,0,0,92,-,-,-,S,-,Epic
+Fist,Clinging Bone,Slash / Pierce,-,None,71,23,0,0,0,B,C,-,-,B,Epic
+Fist,Grafted Dragon,Strike,-,Power of the Flying Dragon,63,0,42,0,0,B,C,-,C,-,Legendary
+Fist,Iron Ball,Strike,-,None,77,0,0,0,0,B,C,-,-,-,Rare
+Fist,Katar,Slash / Pierce,-,None,64,0,0,0,0,B,C,-,-,-,Common
+Claw,Revenant's Cursed Claw,Strike / Slash,-,None,12,54,0,0,0,E,-,-,S,-,Common
+Fist,Spiked Caestus,Strike,Bleed: 34,None,68,0,0,0,0,B,C,-,-,-,Rare
+Fist,Star Fist,Strike,Bleed: 34,None,71,0,0,0,0,B,C,-,-,-,Rare
+Fist,Veteran's Prosthesis,Slash / Pierce,-,None,59,0,0,37,0,B,C,-,-,-,Epic
+Claw,Bloodhound Claws,Slash / Pierce,Bleed: 34,None,72,0,0,0,0,D,A,-,-,-,Rare
+Claw,Hookclaws,Slash / Pierce,Bleed: 30,None,56,0,0,0,0,D,A,-,-,-,Common
+Claw,Raptor Talons,Slash / Pierce,Bleed: 38,None,86,0,0,0,0,D,C,-,-,-,Epic
+Claw,Venomous Fang,Slash / Pierce,Poison: 51,None,63,0,0,0,0,D,A,-,-,-,Rare
+Bow,Composite Bow,Pierce,-,None,59,0,0,0,0,E,S,-,-,-,Rare
+Bow,Harp Bow,Pierce,-,None,59,0,0,0,0,E,S,-,-,-,Rare
+Bow,Misbegotten Shortbow,Pierce,-,None,50,0,0,0,0,E,S,-,-,-,Common
+Bow,Red Branch Shortbow,Pierce,-,None,57,0,0,0,0,E,S,-,-,-,Rare
+Bow,Shortbow,Pierce,-,None,46,0,0,0,0,E,C,-,-,-,Common
+Bow,Albinauric Bow,Pierce,-,None,61,0,0,0,0,E,S,-,-,-,Rare
+Bow,Black Bow,Pierce,-,None,73,0,0,0,0,E,S,-,-,-,Epic
+Bow,Erdtree Bow,Pierce,-,None,46,0,0,0,26,E,A,-,D,-,Epic
+Bow,Horn Bow,Pierce,-,None,41,22,0,0,0,E,A,D,-,-,Rare
+Bow,Longbow,Pierce,-,None,48,0,0,0,0,E,S,-,-,-,Common
+Bow,Pulley Bow,Pierce,-,None,72,0,0,0,0,E,S,-,-,-,Epic
+Bow,Serpent Bow,Pierce,-,None,59,0,0,0,0,E,A,-,-,C,Epic
+Bow,Ironeye's Bow,Pierce,-,None,45,0,0,0,0,E,S,-,-,-,Common
+Greatbow,Erdtree Greatbow,Pierce,-,None,95,0,0,0,84,C,C,-,C,-,Epic
+Greatbow,Golem Greatbow,Pierce,-,None,146,0,0,0,0,B,C,-,-,-,Rare
+Greatbow,Greatbow,Pierce,-,None,116,0,0,0,0,B,C,-,-,-,Common
+Greatbow,Lion Greatbow,Pierce,-,Power of the General,182,0,0,0,0,B,C,-,-,-,Legendary
+Crossbow,Arbalest,Pierce,-,None,154,0,0,0,0,-,-,-,-,-,Common
+Crossbow,Crepus's Black-Key Crossbow,Pierce,-,None,186,0,0,0,0,-,-,-,-,-,Rare
+Crossbow,Heavy Crossbow,Pierce,-,None,151,0,0,0,0,-,-,-,-,-,Common
+Crossbow,Light Crossbow,Pierce,-,None,149,0,0,0,0,-,-,-,-,-,Common
+Crossbow,Soldier's Crossbow,Pierce,-,None,148,0,0,0,0,-,-,-,-,-,Common
+Crossbow,Pulley Crossbow,Pierce,-,None,106,0,0,0,0,-,-,-,-,-,Epic
+Crossbow,Full Moon Crossbow,Pierce,-,None,93,93,0,0,0,-,-,-,-,-,Rare
+Ballista,Hand Ballista,Pierce,-,None,431,0,0,0,0,-,-,-,-,-,Rare
+Ballista,Jar Cannon,Pierce,-,None,584,0,0,0,0,-,-,-,-,-,Epic
+Glintstone Staff,Academy Glintstone Staff,Strike,-,-,25,0,0,0,0,-,-,S,-,-,Common
+Glintstone Staff,Albinauric Staff,Strike,-,-,17,0,0,0,0,-,-,S,-,-,Rare
+Glintstone Staff,Astrologer's Staff,Strike,-,-,25,0,0,0,0,-,-,S,-,-,Common
+Glintstone Staff,Azur's Glintstone Staff,Strike,-,-,24,0,0,0,0,-,-,S,-,-,Epic
+Glintstone Staff,Carian Glintblade Staff,Strike,-,-,22,0,0,0,0,-,-,S,-,-,Rare
+Glintstone Staff,Carian Glintstone Staff,Strike,-,-,25,0,0,0,0,-,-,S,-,-,Rare
+Glintstone Staff,Carian Regal Scepter,Strike,-,-,23,0,0,0,0,-,-,S,-,-,Legendary
+Glintstone Staff,Crystal Staff,Strike,-,-,31,0,0,0,0,-,-,S,-,-,Rare
+Glintstone Staff,Demi-Human Queen's Staff,Strike,-,-,31,0,0,0,0,-,-,S,-,-,Common
+Glintstone Staff,Digger's Staff,Strike,-,-,38,0,0,0,0,-,-,S,-,-,Common
+Glintstone Staff,Gelmir Glintstone Staff,Strike,-,-,29,0,0,0,0,-,-,S,-,-,Rare
+Glintstone Staff,Glintstone Staff,Strike,-,-,25,0,0,0,0,-,-,S,-,-,Common
+Glintstone Staff,Lusat's Glintstone Staff,Strike,-,-,24,0,0,0,0,-,-,S,-,-,Epic
+Glintstone Staff,Meteorite Staff,Strike,-,-,39,0,0,0,0,-,-,S,-,-,Epic
+Glintstone Staff,Prince of Death's Staff,Strike,-,-,25,0,0,0,0,-,-,S,-,-,Epic
+Glintstone Staff,Recluse's Staff,Strike,-,-,25,0,0,0,0,-,-,S,-,-,Common
+Glintstone Staff,Rotten Crystal Staff,Strike,Rot: 34,-,42,0,0,0,0,-,-,S,-,-,Rare
+Glintstone Staff,Staff of Loss,Strike,-,-,22,0,0,0,0,-,-,S,-,-,Rare
+Glintstone Staff,Staff of the Guilty,Strike,Bleed: 34,-,38,0,0,0,0,-,-,S,-,-,Rare
+Sacred Seal,Clawmark Seal,Strike,-,-,31,0,0,0,0,-,-,-,S,-,Rare
+Sacred Seal,Dragon Communion Seal,Strike,-,-,25,0,0,0,0,-,-,-,S,-,Epic
+Sacred Seal,Erdtree Seal,Strike,-,-,25,0,0,0,0,-,-,-,S,-,Epic
+Sacred Seal,Finger Seal,Strike,-,-,25,0,0,0,0,-,-,-,S,-,Common
+Sacred Seal,Frenzied Flame Seal,Strike,Madness: 65,-,25,0,0,0,0,-,-,-,B,-,Epic
+Sacred Seal,Giant's Seal,Strike,-,-,25,0,0,0,0,-,-,-,S,-,Rare
+Sacred Seal,Godslayer's Seal,Strike,-,-,25,0,0,0,0,-,-,-,S,-,Rare
+Sacred Seal,Golden Order Seal,Strike,-,-,24,0,0,0,0,-,-,-,S,-,Epic
+Sacred Seal,Gravel Stone Seal,Strike,-,-,25,0,0,0,0,-,-,-,S,-,Rare
+Torch,Torch,Strike,-,None,19,0,36,0,0,B,-,-,-,-,Common
+Torch,Beast-Repellent Torch,Strike,-,None,20,0,37,0,0,B,B,-,-,-,Common
+Torch,Steel-Wire Torch,Strike,-,None,24,0,44,0,0,B,B,-,-,-,Rare
+Torch,Sentry's Torch,Strike,-,None,11,0,18,0,42,B,B,-,D,-,Rare
+Torch,Ghostflame Torch,Strike,Frost: 56,None,26,48,0,0,0,C,C,D,-,-,Epic
+Torch,St. Trina's Torch,Strike,Sleep: 56,None,24,0,44,0,0,C,C,-,D,-,Epic
