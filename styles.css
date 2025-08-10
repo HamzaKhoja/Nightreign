@@ -1,609 +1,592 @@
-
-/* Reset & Font */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* ========== Reset & Base ========== */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
 body {
-    font-family: 'Almendra', serif;
-    background-color: #1a1a1a;
-    color: #e0e0e0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
+	font-family: 'Almendra', serif;
+	background-color: #1a1a1a;
+	color: #e0e0e0;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
 }
-
 img {
-  -webkit-user-drag: none;
+	-webkit-user-drag: none;
 }
-
-.hidden { display: none; }
-
-
-
+.hidden {
+	display: none !important;
+}
+/* ========== Popup (Boss Info) ========== */
 #infoPopup table {
-  margin: 0 auto;
+	margin: 0 auto;
 }
-
-#infoPopup th,
-#infoPopup td {
-  padding-right: 15px;
+#infoPopup th, #infoPopup td {
+	padding-right: 15px;
 }
-
 .res-icon {
-  width: 16px;
-  height: 16px;
-  vertical-align: middle;
-  margin-right: 6px;
+	width: 16px;
+	height: 16px;
+	vertical-align: middle;
+	margin-right: 6px;
 }
-
 .popup-window {
-  position: fixed;
-  background: #000;
-  border: 1px solid #333;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  padding: 20px;
-  max-height: 80vh;
-  overflow-y: auto;
-  z-index: 10000;
-
-  /* let it size to content but not overflow the screen */
-  width: auto;
-  max-width: 90vw;
-  /* remove your old min-width here */
+	position: fixed;
+	background: #000;
+	border: 1px solid #333;
+	border-radius: 8px;
+	box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+	padding: 20px;
+	max-height: 80vh;
+	overflow-y: auto;
+	z-index: 10000;
+	width: auto;
+	max-width: 90vw;
 }
-
 .popup-sections {
-  display: flex;
-  gap: 16px;
-  align-items: flex-start;
+	display: flex;
+	gap: 16px;
+	align-items: flex-start;
 }
-
 .popup-section {
-  /* allow each section to shrink/grow between 180px and 260px */
-  flex: 1 1 200px;
-  min-width: 180px;
-  max-width: 260px;
+	flex: 1 1 200px;
+	min-width: 180px;
+	max-width: 260px;
 }
-
 .popup-section table {
-  width: 100%;
-  table-layout: fixed;
+	width: 100%;
+	table-layout: fixed;
 }
-
-.popup-section table td:first-child,
-.popup-section table th:first-child {
-  width: 40%;  /* narrower first column */
+.popup-section table td:first-child, .popup-section table th:first-child {
+	width: 40%;
 }
-/* WebKit browsers */
 .popup-window::-webkit-scrollbar {
-  width: 6px;
+	width: 6px;
 }
-
 .popup-window::-webkit-scrollbar-track {
-  background: #1a1a1a;
-  border-radius: 3px;
+	background: #1a1a1a;
+	border-radius: 3px;
 }
-
 .popup-window::-webkit-scrollbar-thumb {
-  background: #8f7e4f;                /* muted gold */
-  border-radius: 3px;
-  border: 1px solid #1a1a1a;         /* inset effect */
+	background: #8f7e4f;
+	border-radius: 3px;
+	border: 1px solid #1a1a1a;
 }
-
 .popup-window::-webkit-scrollbar-thumb:hover {
-  background: #bfa96c;                /* brighten on hover */
-  box-shadow: 0 0 2px #bfa96c;        /* subtle glow */
+	background: #bfa96c;
+	box-shadow: 0 0 2px #bfa96c;
 }
-
 tr.sep-row td {
-  border-top: 1px solid #8f7e4f; /* Elden‐Ring gold */
-  padding-top: 0px;              /* give the line some breathing room */
+	border-top: 1px solid #8f7e4f;
+	padding-top: 0;
 }
-
 .popup-close {
-  position: absolute;
-  top: 4px; right: 4px;
-  background: transparent;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
+	position: absolute;
+	top: 4px;
+	right: 4px;
+	background: transparent;
+	border: none;
+	font-size: 1.2rem;
+	cursor: pointer;
 }
-
-
-
+/* ========== Containers & Panels ========== */
 .container {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: 1200px;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	max-width: 1200px;
 }
 .selection-panel {
-    background: #2d2d2d;
-    border-radius: 10px;
-    padding: 30px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    border: 2px solid #4a5568;
-    width: 90%;
-    max-width: 500px;
+	background: #2d2d2d;
+	border-radius: 10px;
+	padding: 50px;
+	margin-bottom: 20px;
+	box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+	border: 2px solid #4a5568;
+	width: 95%;
+	max-width: 800px;
 }
-.form-group { margin-bottom: 20px; text-align: center; }
+.form-group {
+	margin-bottom: 20px;
+	text-align: center;
+}
 label {
-    display: block;
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 8px;
-    color: #68d391;
+	display: block;
+	font-size: 20px;
+	font-weight: 700;
+	margin-bottom: 8px;
+	color: #e9d292;
 }
+/* Side-by-side Earth + Players */
+.form-row {
+	display: flex;
+	justify-content: center;
+	gap: 30px;
+	flex-wrap: wrap;
+}
+.form-row .form-group {
+	margin-bottom: 10px;
+}
+/* ========== Form Elements ========== */
 select {
-    font-family: 'Almendra', serif;
-    font-size: 16px;
-    padding: 10px 15px;
-    border: 2px solid #4a5568;
-    border-radius: 5px;
-    background-color: #2d2d2d;
-    color: #e0e0e0;
-    cursor: pointer;
-    min-width: 200px;
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2368d391'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    background-size: 16px;
-    transition: border-color 0.2s;
+	font-family: 'Almendra', serif;
+	font-size: 24px;
+	padding: 14px 20px;
+	border: 2px solid #4a5568;
+	border-radius: 5px;
+	background-color: #2d2d2d;
+	color: #e0e0e0;
+	cursor: pointer;
+	min-width: 240px;
+	appearance: none;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238f7e4f'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-position: right 10px center;
+	background-size: 16px;
+	transition: border-color 0.2s;
 }
-select:focus { outline: none; border-color: #68d391; }
+select:focus {
+	outline: none;
+	border-color: #8f7e4f;
+}
+/* Buttons */
 button {
-    font-family: 'Almendra', serif;
-    font-size: 16px;
-    font-weight: 700;
-    padding: 12px 24px;
-    background: linear-gradient(135deg, #68d391, #4fd1c7);
-    color: #1a1a1a;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+	font-family: 'Almendra', serif;
+	font-size: 28px;
+	font-weight: 700;
+	padding: 14px 28px;
+	background: linear-gradient(135deg, #8f7e4f, #cbb576);
+	color: #1a1a1a;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 button:hover {
-    background: linear-gradient(135deg, #4fd1c7, #68d391);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(104, 211, 145, 0.3);
+	background: linear-gradient(135deg, #8f7e4f, #cbb576);
+	transform: translateY(-2px);
+	box-shadow: 0 4px 12px rgba(191,169,108,0.3);
+}
+/* ========== Map Area ========== */
+.map-layout {
+	width: 90vw;
+	/* max-width: 2000px; */
+	display: grid;
+	grid-template-columns: 30% 50%;
+	gap: 16px;
+	align-items: start;
 }
 .map-container {
-    flex: 1;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 400px;
-    position: relative;
-    overflow: hidden;
+	flex: 1;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	min-height: 400px;
+	position: relative;
+	overflow: hidden;
+	height: 100vh;
 }
 .image-wrapper {
-    position: relative;
-    width: 90%;
-    max-width: 900px;
-    height: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 8px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
-    background-color: #2d2d2d;
-    overflow: hidden;
+	position: relative;
+	width: 100%;
+	max-width: 100%;
+	height: auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 8px;
+	box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+	background-color: #2d2d2d;
+	overflow: hidden;
 }
 .map-image {
-    display: block;
-    width: 90%;
-    height: 90%;
-    object-fit: contain;
-    border-radius: 8px;
+	width: 100%;
+	max-width: 100%;
+	height: auto;
+	display: block;
 }
 .map-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* pointer-events: none; */
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
 }
-.map-marker {
-    position: absolute;
-    width: 28px;
-    height: 28px;
-    background-color: rgba(255, 255, 255, 0.7);
-    border-radius: 50%;
-    cursor: pointer;
-    transform: translate(-50%, -50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 10px;
-    font-weight: bold;
-    color: #1a1a1a;
-    text-shadow: 0 0 2px rgba(255,255,255,0.4);
-    border: 2px solid rgba(255,255,255,0.3);
-    transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
-    pointer-events: auto;
-    user-select: none;
-    z-index: 50;
+.map-overlay, .overlay-icon {
+	pointer-events: auto !important;
 }
-.map-marker:hover {
-    background-color: rgba(255, 253, 129, 0.9);
-    border-color: #ccd368;
-    transform: translate(-50%, -50%) scale(1.1);
-}
-.map-marker.church {
-    background-color: rgba(208, 227, 103, 0.8);
-    border-color: #eadf46;
-}
-.map-marker.rise {
-    background-color: rgba(129, 236, 252, 0.8);
-    border-color: #5575f6;
-}
-#seedImage {
-
-    width: 75%;
-    /* height: 1px; */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-.map-marker.church:hover { background-color: rgb(200, 209, 79); }
-.map-marker.rise:hover { background-color: rgb(129, 205, 252); }
-.seed-display {
-    font-size: 24px;
-    font-weight: 700;
-    color: #68d391;
-    margin-top: 20px;
-    text-align: center;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-    z-index: 10;
-    min-height: 30px;
+/* Map controls */
+.back-button, .reset-markers-button {
+	position: absolute;
+	padding: 8px 16px;
+	font-size: 14px;
+	background: rgba(45,45,45,0.9);
+	border: 1px solid #4a5568;
+	color: #e0e0e0;
+	z-index: 100;
 }
 .back-button {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    padding: 8px 16px;
-    font-size: 14px;
-    background: rgba(45, 45, 45, 0.9);
-    border: 1px solid #4a5568;
-    z-index: 100;
-    color: #e0e0e0;
-}
-.back-button:hover {
-    background: rgba(45, 45, 45, 1);
-    transform: none;
-    box-shadow: none;
+	top: 20px;
+	left: 20px;
 }
 .reset-markers-button {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    padding: 8px 16px;
-    font-size: 14px;
-    background: rgba(45, 45, 45, 0.9);
-    border: 1px solid #4a5568;
-    z-index: 100;
-    color: #e0e0e0;
+	bottom: 20px;
+	right: 20px;
 }
-.reset-markers-button:hover {
-    background: rgba(45, 45, 45, 1);
-    transform: none;
-    box-shadow: none;
+.back-button:hover, .reset-markers-button:hover {
+	background: rgba(45,45,45,1);
+	transform: none;
+	box-shadow: none;
 }
 .fullscreen-map {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: #1a1a1a;
-    z-index: 1000;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 0;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background: #1a1a1a;
+	z-index: 1000;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 0;
 }
-.fullscreen-map .selection-panel { display: none; }
-.fullscreen-map .image-wrapper {
-    width: 100vw;
-    height: 100vh;
-    max-width: 100vw;
-    max-height: 100vh;
-    border-radius: 0;
-    box-shadow: none;
-    background-color: transparent;
+.fullscreen-map .selection-panel {
+	display: none;
 }
-.fullscreen-map .map-image {
-    max-width: 100%;
-    max-height: 100%;
-    border-radius: 0;
+.fullscreen-map .image-wrapper, .fullscreen-map .map-image {
+	width: 100vw;
+	height: 100vh;
+	max-width: 100vw;
+	max-height: 100vh;
+	border-radius: 0;
+	box-shadow: none;
+	background-color: transparent;
 }
 .error-message {
-    color: #fc8181;
-    font-size: 18px;
-    text-align: center;
-    padding: 20px;
-    margin-top: 20px;
+	color: #fc8181;
+	font-size: 18px;
+	text-align: center;
+	padding: 20px;
+	margin-top: 20px;
 }
-.hidden { display: none !important; }
-
-/* Boss‐icon grid on main menu */
-.boss-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 36px;
-  margin-bottom: 20px;
+/* ========== Markers & Labels ========== */
+.map-marker {
+	position: absolute;
+	width: 28px;
+	height: 28px;
+	background-color: rgba(255,255,255,0.7);
+	border-radius: 50%;
+	cursor: pointer;
+	transform: translate(-50%, -50%);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 10px;
+	font-weight: bold;
+	color: #1a1a1a;
+	text-shadow: 0 0 2px rgba(255,255,255,0.4);
+	border: 2px solid rgba(255,255,255,0.3);
+	transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
+	pointer-events: auto;
+	user-select: none;
+	z-index: 50;
 }
-.boss-option {
-  width: 250px;
-  text-align: center;
-  cursor: pointer;
-  border: 2px solid transparent;
-  border-radius: 8px;
-  padding: 4px;
-  transition: border-color 0.2s, transform 0.2s;
+.map-marker:hover {
+	background-color: rgba(255,253,129,0.9);
+	border-color: #ccd368;
+	transform: translate(-50%, -50%) scale(1.1);
 }
-.boss-option img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 4px;
+.map-marker.church {
+	background-color: rgba(208,227,103,0.8);
+	border-color: #eadf46;
 }
-.boss-option span {
-  display: block;
-  margin-top: 4px;
-  font-size: 14px;
-  color: #e0e0e0;
+.map-marker.rise {
+	background-color: rgba(129,236,252,0.8);
+	border-color: #5575f6;
 }
-.boss-option:hover {
-  transform: translateY(-2px);
+.map-marker.church:hover {
+	background-color: rgb(200,209,79);
 }
-.boss-option.selected {
-  border-color: #68d391;
+.map-marker.rise:hover {
+	background-color: rgb(129,205,252);
 }
-
-.selection-panel {
-  width: 95% !important;
-  max-width: 800px !important;
-  padding: 50px !important;
+#seedImage {
+	width: 75%;
+	box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
-
-.selection-panel label {
-  font-size: 20px !important;
+.seed-display {
+	font-size: 24px;
+	font-weight: 700;
+	color: #68d391;
+	margin-top: 20px;
+	text-align: center;
+	text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+	z-index: 10;
+	min-height: 30px;
 }
-
-.selection-panel select {
-  font-size: 24px !important;
-  padding: 14px 20px !important;
-  min-width: 240px !important;
-}
-
-.selection-panel button {
-  font-size: 28px !important;
-  padding: 14px 28px !important;
-}
-
-/* If you’re also using the boss-icon grid: */
-.boss-grid {
-  gap: 24px !important;
-}
-.boss-option {
-  width: 150px !important;
-}
-.boss-option img {
-  border-radius: 6px; /* optional */
-}
-.boss-option span {
-  font-size: 16px !important;
-}
-
-/* --- structure overlay icons --- */
+/* ========== Overlay Icons & Labels ========== */
 .overlay-icon {
-  position: absolute;
-  height: 35px;           /* adjust to taste */
-  /* height: auto; */
-  transform: translate(-50%, 0%);  /* center over the point */
-  pointer-events: none;  /* clicks pass through */
-  z-index: 60;
+	position: absolute;
+	height: 35px;
+	transform: translate(-50%, 0%);
+	pointer-events: none;
+	z-index: 60;
 }
-
-/* --- labels under each icon --- */
 .overlay-label {
-  position: absolute;
-  transform: translate(-50%, -15%);
-  white-space: normal;
-  text-align: center;
-  font-size: 11px;
-  color: #e0e0e0;
-  text-shadow: 0 0 2px rgba(0,0,0,0.7);
-  pointer-events: none;
-  z-index: 60;
-  text-shadow: 2px 0 #000000, -2px 0 #000000, 0 2px #000000, 0 -2px #000000,
-             1px 1px #000000, -1px -1px #000000, 1px -1px #000000, -1px 1px #000000;
-  max-width: 62px; /* Adjust this value as needed. Use px, em, or ch */
-  word-wrap: break-word; /* For older browsers */
-  overflow-wrap: break-word; /* For modern browsers */
-  line-height: 1em;
+	position: absolute;
+	transform: translate(-50%, -15%);
+	white-space: normal;
+	text-align: center;
+	font-size: 14px;
+	color: #e0e0e0;
+	text-shadow: 2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000,1px 1px #000, -1px -1px #000, 1px -1px #000, -1px 1px #000;
+	pointer-events: none;
+	z-index: 60;
+	max-width: 62px;
+	overflow-wrap: break-word;
+	line-height: 1em;
 }
-
-.map-overlay,
-.overlay-icon {
-  pointer-events: auto !important;
+.icon-church, .icon-fort, .icon-great-church {
+	min-height: 55px !important;
 }
-
-.icon-church {
-  min-height: 55px !important;
-}
-
-.icon-fort {
-  min-height: 55px !important;
-}
-
-.icon-great-church {
-  min-height: 55px !important;
-}
-
 .icon-sorcerer\'s-rise {
-  min-height: 65px !important;
+	min-height: 65px !important;
 }
-
 .icon-evergaol {
-  max-height: 30px !important;
+	max-height: 30px !important;
 }
-
-/* bottom‑left “seed info” panel */
+/* ========== Seed Info (bottom-left) ========== */
 .seed-info {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  display: flex;
-  align-items: flex-start;
-  background: rgba(0,0,0,0.5);
-  padding: 8px 12px;
-  border-radius: 6px;
-  z-index: 200;
+	position: absolute;
+	bottom: 20px;
+	left: 20px;
+	display: flex;
+	align-items: flex-start;
+	background: rgba(0,0,0,0.5);
+	padding: 8px 12px;
+	border-radius: 6px;
+	z-index: 200;
 }
 .seed-info img {
-  width: auto;
-  height: 110px;
-  border-radius: 4px;
-  flex-shrink: 0;
+	width: auto;
+	height: 110px;
+	border-radius: 4px;
+	flex-shrink: 0;
 }
 .seed-info-text {
-  margin-top: 2rem;
-  margin-left: 20px;
-  color: #e0e0e0;
-  font-family: 'Almendra', serif;
+	margin-top: 2rem;
+	margin-left: 20px;
+	color: #e0e0e0;
+	font-family: 'Almendra', serif;
 }
 .seed-info-text .seed-id {
-  font-size: 18px;
-  font-weight: 700;
+	font-size: 18px;
+	font-weight: 700;
 }
 .seed-info-text .seed-event {
-  font-size: 14px;
-  margin-top: 4px;
-  opacity: 0.85;
+	font-size: 14px;
+	margin-top: 4px;
+	opacity: 0.85;
 }
-.hidden { display: none !important; }
-
 .boss-overlay {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  width: 150px;      /* adjust size as needed */
-  height: auto;
-  pointer-events: auto;
-  z-index: 20;      /* above markers */
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+	width: 150px;
+	height: auto;
+	pointer-events: auto;
+	z-index: 20;
 }
-
 .boss-event-text {
-  position: absolute;
-  bottom: 20px;
-  left: 30px;           /* or wherever beside your overlay image */
-  color: white;
-  font-size: 14px;
-  text-shadow: 0 0 4px black;
-  pointer-events: none;
-  z-index: 21;
-    text-shadow: 2px 0 #000000, -2px 0 #000000, 0 2px #000000, 0 -2px #000000,
-             1px 1px #000000, -1px -1px #000000, 1px -1px #000000, -1px 1px #000000;
+	position: absolute;
+	bottom: 20px;
+	left: 30px;
+	color: #fff;
+	font-size: 14px;
+	text-shadow: 2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000,1px 1px #000, -1px -1px #000, 1px -1px #000, -1px 1px #000;
+	pointer-events: none;
+	z-index: 21;
 }
-/* 
-.circle-icon {
-  position: absolute;
-  width: 60px;           
-  height: auto;
-  pointer-events: none;
-  z-index: 100;          
-}
-
-.circle-label {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  transform-origin: center center;
-  
-  display: block;
-  max-width: 80px;
-
-  color: white;
-  font-size: 10px;
-  text-shadow: 
-    2px 0 #000000, -2px 0 #000000, 
-    0 2px #000000, 0 -2px #000000,
-    1px 1px #000000, -1px -1px #000000, 
-    1px -1px #000000, -1px 1px #000000;
-  
-  text-align: center;
-  word-wrap: break-word; 
-  overflow-wrap: break-word; 
-  
-  pointer-events: none;
-  z-index: 101;
-}
- */
-
- /* container for icon + label, centered on the map point */
+/* ========== Night Circles ========== */
 .circle-wrapper {
-  position: absolute;
-  width: 60px;            /* exactly the same width as .circle-icon */
-  height: 60px;           /* exactly the same height (or set via JS to match) */
-  transform: translate(-50%, -50%);
-  pointer-events: auto;
+	position: absolute;
+	width: 60px;
+	height: 60px;
+	transform: translate(-50%, -50%);
+	pointer-events: auto;
 }
-
-/* 2) Make the storm icon fill the wrapper */
 .circle-icon {
-  display: block;
-  width: 100%;
-  height: 100%;
+	display: block;
+	width: 100%;
+	height: 100%;
 }
-
-/* 3) Label sits above the icon, always centered */
 .circle-label {
-  position: absolute;
-  /* this makes the LABEL’s center wind up at (left,top) */
-  transform: translate(-50%, -50%);
-  max-width: 60px;            /* your wrap limit */
-  white-space: normal;
-  text-align: center;
-  font-size: 9.5px;
-  color: white;
-  text-shadow:
-    2px 0 #000, -2px 0 #000,
-    0 2px #000, 0 -2px #000,
-    1px 1px #000, -1px -1px #000,
-    1px -1px #000, -1px 1px #000;
-  pointer-events: auto;
-  z-index: 101;
+	position: absolute;
+	transform: translate(-50%, -50%);
+	max-width: 60px;
+	white-space: normal;
+	text-align: center;
+	font-size: 9.5px;
+	color: #fff;
+	text-shadow: 2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000,1px 1px #000, -1px -1px #000, 1px -1px #000, -1px 1px #000;
+	pointer-events: auto;
+	z-index: 101;
 }
-
+/* ========== Map Instructions ========== */
 .map-instructions {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  right: 10px;
-  background: rgba(0,0,0,0.6);
-  color: #fff;
-  padding: 0.75rem 1rem;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  z-index: 50;
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	right: 10px;
+	background: rgba(0,0,0,0.6);
+	color: #fff;
+	padding: 0.75rem 1rem;
+	border-radius: 6px;
+	font-size: 0.9rem;
+	z-index: 50;
 }
 .map-instructions ul {
-  margin: 0.5rem 0 0 1rem;
-  padding: 0;
+	margin: 0.5rem 0 0 1rem;
+	padding: 0;
 }
-.map-instructions.hidden {
-  display: none;
+/* ========== Left Info Pane ========== */
+.left-info {
+	grid-column: 1;
+	background: rgba(0,0,0,0.85);
+	border: 1px solid #000;
+	border-radius: 10px;
+	padding: 12px;
+	color: #e6dfd0;
+	box-shadow: 0 4px 10px rgba(0,0,0,.35);
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	justify-content: stretch;
+	width: 100%;
+	box-sizing: border-box;
 }
-
+.info-tabs {
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+	margin-bottom: 12px;
+}
+.info-tab {
+	background: #000;
+	color: #e6dfd0;
+	border: none;
+	border-radius: 6px;
+	padding: 8px;
+	font-size: 16px;
+	cursor: pointer;
+	transition: background 0.2s, color 0.2s;
+}
+.info-tab.active {
+	background: #8f7e4f;
+	color: #1a1a1a;
+}
+.info-tab:hover {
+	background: #c5ae6e;
+	color: #e6dfd0;
+	box-shadow: none;
+}
+#infoTables {
+	flex: 1 1 auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.info-table {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	box-sizing: border-box;
+}
+/* ========== Boss & Nightfarer Grids ========== */
+.boss-grid {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 24px;
+	margin-bottom: 20px;
+}
+/* Base tile (greyed) shared by Boss & Nightfarer */
+.boss-option {
+	width: 150px;
+	text-align: center;
+	cursor: pointer;
+	border: 2px solid transparent;
+	border-radius: 8px;
+	padding: 4px;
+	transition: border-color 0.2s, transform 0.2s, background 0.2s;
+	background: #2d2d2d;
+	opacity: 0.5;
+}
+.boss-option img {
+	width: 100%;
+	height: auto;
+	display: block;
+	border-radius: 6px;
+	filter: grayscale(100%) brightness(0.8);
+}
+.boss-option span {
+	display: block;
+	margin-top: 4px;
+	font-size: 16px;
+	color: #e0e0e0;
+}
+.boss-option:hover {
+	transform: translateY(-2px);
+}
+.boss-option.selected {
+	border-color: #8f7e4f;
+	opacity: 1;
+	/* keep background as dark tile;
+	image goes full color */
+}
+.boss-option.selected img {
+	filter: none;
+}
+/* ========== Players Radio (button-style) ========== */
+.radio-group {
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+	font-size: 18px;
+	color: #e0e0e0;
+}
+.radio-group input[type="radio"] {
+	display: none;
+}
+.radio-group label {
+	display: inline-block;
+	padding: 12px 24px;
+	background: #2d2d2d;
+	color: #aaa;
+	font-weight: 700;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+	font-family: 'Almendra', serif;
+	border: 2px solid #4a5568;
+}
+.radio-group label:hover {
+	background: #3a3a3a;
+}
+.radio-group input[type="radio"]:checked + label {
+	background: linear-gradient(135deg, #8f7e4f, #d1bd87);
+	color: #1a1a1a;
+	border: none;
+}

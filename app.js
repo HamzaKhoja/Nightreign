@@ -3,8 +3,8 @@ TODO:
 - [ ] Implement other Special Events (i.e. Meteor Strike)
 - [ ] Add spawn point locations to map
 - [ ] Add Objective marker for Rotted Woods
-- [ ] Add info on hover over icons
 - [ ] Add Radio Button for Solo/Duo/Trio
+- [ ] Add info on hover over icons
     - [ ] Add info of Static Bosses to csv
     - [ ] Fetch correct data depending on boss type
     - [ ] Add values for runes/hp for duos and trios
@@ -28,26 +28,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const resetMarkersBtn = $('#resetMarkersButton');
     const seedDisplay = $('#seedDisplay');
     const viewSeedButton = $('#viewSeedButton');
+    const leftInfo = $('#leftInfo');
     const seedEvents = {};
     const nightCircles = {};
     const nightBosses  = {};
     const popup    = document.getElementById('infoPopup');
     const content  = document.getElementById('infoContent');
     const bossInfoMap = {};
-
-
-
+    const nightfarerGrid = $('#nightfarerGrid');
+    const playersRadios = document.getElementsByName('players');
 
     // --- Application state ---
     let hideTimeout;
     let selectedBoss = 'Gladius';
-    let currentSelections = { boss: 'Gladius', earth: 'None' };
     let userChurches = [];
     let userRises = [];
     let seedData = [];
     let currentPossible = [];
     let locationMeta = [];
     let seedStructures = {};
+    let selectedNightfarer = 'Duchess';
+    let currentSelections = { boss: 'Gladius', earth: 'None', nightfarer: 'Wylder', players: '1' };
+
 
     // --- Classification maps ---
     const fieldBosses = {
@@ -80,6 +82,23 @@ document.addEventListener('DOMContentLoaded', () => {
         Libra: 'Libra, Creature of Night.png', Fulghor: 'Fulghor, Champion of Nightglow.png',
         Caligo: 'Caligo, Miasma of Night.png', Heolstor: 'Heolstor, The Nightlord.png'
     };
+    const nightfarerIcons = {
+        Duchess: 'Duchess.png', Executor: 'Executor.png',
+        Guardian: 'Guardian.png', Ironeye: 'Ironeye.png',
+        Raider: 'Raider.png', Recluse: 'Recluse.png',
+        Revenant: 'Revenant.png', Wylder: 'Wylder.png'
+    };
+
+    const preferredWeapons = {
+        Wylder: ['Greatsword'],
+        Guardian: ['Halberd'],
+        Ironeye: ['Bow'],
+        Duchess: ['Dagger'],
+        Raider: ['Greataxe', 'Great Hammer', 'Colossal Weapon'],
+        Revenant: ['Sacred Seal'],
+        Recluse: ['Glintstone Staff', 'Sacred Seal'],
+        Executor: ['Katana'],
+    }
 
     // --- Map coordinates for each Shifting Earth ---
     const mapLocations = {
@@ -179,9 +198,21 @@ document.addEventListener('DOMContentLoaded', () => {
             ['Nameless King (Phase 1)', 'Nameless King (Phase 2)']
     };
 
+    const nightBossDuos = {
+        'Demi-Human Queen and Swordmaster':
+            ['Demi-Human Queen', 'Demi-Human Swordmaster'],
+        'Tree Sentinel and Royal Cavalrymen':
+            ['Tree Sentinel'],
+        'Draconic Tree Sentinel and Royal Cavalrymen':
+            ['Draconic Tree Sentinel'],
+        'Crucible Knight and Golden Hippopotamus':
+            ['Crucible Knight', 'Golden Hippopotamus'],
+    }
+
     const multiPhaseVariants = {
         ...nightLordVariants,
-        ...gaolBossDuos
+        ...gaolBossDuos,
+        ...nightBossDuos
     };
     
 // helper to draw them
@@ -260,6 +291,32 @@ document.addEventListener('DOMContentLoaded', () => {
             bossGrid.appendChild(div);
         });
     }
+
+    function initNightfarerGrid() {
+    nightfarerGrid.innerHTML = '';
+    Object.keys(nightfarerIcons).forEach(nf => {
+        const div = document.createElement('div');
+        div.className = 'boss-option' + (nf === selectedNightfarer ? ' selected' : '');
+        div.dataset.nightfarer = nf;
+
+        const img = document.createElement('img');
+        img.src = `Icons/Nightfarers/${nightfarerIcons[nf]}`;
+        img.alt = nf;
+        div.appendChild(img);
+
+        const sp = document.createElement('span');
+        sp.textContent = nf;
+        div.appendChild(sp);
+
+        div.addEventListener('click', () => {
+            $$('#nightfarerGrid .boss-option.selected').forEach(el => el.classList.remove('selected'));
+            div.classList.add('selected');
+            selectedNightfarer = nf;
+        });
+
+        nightfarerGrid.appendChild(div);
+    });
+}
 
     // --- Load locations metadata ---
     Papa.parse('sheets/locations.csv', {
@@ -354,6 +411,33 @@ Papa.parse('sheets/seedStructures.csv', {
   }
 });
 
+function splitBossCombo(name) {
+  if (!name) return [];
+  const norm = name.replace(/\s*(?:&|and)\s*/ig, ' & ');
+  return norm.split(' & ').map(s => s.trim()).filter(Boolean);
+}
+
+function expandBossNames(keyOrCombo) {
+  const parts = splitBossCombo(keyOrCombo);
+  const out = [];
+  parts.forEach(p => {
+    const variants = multiPhaseVariants[p] || [p];
+    variants.forEach(v => out.push(v));
+  });
+  return out;
+}
+
+// Given a boss name (or combo) and a context type, return matching info keys
+function resolveBossKeys(nameOrCombo, contextType) {
+  const names = expandBossNames(nameOrCombo); // concrete names
+  return names.map(n => {
+    const exact = `${contextType}:${n}`;
+    if (bossInfoMap[exact]) return exact;
+    // fallback: first entry with same name under any type
+    const any = Object.keys(bossInfoMap).find(k => k.endsWith(':' + n));
+    return any || exact; // may be missing if CSV lacks it
+  });
+}
 
 
     // --- Church/Rise handler ---
@@ -474,7 +558,7 @@ Papa.parse('sheets/seedStructures.csv', {
             }
 
             if (areaType === 'Field Boss' || areaType === 'Evergaol') {
-                attachInfoHover(icn, buildPopupHTML(structureType || enemyType));
+                attachInfoHover(icn, buildPopupHTML(structureType || enemyType, areaType));
             }
         });
     }
@@ -538,33 +622,37 @@ Papa.parse('sheets/bosses_info.csv', {
   skipEmptyLines: true,
   complete(results) {
     results.data.forEach(r => {
-      const name = r['Boss Name'].trim();
-      bossInfoMap[name] = {
-        drops:         r['Runes'].trim(),
-        hp:            r['HP'].trim(),
-        weakTo:        r['Weak To']?.trim()       || '—',
-        strongAgainst: r['Strong Against']?.trim()|| '—',
+      const type = (r['Boss Type'] || '').trim();   // NEW
+      const name = (r['Boss Name'] || '').trim();
+      const key  = `${type}:${name}`;                // NEW
+
+      bossInfoMap[key] = {                           // CHANGED
+        type,                                        // NEW
+        name,                                        // NEW (store raw name for display)
+        drops: (r['Runes'] || '').trim(),
+        hp:    (r['HP']    || '').trim(),
         resistances: {
-          Standard:    r['Standard'].trim(),
-          Slash:       r['Slash'].trim(),
-          Strike:      r['Strike'].trim(),
-          Pierce:      r['Pierce'].trim(),
-          Magic:       r['Magic'].trim(),
-          Fire:        r['Fire'].trim(),
-          Lightning:   r['Lightning'].trim(),
-          Holy:        r['Holy'].trim(),
-          Poison:      r['Poison'].trim(),
-          'Scarlet Rot': r['Scarlet Rot'].trim(),
-          'Blood Loss':  r['Blood Loss'].trim(),
-          Frostbite:     r['Frostbite'].trim(),
-          Sleep:         r['Sleep'].trim(),
-          Madness:       r['Madness'].trim(),
-          'Death Blight':r['Death Blight'].trim()
+          Standard:    (r['Standard']    || '').trim(),
+          Slash:       (r['Slash']       || '').trim(),
+          Strike:      (r['Strike']      || '').trim(),
+          Pierce:      (r['Pierce']      || '').trim(),
+          Magic:       (r['Magic']       || '').trim(),
+          Fire:        (r['Fire']        || '').trim(),
+          Lightning:   (r['Lightning']   || '').trim(),
+          Holy:        (r['Holy']        || '').trim(),
+          Poison:      (r['Poison']      || '').trim(),
+          'Scarlet Rot': (r['Scarlet Rot'] || '').trim(),
+          'Blood Loss':  (r['Blood Loss']  || '').trim(),
+          Frostbite:     (r['Frostbite']   || '').trim(),
+          Sleep:         (r['Sleep']       || '').trim(),
+          Madness:       (r['Madness']     || '').trim(),
+          'Death Blight':(r['Death Blight']|| '').trim()
         }
       };
     });
   }
 });
+
 
 
     // --- Load and show map + markers ---
@@ -580,7 +668,8 @@ Papa.parse('sheets/bosses_info.csv', {
         loader.onload = () => {
             mapImage.src = path;
             imageWrapper.classList.remove('hidden');
-            resetMarkersBtn.classList.remove('hidden');
+                        if (leftInfo) leftInfo.classList.remove('hidden');
+resetMarkersBtn.classList.remove('hidden');
             createMarkers();
             showBossOverlay();
         };
@@ -616,7 +705,7 @@ Papa.parse('sheets/bosses_info.csv', {
     .join('<hr>');
 
   // 5) wire up the hover
-  attachInfoHover(el, buildPopupHTML(currentSelections.boss));
+  attachInfoHover(el, buildPopupHTML(currentSelections.boss, 'Night Lord'));
 
 }
 
@@ -632,7 +721,26 @@ Papa.parse('sheets/bosses_info.csv', {
   mapOverlay.appendChild(div);
 }
 
+function splitBossCombo(name) {
+  if (!name) return [];
+  // normalize separators: "A & B" or "A and B"
+  const norm = name.replace(/\s*(?:&|and)\s*/i, ' & ');
+  if (norm.includes(' & ')) {
+    return norm.split(' & ').map(s => s.trim()).filter(Boolean);
+  }
+  return [name.trim()];
+}
 
+// Expand a key or combo into final boss names, handling duos *and* phase variants
+function expandBossNames(keyOrCombo) {
+  const parts = splitBossCombo(keyOrCombo);
+  const out = [];
+  parts.forEach(p => {
+    const variants = multiPhaseVariants[p] || [p];
+    variants.forEach(v => out.push(v));
+  });
+  return out;
+}
 
 function attachInfoHover(iconEl, html) {
   let hideTimeout;
@@ -740,127 +848,87 @@ function showNightCircles(seedID) {
       }
     }
 
-    // label element
     const lbl = document.createElement('div');
     lbl.className = 'circle-label';
     lbl.textContent = text;
     lbl.style.left = `${meta.xPct}%`;
     lbl.style.top  = `${meta.yPct}%`;
     mapOverlay.appendChild(lbl);
-    attachInfoHover(lbl, buildPopupHTML(bosses[key]));
+
+    // build the hover target name, including extra when applicable
+    let hoverName = bosses[key];
+    if ((key === 'night1' && extraOnNight1) || (key === 'night2' && extraOnNight2)) {
+        if (bosses.extra && bosses.extra !== 'None') {
+            hoverName = `${bosses[key]} & ${bosses.extra}`;
+        }
+    }
+    attachInfoHover(lbl, buildPopupHTML(hoverName, 'Night Boss'));
 
   });
 }
 
 // ── 2) Build the popup’s HTML from bossInfoMap ────────────────────────────────
-function singleSection(name) {
-  const info = bossInfoMap[name] || {};
-  const R    = info.resistances || {};
+function singleSection(infoKey) {
+  const info = bossInfoMap[infoKey] || {};
+  const title = info.name || infoKey.split(':').slice(1).join(':');
 
-  const dmgTypes = [
-    'Magic','Fire','Lightning','Holy'
-  ];
-  const statusTypes = [
-    'Poison','Scarlet Rot','Blood Loss',
-    'Frostbite','Sleep','Madness'
-  ];
-  const sepKeys = new Set(['Standard','Magic','Poison']);
+  const R = info.resistances || {};
+  const dmgTypes    = ['Magic','Fire','Lightning','Holy'];
+  const statusTypes = ['Poison','Scarlet Rot','Blood Loss','Frostbite','Sleep','Madness'];
+  const sepKeys     = new Set(['Standard','Magic','Poison']);
 
-  // build HTML for "Weak To"
   const weakHTML = dmgTypes
     .filter(k => parseFloat(R[k] || 0) < 0)
-    .map(k => `
-      <img class="res-icon"
-           src="Icons/Resistance Icons/${k}.png"
-           alt="${k}">
-    `).join('') || '—';
+    .map(k => `<img class="res-icon" src="Icons/Resistance Icons/${k}.png" alt="${k}">`)
+    .join('') || '—';
 
-  // build HTML for "Strong Against"
   const strongHTML = dmgTypes
     .filter(k => parseFloat(R[k] || 0) >= 20)
-    .map(k => `
-      <img class="res-icon"
-           src="Icons/Resistance Icons/${k}.png"
-           alt="${k}">
-    `).join('') || '—';
+    .map(k => `<img class="res-icon" src="Icons/Resistance Icons/${k}.png" alt="${k}">`)
+    .join('') || '—';
 
-  // start building the HTML
   let html = `
     <table>
-      <thead>
-        <tr>
-          <th colspan="2">
-            <h2>${name}</h2><br>
-          </th>
-        </tr>
-      </thead>
+      <thead><tr><th colspan="2"><h2>${title}</h2><br></th></tr></thead>
       <tbody>
-        <tr>
-          <td>Runes Dropped</td>
-          <td>${info.drops || '—'}</td>
-        </tr>
-        <tr>
-          <td>HP</td>
-          <td>${info.hp || '—'}</td>
-        </tr>
-        <tr>
-          <td>Weak To</td>
-          <td>${weakHTML}</td>
-        </tr>
-        <tr>
-          <td>Strong Against</td>
-          <td>${strongHTML}</td>
-        </tr>
+        <tr><td>Runes Dropped</td><td>${info.drops || '—'}</td></tr>
+        <tr><td>HP</td><td>${info.hp || '—'}</td></tr>
+        <tr><td>Weak To</td><td>${weakHTML}</td></tr>
+        <tr><td>Strong Against</td><td>${strongHTML}</td></tr>
       </tbody>
     </table>
-
-    <br>
-    <h3 style="text-align: center;">Resistances</h3>
-    <table>
-      <tbody>
+    <br><h3 style="text-align:center;">Resistances</h3>
+    <table><tbody>
   `;
 
-  // append both damage-type and status-effect rows
   [...dmgTypes, ...statusTypes].forEach(key => {
     const val = R[key] || '—';
     const cls = sepKeys.has(key) ? ' class="sep-row"' : '';
     html += `
       <tr${cls}>
-        <td>
-          <img class="res-icon"
-               src="Icons/Resistance Icons/${key}.png"
-               alt="${key}">
-          ${key}
-        </td>
+        <td><img class="res-icon" src="Icons/Resistance Icons/${key}.png" alt="${key}">${key}</td>
         <td>${val}</td>
-      </tr>
-    `;
+      </tr>`;
   });
 
-  html += `
-      </tbody>
-    </table>
-  `;
+  html += `</tbody></table>`;
   return html;
 }
 
-// replace your existing buildPopupHTML with this:
-function buildPopupHTML(bossKey) {
-  const names = multiPhaseVariants[bossKey] || [bossKey];
-  if (names.length === 1) {
-    return singleSection(names[0]);
-  }
-  const parts = names.map(name =>
-    `<div class="popup-section">${singleSection(name)}</div>`
-  );
-  return `<div class="popup-sections">${parts.join('')}</div>`;
+function buildPopupHTML(nameOrCombo, contextType) {
+  const keys = resolveBossKeys(nameOrCombo, contextType);
+  if (keys.length === 1) return singleSection(keys[0]);
+  return `<div class="popup-sections">${keys.map(k => `<div class="popup-section">${singleSection(k)}</div>`).join('')}</div>`;
 }
+
 
 
     // --- UI flow ---
     window.confirmSelections = () => {
         currentSelections.boss = selectedBoss;
         currentSelections.earth = earthSelect.value;
+        currentSelections.nightfarer = selectedNightfarer;
+        currentSelections.players = [...playersRadios].find(r => r.checked).value;
         selectionPanel.classList.add('hidden');
         backButton.classList.remove('hidden');
         displayMap(currentSelections.earth);
@@ -868,6 +936,9 @@ function buildPopupHTML(bossKey) {
     };
     window.showSelections = () => {
         selectionPanel.classList.remove('hidden');
+        selectedNightfarer = currentSelections.nightfarer;
+        initNightfarerGrid();
+        [...playersRadios].forEach(r => r.checked = (r.value === currentSelections.players));
         backButton.classList.add('hidden');
         resetMarkersBtn.classList.add('hidden');
         imageWrapper.classList.add('hidden');
@@ -876,17 +947,19 @@ function buildPopupHTML(bossKey) {
         container.classList.remove('fullscreen-map');
         earthSelect.value = currentSelections.earth;
         document.getElementById('mapInstructions').classList.add('hidden');
+        if (leftInfo) leftInfo.classList.add('hidden');
         resetMarkers();
     };
     window.resetMarkers = resetMarkers;
 
 
     
-
+    initBossGrid();
+    initNightfarerGrid();
     initBossGrid();
 
   // ── DEBUG ──
-//   const DEBUG_SEED = 2;
+//   const DEBUG_SEED = 0;
 //   if (typeof DEBUG_SEED !== 'undefined') {
 //     const seedNum  = DEBUG_SEED;
 //     const seedID   = seedNum.toString();               // for renderSeedMap lookup
@@ -935,4 +1008,15 @@ function buildPopupHTML(bossKey) {
 //   }
 
 
+});
+
+// Add to app.js (after DOMContentLoaded)
+document.querySelectorAll('.info-tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.info-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('#infoTables table').forEach(tbl => tbl.classList.add('hidden'));
+    const tab = btn.getAttribute('data-tab');
+    document.getElementById(tab + 'Table').classList.remove('hidden');
+  });
 });
