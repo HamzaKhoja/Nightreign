@@ -1,4 +1,4 @@
-Weapon Class,Weapon Name,Attack Affinity,Status Ailment,Unique Weapon Effect,Attack Phy,Attack Mag,Attack Fire,Attack Ligt,Attack Holy,Scaling STR,Scaling DEX,Scaling INT,Scaling FAI,Scaling ARC,Rarity
+Weapon Class,Weapon Name,Attack Affinity,Status Ailment,Unique Weapon Effect,Physical,Magic,Fire,Lightning,Holy,Scaling STR,Scaling DEX,Scaling INT,Scaling FAI,Scaling ARC,Rarity
 Dagger,Black Knife,Slash / Pierce,-,None,46,0,0,0,46,E,A,-,D,-,Epic
 Dagger,Blade of Calling,Slash / Pierce,-,None,57,0,0,0,35,E,A,-,D,-,Epic
 Dagger,Bloodstained Dagger,Slash / Pierce,Bleed: 34,None,66,0,0,0,0,E,S,-,-,-,Rare
