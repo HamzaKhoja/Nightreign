@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const bossInfoMap = {};
     const nightfarerGrid = $('#nightfarerGrid');
     const playersRadios = document.getElementsByName('players');
+    const seedSpawnPoint = {};
 
     // --- Application state ---
     let hideTimeout;
@@ -454,6 +455,18 @@ document.addEventListener('DOMContentLoaded', () => {
         return [...a].sort().every((v, i) => v === [...b].sort()[i]);
     }
 
+    function normalizeAreaName(s) {
+        return (s || '')
+            .replace(/[’']/g, '')   // drop curly/straight apostrophes
+            .replace(/\s+/g, ' ')   // collapse whitespace
+            .trim()
+            .toLowerCase();
+    }
+    function findMetaByAreaName(name) {
+        const target = normalizeAreaName(name);
+        return locationMeta.find(m => normalizeAreaName(m.areaName) === target) || null;
+    }
+
     // --- Init boss icon grid ---
     function initBossGrid() {
         bossGrid.innerHTML = '';
@@ -613,8 +626,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const night2Idx = types.findIndex(t => t.trim() === 'Night 2 Circle');
             const night1BossIdx = types.findIndex(t => t.trim() === 'Night 1 Boss');
             const night2BossIdx = types.findIndex(t => t.trim() === 'Night 2 Boss');
-            const extraBossIdx = types.findIndex(t => t.trim() === 'Extra Night Boss');
-
+            const extraBossIdx  = types.findIndex(t => t.trim() === 'Extra Night Boss');
+            const spawnIdx      = types.findIndex(t => t.trim() === 'Spawn Point');
 
             // find the Special Event column (case‑insensitive)
             const specialEventCol = types
@@ -641,6 +654,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         night1: night1BossIdx >= 0 ? row[night1BossIdx].trim() : '',
                         night2: night2BossIdx >= 0 ? row[night2BossIdx].trim() : '',
                         extra: extraBossIdx >= 0 ? row[extraBossIdx].trim() : ''
+                    };
+                    if (spawnIdx >= 0) {
+                        seedSpawnPoint[rawID] = (row[spawnIdx] || '').trim();
+                        seedSpawnPoint[padID] = seedSpawnPoint[rawID]; // allow zero-padded lookup too
                     };
                 }
 
@@ -699,6 +716,40 @@ document.addEventListener('DOMContentLoaded', () => {
             return any || exact; // may be missing if CSV lacks it
         });
     }
+
+    function renderSpawnPoint(seedID) {
+        const locName = seedSpawnPoint[seedID];
+        if (!locName) return;
+
+        const meta = findMetaByAreaName(locName);
+        if (!meta) return;
+
+        // Try to use an icon image; if it fails, swap to a small badge.
+        const icn = document.createElement('img');
+        icn.src = 'Icons/Locations/Spawnpoint.png';  // put your asset here
+        icn.className = 'overlay-icon icon-spawn-point';
+        icn.style.left = `${meta.xPct}%`;
+        icn.style.top  = `${meta.yPct}%`;
+
+        icn.onerror = () => {
+            // fallback: a tiny badge if the image isn't available
+            const badge = document.createElement('div');
+            badge.className = 'overlay-label';
+            badge.style.left = `${meta.xPct}%`;
+            badge.style.top  = `${meta.yPct}%`;
+            badge.textContent = 'Spawn';
+            mapOverlay.appendChild(badge);
+            icn.remove();
+        };
+
+        mapOverlay.appendChild(icn);
+
+
+
+        // Hover popup
+        attachInfoHover(icn, `<div style="padding:6px 8px;"><strong>Spawn Point</strong><br>${locName}</div>`);
+    }
+
 
 
     // --- Church/Rise handler ---
@@ -847,8 +898,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 attachInfoHover(icn, popupHTML);
+                
             }
         });
+        
     }
 
 
@@ -894,6 +947,8 @@ document.addEventListener('DOMContentLoaded', () => {
             renderStaticStructures();
             showSpecialEvent(currentPossible[0].id);
             showNightCircles(currentPossible[0].id);
+            renderSpawnPoint(currentPossible[0].id);
+
 
             $$('.map-marker').forEach(m => m.classList.add('hidden'));
         } else {
@@ -1372,7 +1427,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initBossGrid();
 
     // ── DEBUG ──
-    const DEBUG_SEED = 35;
+    const DEBUG_SEED = 0;
     if (typeof DEBUG_SEED !== 'undefined') {
         const seedNum = DEBUG_SEED;
         const seedID = seedNum.toString(); // for renderSeedMap lookup
@@ -1414,6 +1469,7 @@ document.addEventListener('DOMContentLoaded', () => {
             showBossOverlay();
             showSpecialEvent(seedID);
             showNightCircles(seedID);
+            renderSpawnPoint(seedID)
 
             // hide the plain map‑markers
             $$('.map-marker').forEach(m => m.classList.add('hidden'));

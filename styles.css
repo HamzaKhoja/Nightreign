@@ -697,3 +697,5 @@ button:hover {
 	#mapContainer { grid-column: 1; }
 	.right-spacer { display: none; }
 }
+
+.icon-spawn-point {width: 50px; height:auto;}
