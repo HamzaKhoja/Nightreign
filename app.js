@@ -1,11 +1,7 @@
 /*
 TODO:
 - [ ] Implement other Special Events (i.e. Meteor Strike)
-- [ ] Add spawn point locations to map
-- [ ] Add Objective marker for Rotted Woods
 - [ ] Add info on hover over icons
-    - [ ] Add info of Static Bosses to csv
-    - [ ] Fetch correct data depending on boss type
     - [ ] Add values for runes/hp for duos and trios
 */
 
@@ -37,9 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const nightfarerGrid = $('#nightfarerGrid');
     const playersRadios = document.getElementsByName('players');
     const seedSpawnPoint = {};
+    const weaponsByName = {};
 
     // --- Application state ---
-    let hideTimeout;
     let selectedBoss = 'Gladius';
     let userChurches = [];
     let userRises = [];
@@ -48,101 +44,62 @@ document.addEventListener('DOMContentLoaded', () => {
     let locationMeta = [];
     let seedStructures = {};
     let selectedNightfarer = 'Duchess';
-    let currentSelections = {
-        boss: 'Gladius',
-        earth: 'None',
-        nightfarer: 'Wylder',
-        players: '1'
-    };
+    let currentSelections = {boss: 'Gladius',earth: 'None',nightfarer: 'Wylder',players: '1'};
     let weaponsData = [];
 
 
     // --- Classification maps ---
     const fieldBosses = {
-        'Grafted Scion': 'Weak',
-        'Black Knife Assassin': 'Weak',
-        'Red Wolf': 'Weak',
-        'Ancient Hero of Zamor': 'Weak',
-        'Leonine Misbegotten': 'Weak',
-        'Elder Lion': 'Weak',
-        'Golden Hippo': 'Weak',
-        'Demi-Human Queen': 'Weak',
-        'Miranda Blossom': 'Weak',
-        'Royal Revenant': 'Weak',
+        'Grafted Scion': 'Weak', 'Black Knife Assassin': 'Weak',
+        'Red Wolf': 'Weak', 'Ancient Hero of Zamor': 'Weak',
+        'Leonine Misbegotten': 'Weak', 'Elder Lion': 'Weak',
+        'Golden Hippo': 'Weak', 'Demi-Human Queen': 'Weak',
+        'Miranda Blossom': 'Weak', 'Royal Revenant': 'Weak',
         "Knight's Cavalry": 'Weak',
-        'Flying Dragon': 'Strong',
-        'Ulcerated Tree Spirit': 'Strong',
-        'Erdtree Avatar': 'Strong',
-        'Bell Bearing Hunter': 'Strong',
-        'Ancestor Spirit': 'Strong',
-        'Tree Sentinel': 'Strong',
-        'Magma Wyrm': 'Strong',
-        'Royal Carian Knight': 'Strong',
-        'Death Rite Bird': 'Strong',
-        'Black Blade Kindred': 'Strong',
+        'Flying Dragon': 'Strong', 'Ulcerated Tree Spirit': 'Strong',
+        'Erdtree Avatar': 'Strong', 'Bell Bearing Hunter': 'Strong',
+        'Ancestor Spirit': 'Strong', 'Tree Sentinel': 'Strong',
+        'Magma Wyrm': 'Strong', 'Royal Carian Knight': 'Strong',
+        'Death Rite Bird': 'Strong', 'Black Blade Kindred': 'Strong',
         'Draconic Tree Sentinel': 'Strong'
     };
     const evergaolBosses = {
-        'Omen': 'Weak',
-        'Grave Warden Duelist': 'Weak',
-        'Bloodhound Knight': 'Weak',
-        'Stoneskin Lords': 'Weak',
-        'Nox Warriors': 'Weak',
-        'Beastly Brigade': 'Weak',
-        'Beastmen of Farum Azula': 'Weak',
-        'Crystalians': 'Weak',
+        'Omen': 'Weak', 'Grave Warden Duelist': 'Weak',
+        'Bloodhound Knight': 'Weak', 'Stoneskin Lords': 'Weak',
+        'Nox Warriors': 'Weak', 'Beastly Brigade': 'Weak',
+        'Beastmen of Farum Azula': 'Weak', 'Crystalians': 'Weak',
         'Banished Knights': 'Weak',
-        'Dragonkin Soldier': 'Strong',
-        'Godskin Noble': 'Strong',
-        'Godskin Apostle': 'Strong',
-        'Crucible Knight': 'Strong',
-        'Ancient Dragon': 'Strong',
-        'Godskin Duo': 'Strong',
+        'Dragonkin Soldier': 'Strong', 'Godskin Noble': 'Strong',
+        'Godskin Apostle': 'Strong', 'Crucible Knight': 'Strong',
+        'Ancient Dragon': 'Strong', 'Godskin Duo': 'Strong',
         'Death Rite Bird': 'Strong'
     };
 
     // --- Constants for boss folders & icons ---
     const bossFolders = {
-        Gladius: '1_Gladius',
-        Adel: '2_Adel',
-        Gnoster: '3_Gnoster',
-        Maris: '4_Maris',
-        Libra: '5_Libra',
-        Fulghor: '6_Fulghor',
-        Caligo: '7_Caligo',
-        Heolstor: '8_Heolstor'
+        Gladius: '1_Gladius', Adel: '2_Adel',
+        Gnoster: '3_Gnoster', Maris: '4_Maris',
+        Libra: '5_Libra', Fulghor: '6_Fulghor',
+        Caligo: '7_Caligo', Heolstor: '8_Heolstor'
     };
     const bossIconFiles = {
-        Gladius: 'Gladius, Beast of Night.png',
-        Adel: 'Adel, Baron of Night.png',
-        Gnoster: 'Gnoster, Wisdom of Night.png',
-        Maris: 'Maris, Fathom of Night.png',
-        Libra: 'Libra, Creature of Night.png',
-        Fulghor: 'Fulghor, Champion of Nightglow.png',
-        Caligo: 'Caligo, Miasma of Night.png',
-        Heolstor: 'Heolstor, The Nightlord.png'
+        Gladius: 'Gladius, Beast of Night.png', Adel: 'Adel, Baron of Night.png',
+        Gnoster: 'Gnoster, Wisdom of Night.png', Maris: 'Maris, Fathom of Night.png',
+        Libra: 'Libra, Creature of Night.png', Fulghor: 'Fulghor, Champion of Nightglow.png',
+        Caligo: 'Caligo, Miasma of Night.png', Heolstor: 'Heolstor, The Nightlord.png'
     };
     const nightfarerIcons = {
-        Duchess: 'Duchess.png',
-        Executor: 'Executor.png',
-        Guardian: 'Guardian.png',
-        Ironeye: 'Ironeye.png',
-        Raider: 'Raider.png',
-        Recluse: 'Recluse.png',
-        Revenant: 'Revenant.png',
-        Wylder: 'Wylder.png'
+        Duchess: 'Duchess.png', Executor: 'Executor.png',
+        Guardian: 'Guardian.png', Ironeye: 'Ironeye.png',
+        Raider: 'Raider.png', Recluse: 'Recluse.png',
+        Revenant: 'Revenant.png', Wylder: 'Wylder.png'
     };
 
-
     const preferredWeapons = {
-        Wylder: ['Greatsword'],
-        Guardian: ['Halberd'],
-        Ironeye: ['Bow'],
-        Duchess: ['Dagger'],
-        Raider: ['Greataxe', 'Great Hammer', 'Colossal Weapon'],
-        Revenant: ['Sacred Seal'],
-        Recluse: ['Glintstone Staff', 'Sacred Seal'],
-        Executor: ['Katana'],
+        Wylder: ['Greatsword'], Guardian: ['Halberd'],
+        Ironeye: ['Bow'], Duchess: ['Dagger'], Executor: ['Katana'],
+        Raider: ['Greataxe', 'Great Hammer', 'Colossal Weapon'], 
+        Revenant: ['Sacred Seal'], Recluse: ['Glintstone Staff', 'Sacred Seal']
     }
 
     // --- Map coordinates for each Shifting Earth ---
@@ -363,13 +320,42 @@ document.addEventListener('DOMContentLoaded', () => {
         ...nightBossDuos
     };
 
+    function _norm(s) {
+        return String(s || '')
+            .toLowerCase()
+            .replace(/\s+/g, ' ')
+            .replace(/[’'"]/g, '') // normalize quotes
+            .trim();
+    }
+
+    function findRotBlessingMeta(variant) {
+        const wantType = _norm('Rot Blessing');
+        const wantName = _norm(variant);
+
+        // exact normalized match first
+        let m = locationMeta.find(
+            r => _norm(r.areaType) === wantType && _norm(r.areaName) === wantName
+        );
+        if (m) return m;
+
+        // fallback: allow partial contains (helps if Area Name has extra words)
+        m = locationMeta.find(
+            r => _norm(r.areaType) === wantType && _norm(r.areaName).includes(wantName)
+        );
+        return m || null;
+    }
+
     // helper to draw them
     function renderStaticStructures() {
         document.querySelectorAll('.static-icon, .static-label').forEach(el => el.remove());
         const list = staticStructuresByEarth[currentSelections.earth] || [];
         console.log('🗻 staticStructures for', currentSelections.earth, list);
 
-        list.forEach(({ areaName, iconFile, label }) => {
+        list.forEach(({
+            areaName,
+            iconFile,
+            label
+        }) => {
             const meta = locationMeta.find(m => m.areaName === areaName);
             console.log('   ↳ looking up', areaName, '→', meta);
             if (!meta) return;
@@ -380,9 +366,9 @@ document.addEventListener('DOMContentLoaded', () => {
             icn.className = 'overlay-icon';
 
             const typeKey = iconFile
-            .replace(/\.[^/.]+$/, '') // strip ".png"
-            .toLowerCase()
-            .replace(/\s+/g, '-');
+                .replace(/\.[^/.]+$/, '') // strip ".png"
+                .toLowerCase()
+                .replace(/\s+/g, '-');
             icn.classList.add(`icon-${typeKey}`);
             icn.style.left = `${meta.xPct}%`;
             icn.style.top = `${meta.yPct}%`;
@@ -398,11 +384,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Determine popup content
             let popupHTML;
-            
+
             if (infoKeyMatch) {
-            popupHTML = singleSection(infoKeyMatch); // full table from bosses_info.csv
+                popupHTML = singleSection(infoKeyMatch); // full table from bosses_info.csv
             } else {
-            popupHTML = `<div style="padding:4px 8px;"><strong>${label || areaName}</strong></div>`;
+                popupHTML = `<div style="padding:4px 8px;"><strong>${label || areaName}</strong></div>`;
             }
 
             attachInfoHover(icn, popupHTML);
@@ -410,12 +396,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // optional label
             if (label) {
-            const lbl = document.createElement('div');
-            lbl.className = 'overlay-label';
-            lbl.style.left = `${meta.xPct}%`;
-            lbl.style.top = `${meta.yPct + 4}%`;
-            lbl.textContent = label;
-            mapOverlay.appendChild(lbl);
+                const lbl = document.createElement('div');
+                lbl.className = 'overlay-label';
+                lbl.style.left = `${meta.xPct}%`;
+                lbl.style.top = `${meta.yPct + 4}%`;
+                lbl.textContent = label;
+                mapOverlay.appendChild(lbl);
             }
         });
     }
@@ -449,19 +435,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    // --- Array equality (order‐agnostic) ---
-    function arraysEqual(a, b) {
-        if (a.length !== b.length) return false;
-        return [...a].sort().every((v, i) => v === [...b].sort()[i]);
-    }
-
     function normalizeAreaName(s) {
         return (s || '')
-            .replace(/[’']/g, '')   // drop curly/straight apostrophes
-            .replace(/\s+/g, ' ')   // collapse whitespace
+            .replace(/[’']/g, '') // drop curly/straight apostrophes
+            .replace(/\s+/g, ' ') // collapse whitespace
             .trim()
             .toLowerCase();
     }
+
     function findMetaByAreaName(name) {
         const target = normalizeAreaName(name);
         return locationMeta.find(m => normalizeAreaName(m.areaName) === target) || null;
@@ -547,7 +528,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    const weaponsByName = {};
 
     Papa.parse('sheets/weapons.csv', {
         download: true,
@@ -626,8 +606,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const night2Idx = types.findIndex(t => t.trim() === 'Night 2 Circle');
             const night1BossIdx = types.findIndex(t => t.trim() === 'Night 1 Boss');
             const night2BossIdx = types.findIndex(t => t.trim() === 'Night 2 Boss');
-            const extraBossIdx  = types.findIndex(t => t.trim() === 'Extra Night Boss');
-            const spawnIdx      = types.findIndex(t => t.trim() === 'Spawn Point');
+            const extraBossIdx = types.findIndex(t => t.trim() === 'Extra Night Boss');
+            const spawnIdx = types.findIndex(t => t.trim() === 'Spawn Point');
 
             // find the Special Event column (case‑insensitive)
             const specialEventCol = types
@@ -726,17 +706,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Try to use an icon image; if it fails, swap to a small badge.
         const icn = document.createElement('img');
-        icn.src = 'Icons/Locations/Spawnpoint.png';  // put your asset here
+        icn.src = 'Icons/Locations/Spawnpoint.png'; // put your asset here
         icn.className = 'overlay-icon icon-spawn-point';
         icn.style.left = `${meta.xPct}%`;
-        icn.style.top  = `${meta.yPct}%`;
+        icn.style.top = `${meta.yPct}%`;
 
         icn.onerror = () => {
             // fallback: a tiny badge if the image isn't available
             const badge = document.createElement('div');
             badge.className = 'overlay-label';
             badge.style.left = `${meta.xPct}%`;
-            badge.style.top  = `${meta.yPct}%`;
+            badge.style.top = `${meta.yPct}%`;
             badge.textContent = 'Spawn';
             mapOverlay.appendChild(badge);
             icn.remove();
@@ -821,29 +801,66 @@ document.addEventListener('DOMContentLoaded', () => {
             .forEach(el => el.remove());
     }
 
-    
+
     function renderSeedMap(seedID) {
         $$('.overlay-icon, .overlay-label').forEach(el => el.remove());
         const list = seedStructures[seedID] || [];
 
-        list.forEach(({ areaType, areaName, structureType, enemyType }) => {
+        list.forEach(({
+            areaType,
+            areaName,
+            structureType,
+            enemyType
+        }) => {
+            // --- Rot Blessing objective (areaName is empty in seedStructures) ---
+            if (areaType === 'Rot Blessing') {
+                const variant = (structureType || '').trim();
+                if (!variant || /^empty$/i.test(variant)) return; // no objective for this seed
+
+                const rbMeta = findRotBlessingMeta(variant);
+                if (!rbMeta) {
+                    console.warn('[Rot Blessing] coords not found for', variant);
+                    return;
+                }
+
+                const icn = document.createElement('img');
+                // use requested icon; try lowercase first, then fallback to capitalized if your files use that
+                icn.src = 'Icons/Locations/objective.png';
+                icn.onerror = () => {
+                    icn.onerror = null;
+                    icn.src = 'Icons/Locations/Objective.png';
+                };
+                icn.className = 'overlay-icon icon-objective';
+                icn.style.left = `${rbMeta.xPct}%`;
+                icn.style.top = `${rbMeta.yPct}%`;
+                mapOverlay.appendChild(icn);
+
+
+
+                attachInfoHover(icn, `<div style="padding:6px 8px;"><strong>Rot Blessing</strong><br>${variant}</div>`);
+                return; // done with this row
+            }
+            // --- normal flow (everything else) ---
             const meta = locationMeta.find(m => m.areaName === areaName);
             if (!meta) return;
             if (!structureType || structureType === 'Small Camp') return;
 
-            // --- Determine icon file ---
+            // Determine icon
             let iconFile;
             if (areaType === 'Field Boss' && areaName !== 'Castle Rooftop') {
-                iconFile = (fieldBosses[structureType] === 'Strong' ? 'Major Field Boss.png' : 'Minor Field Boss.png');
+                iconFile = (fieldBosses[structureType] === 'Strong' ?
+                    'Major Field Boss.png' :
+                    'Minor Field Boss.png');
             } else if (areaType === 'Evergaol') {
-                iconFile = (evergaolBosses[structureType] === 'Strong' ? 'Strong Evergaol.png' : 'Evergaol.png');
+                iconFile = (evergaolBosses[structureType] === 'Strong' ?
+                    'Strong Evergaol.png' :
+                    'Evergaol.png');
             } else if (areaType === 'Rotted Woods' && structureType !== 'Putrid Ancestral Followers') {
                 iconFile = 'Major Field Boss.png';
             } else {
                 iconFile = `${structureType}.png`;
             }
 
-            // --- Create icon element ---
             const icn = document.createElement('img');
             icn.src = `Icons/Locations/${iconFile}`;
             icn.className = 'overlay-icon';
@@ -860,7 +877,7 @@ document.addEventListener('DOMContentLoaded', () => {
             icn.onerror = () => icn.remove();
             mapOverlay.appendChild(icn);
 
-            // --- Optional label ---
+            // label (hide for certain structures)
             let labelText = enemyType || structureType;
             if (
                 (structureType.includes('Church') && !structureType.includes('Great Church')) ||
@@ -877,32 +894,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 mapOverlay.appendChild(lbl);
             }
 
-            // --- Attach popups ---
+            // popups
             if (areaType === 'Field Boss' || areaType === 'Evergaol') {
                 attachInfoHover(icn, buildPopupHTML(structureType || enemyType, areaType));
             }
 
             if (areaType === 'Rotted Woods' && structureType !== 'Putrid Ancestral Followers') {
-                let infoKeyMatch = Object.keys(bossInfoMap).find(k => {
-                    const parts = k.split(':'); // ["Boss Type", "Boss Name"]
-                    const bossType = parts[0].trim().toLowerCase();
-                    const bossName = parts.slice(1).join(':').trim().toLowerCase();
+                const infoKeyMatch = Object.keys(bossInfoMap).find(k => {
+                    const [bt, ...rest] = k.split(':');
+                    const bossType = (bt || '').trim().toLowerCase();
+                    const bossName = rest.join(':').trim().toLowerCase();
                     return bossType === 'field' && bossName === structureType.trim().toLowerCase();
                 });
 
-                let popupHTML;
-                if (infoKeyMatch) {
-                    popupHTML = singleSection(infoKeyMatch);
-                } else {
-                    popupHTML = `<div style="padding:4px 8px;"><strong>${structureType}</strong></div>`;
-                }
-
-                attachInfoHover(icn, popupHTML);
-                
+                attachInfoHover(
+                    icn,
+                    infoKeyMatch ? singleSection(infoKeyMatch) :
+                    `<div style="padding:4px 8px;"><strong>${structureType}</strong></div>`
+                );
             }
         });
-        
     }
+
 
 
     // --- Filter seeds & (re)render map overlays ---
@@ -1298,6 +1311,19 @@ document.addEventListener('DOMContentLoaded', () => {
         return '';
     }
 
+    function getMetaForArea(areaName, structureType) {
+        // Rot Blessing appears 3 times in locations.csv with different Area Types
+        if (areaName === 'Rot Blessing') {
+            // structureType here is the value from the seed row: Southwest/Northeast/West
+            return locationMeta.find(m =>
+                m.areaName.trim() === 'Rot Blessing' &&
+                m.areaType.trim().toLowerCase() === (structureType || '').trim().toLowerCase()
+            ) || null;
+        }
+        // default path (unique Area Name)
+        return locationMeta.find(m => m.areaName === areaName) || null;
+    }
+
     function buildPopupHTML(nameOrCombo, contextType) {
         const keys = resolveBossKeys(nameOrCombo, contextType);
         if (keys.length === 1) return singleSection(keys[0]);
@@ -1427,7 +1453,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initBossGrid();
 
     // ── DEBUG ──
-    const DEBUG_SEED = 0;
+    const DEBUG_SEED = 310;
     if (typeof DEBUG_SEED !== 'undefined') {
         const seedNum = DEBUG_SEED;
         const seedID = seedNum.toString(); // for renderSeedMap lookup
