@@ -1453,54 +1453,54 @@ document.addEventListener('DOMContentLoaded', () => {
     initBossGrid();
 
     // ── DEBUG ──
-    const DEBUG_SEED = 310;
-    if (typeof DEBUG_SEED !== 'undefined') {
-        const seedNum = DEBUG_SEED;
-        const seedID = seedNum.toString(); // for renderSeedMap lookup
-        const paddedID = seedID.padStart(3, '0'); // if you ever need zero‑pad
+    // const DEBUG_SEED = 310;
+    // if (typeof DEBUG_SEED !== 'undefined') {
+    //     const seedNum = DEBUG_SEED;
+    //     const seedID = seedNum.toString(); // for renderSeedMap lookup
+    //     const paddedID = seedID.padStart(3, '0'); // if you ever need zero‑pad
 
-        // 1) compute boss & earth exactly as updatePossibleSeeds does:
-        const bossesArr = Object.keys(bossFolders);
-        const bi = Math.min(Math.floor(seedNum / 40), bossesArr.length - 1);
-        const boss = bossesArr[bi];
-        const m = seedNum - bi * 40;
-        let earth;
-        if (m < 20) earth = 'None';
-        else if (m < 25) earth = 'Mountains';
-        else if (m < 30) earth = 'Crater';
-        else if (m < 35) earth = 'Rotted Woods';
-        else earth = 'Noklateo';
+    //     // 1) compute boss & earth exactly as updatePossibleSeeds does:
+    //     const bossesArr = Object.keys(bossFolders);
+    //     const bi = Math.min(Math.floor(seedNum / 40), bossesArr.length - 1);
+    //     const boss = bossesArr[bi];
+    //     const m = seedNum - bi * 40;
+    //     let earth;
+    //     if (m < 20) earth = 'None';
+    //     else if (m < 25) earth = 'Mountains';
+    //     else if (m < 30) earth = 'Crater';
+    //     else if (m < 35) earth = 'Rotted Woods';
+    //     else earth = 'Noklateo';
 
-        // 2) apply to your selection state & UI
-        currentSelections.boss = boss;
-        currentSelections.earth = earth;
-        $$('.boss-option.selected').forEach(el => el.classList.remove('selected'));
-        document
-            .querySelector(`.boss-option[data-boss="${boss}"]`)
-            ?.classList.add('selected');
-        earthSelect.value = earth;
-        selectionPanel.classList.add('hidden');
-        backButton.classList.remove('hidden');
+    //     // 2) apply to your selection state & UI
+    //     currentSelections.boss = boss;
+    //     currentSelections.earth = earth;
+    //     $$('.boss-option.selected').forEach(el => el.classList.remove('selected'));
+    //     document
+    //         .querySelector(`.boss-option[data-boss="${boss}"]`)
+    //         ?.classList.add('selected');
+    //     earthSelect.value = earth;
+    //     selectionPanel.classList.add('hidden');
+    //     backButton.classList.remove('hidden');
 
-        // 3) load the map
-        displayMap(earth);
+    //     // 3) load the map
+    //     displayMap(earth);
 
-        // 4) once the map + raw markers are in place, draw all overlays
-        mapImage.addEventListener('load', function _dbg() {
-            mapImage.removeEventListener('load', _dbg);
+    //     // 4) once the map + raw markers are in place, draw all overlays
+    //     mapImage.addEventListener('load', function _dbg() {
+    //         mapImage.removeEventListener('load', _dbg);
 
-            // dynamic icons & labels
-            renderSeedMap(seedID);
-            renderStaticStructures();
-            showBossOverlay();
-            showSpecialEvent(seedID);
-            showNightCircles(seedID);
-            renderSpawnPoint(seedID)
+    //         // dynamic icons & labels
+    //         renderSeedMap(seedID);
+    //         renderStaticStructures();
+    //         showBossOverlay();
+    //         showSpecialEvent(seedID);
+    //         showNightCircles(seedID);
+    //         renderSpawnPoint(seedID)
 
-            // hide the plain map‑markers
-            $$('.map-marker').forEach(m => m.classList.add('hidden'));
-        });
-    }
+    //         // hide the plain map‑markers
+    //         $$('.map-marker').forEach(m => m.classList.add('hidden'));
+    //     });
+    // }
 
 
 });
