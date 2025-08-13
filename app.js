@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let selectedNightfarer = 'Duchess';
     let currentSelections = {boss: 'Gladius',earth: 'None',nightfarer: 'Wylder',players: '1'};
     let weaponsData = [];
+    let spellsData = [];
 
 
     // --- Classification maps ---
@@ -82,6 +83,14 @@ document.addEventListener('DOMContentLoaded', () => {
         Libra: '5_Libra', Fulghor: '6_Fulghor',
         Caligo: '7_Caligo', Heolstor: '8_Heolstor'
     };
+
+    const bossWeaknesses = {
+        Gladius: 'Holy', Adel: 'Poison',
+        Gnoster: 'Fire', Maris: 'Lightning',
+        Libra: 'Holy', Fulghor: 'Lightning',
+        Caligo: 'Fire', Heolstor: 'Holy'
+    };
+    
     const bossIconFiles = {
         Gladius: 'Gladius, Beast of Night.png', Adel: 'Adel, Baron of Night.png',
         Gnoster: 'Gnoster, Wisdom of Night.png', Maris: 'Maris, Fathom of Night.png',
@@ -349,7 +358,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderStaticStructures() {
         document.querySelectorAll('.static-icon, .static-label').forEach(el => el.remove());
         const list = staticStructuresByEarth[currentSelections.earth] || [];
-        console.log('🗻 staticStructures for', currentSelections.earth, list);
 
         list.forEach(({
             areaName,
@@ -357,7 +365,6 @@ document.addEventListener('DOMContentLoaded', () => {
             label
         }) => {
             const meta = locationMeta.find(m => m.areaName === areaName);
-            console.log('   ↳ looking up', areaName, '→', meta);
             if (!meta) return;
 
             // icon
@@ -524,7 +531,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     yPct
                 };
             });
-            console.log('✅ locationMeta parsed with clean floats:', locationMeta);
         }
     });
 
@@ -563,6 +569,25 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    Papa.parse('sheets/spells_incantations.csv', {
+    download: true,
+    header: true,
+    skipEmptyLines: true,
+    complete(results) {
+        const normTier = t => {
+        const x = String(t || '').toUpperCase().trim();
+        return ['S+','S','A','B','C','D'].includes(x) ? x : '-';
+        };
+        spellsData = results.data.map(r => ({
+        type: (r['Type'] || '').trim(),          // Sorcery / Incantation
+        name: (r['Spell Name'] || '').trim(),
+        dmgType: (r['Damage'] || '').trim(),
+        desc: (r['Description'] || '').trim(),
+        tier: normTier(r['Tier'])
+        })).filter(s => s.type && s.name);
+    }
+    });
+
 
     // --- render weapons list for current nightfarer
     function renderPreferredWeapons() {
@@ -591,7 +616,115 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    function spellImgPath(name){
+        const base = name
+            .replace(/\([^)]*\)/g, '')      // remove parenthetical content
+            .replace(/[^\w\s-]/g, '')       // remove punctuation
+            .replace(/\s+/g, ' ')           // collapse spaces
+            .trim();
+        return `Icons/Spells/${base}.png`;
+    }
+    
+    function getDamageTypeIconsHTML(dmgTypeStr) {
+        if (!dmgTypeStr) return '';
+        return dmgTypeStr
+            .split(/[,/&]+/)              // split by comma, slash, or &
+            .map(t => t.trim())
+            .filter(Boolean)
+            .map(type => `<img class="res-icon" src="Icons/Resistance Icons/${type}.png" alt="${type}" onerror="this.style.display='none'">`)
+            .join(' ');
+    }
+    
+function renderPreferredSpells() {
+  const TIER_ORDER = ['S+','S','A','B','C','D'];
 
+  const grid = document.querySelector('#spellsGrid');
+  grid.innerHTML = '';
+
+  let allowedTypes = [];
+  if (currentSelections.nightfarer === 'Revenant') {
+    allowedTypes = ['Incantation'];
+  } else if (currentSelections.nightfarer === 'Recluse') {
+    allowedTypes = ['Sorcery', 'Incantation'];
+  } else {
+    // If others shouldn’t see spells, bail early
+    // return;  // uncomment if that’s desired
+    allowedTypes = ['Sorcery', 'Incantation'];
+  }
+
+  const weakness = (bossWeaknesses[currentSelections.boss] || '').toLowerCase();
+
+  // filter to allowed types and valid tiers (skip '-')
+  const base = spellsData.filter(s => allowedTypes.includes(s.type) && s.tier !== '-');
+
+  const matching = base.filter(s => s.dmgType && s.dmgType.toLowerCase().includes(weakness));
+  const others   = base.filter(s => !matching.includes(s));
+
+  const createSpellTile = (spell) => {
+    const item = document.createElement('div');
+    item.className = 'weapon-tile';
+    item.innerHTML = `
+      <img src="${spellImgPath(spell.name)}" alt="${spell.name}" onerror="this.style.display='none'">
+      <span>${spell.name}</span>
+    `;
+    attachWeaponHover(
+      item,
+      `<div>
+         <strong>${spell.name}</strong><br>
+         Tier: ${spell.tier}<br>
+         Damage: ${getDamageTypeIconsHTML(spell.dmgType)} ${spell.dmgType}<br>
+         ${spell.desc}
+       </div>`
+    );
+    return item;
+  };
+
+  const renderTierGroups = (parent, spells) => {
+    // group by tier
+    const buckets = new Map(TIER_ORDER.map(t => [t, []]));
+    spells.forEach(s => buckets.get(s.tier)?.push(s));
+
+    // render in order S+..D
+    TIER_ORDER.forEach(tier => {
+      const arr = buckets.get(tier);
+      if (!arr || !arr.length) return;
+
+      // OPTIONAL: sort within a tier (e.g., by name)
+      arr.sort((a, b) => a.name.localeCompare(b.name));
+
+      const group = document.createElement('div');
+      group.className = 'tier-group';
+
+      const h4 = document.createElement('h4');
+      h4.className = 'tier-header';
+      h4.textContent = tier;
+      group.appendChild(h4);
+
+      const gridEl = document.createElement('div');
+      gridEl.className = 'spell-grid';
+      arr.forEach(spell => gridEl.appendChild(createSpellTile(spell)));
+
+      group.appendChild(gridEl);
+      parent.appendChild(group);
+    });
+  };
+
+  const createSection = (title, spells) => {
+    if (!spells.length) return;
+    const section = document.createElement('section');
+    section.className = 'spell-section';
+
+    const h3 = document.createElement('h3');
+    h3.textContent = title;
+    section.appendChild(h3);
+
+    renderTierGroups(section, spells);
+    grid.appendChild(section);
+  };
+
+  createSection(`Weakness: ${weakness ? weakness[0].toUpperCase()+weakness.slice(1) : '—'}`, matching);
+  createSection('Other Spells', others);
+}
 
     // --- Load seed→structures table ---
 
@@ -669,12 +802,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    function splitBossCombo(name) {
-        if (!name) return [];
-        const norm = name.replace(/\s*(?:&|and)\s*/ig, ' & ');
-        return norm.split(' & ').map(s => s.trim()).filter(Boolean);
-    }
-
     function expandBossNames(keyOrCombo) {
         const parts = splitBossCombo(keyOrCombo);
         const out = [];
@@ -683,6 +810,15 @@ document.addEventListener('DOMContentLoaded', () => {
             variants.forEach(v => out.push(v));
         });
         return out;
+    }
+
+        function splitBossCombo(name) {
+        if (!name) return [];
+        const norm = name.replace(/\b(?:&|and)\b/gi, ' & ');
+        if (norm.includes(' & ')) {
+            return norm.split(' & ').map(s => s.trim()).filter(Boolean);
+        }
+        return [name.trim()];
     }
 
     // Given a boss name (or combo) and a context type, return matching info keys
@@ -819,7 +955,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const rbMeta = findRotBlessingMeta(variant);
                 if (!rbMeta) {
-                    console.warn('[Rot Blessing] coords not found for', variant);
                     return;
                 }
 
@@ -961,8 +1096,7 @@ document.addEventListener('DOMContentLoaded', () => {
             showSpecialEvent(currentPossible[0].id);
             showNightCircles(currentPossible[0].id);
             renderSpawnPoint(currentPossible[0].id);
-
-
+            
             $$('.map-marker').forEach(m => m.classList.add('hidden'));
         } else {
             $$('.map-marker').forEach(m => m.classList.remove('hidden'));
@@ -1093,28 +1227,6 @@ document.addEventListener('DOMContentLoaded', () => {
         div.className = 'boss-event-text';
         div.textContent = 'Special Event: ' + text;
         mapOverlay.appendChild(div);
-    }
-
-    function splitBossCombo(name) {
-        if (!name) return [];
-        // Only match standalone "and" or "&", not part of other words
-        const norm = name.replace(/\b(?:&|and)\b/gi, ' & ');
-        if (norm.includes(' & ')) {
-            return norm.split(' & ').map(s => s.trim()).filter(Boolean);
-        }
-        return [name.trim()];
-    }
-
-
-    // Expand a key or combo into final boss names, handling duos *and* phase variants
-    function expandBossNames(keyOrCombo) {
-        const parts = splitBossCombo(keyOrCombo);
-        const out = [];
-        parts.forEach(p => {
-            const variants = multiPhaseVariants[p] || [p];
-            variants.forEach(v => out.push(v));
-        });
-        return out;
     }
 
     function attachInfoHover(iconEl, html) {
@@ -1311,19 +1423,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return '';
     }
 
-    function getMetaForArea(areaName, structureType) {
-        // Rot Blessing appears 3 times in locations.csv with different Area Types
-        if (areaName === 'Rot Blessing') {
-            // structureType here is the value from the seed row: Southwest/Northeast/West
-            return locationMeta.find(m =>
-                m.areaName.trim() === 'Rot Blessing' &&
-                m.areaType.trim().toLowerCase() === (structureType || '').trim().toLowerCase()
-            ) || null;
-        }
-        // default path (unique Area Name)
-        return locationMeta.find(m => m.areaName === areaName) || null;
-    }
-
     function buildPopupHTML(nameOrCombo, contextType) {
         const keys = resolveBossKeys(nameOrCombo, contextType);
         if (keys.length === 1) return singleSection(keys[0]);
@@ -1417,17 +1516,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // --- UI flow ---
-    window.confirmSelections = () => {
-        currentSelections.boss = selectedBoss;
-        currentSelections.earth = earthSelect.value;
-        currentSelections.nightfarer = selectedNightfarer;
-        currentSelections.players = [...playersRadios].find(r => r.checked).value;
-        selectionPanel.classList.add('hidden');
-        backButton.classList.remove('hidden');
-        displayMap(currentSelections.earth);
-        renderPreferredWeapons(); // <-- add this
-        document.getElementById('mapInstructions').classList.remove('hidden');
-    };
+window.confirmSelections = () => {
+  currentSelections.boss = selectedBoss;
+  currentSelections.earth = earthSelect.value;
+  currentSelections.nightfarer = selectedNightfarer;
+  currentSelections.players = [...playersRadios].find(r => r.checked).value;
+
+  selectionPanel.classList.add('hidden');
+  backButton.classList.remove('hidden');
+
+  // Removed: refreshWeaponsTabLabel();
+  displayMap(currentSelections.earth);
+
+  // Fill both; tabs will show/hide as needed
+  renderPreferredWeapons();
+  renderPreferredSpells();
+
+  document.getElementById('mapInstructions').classList.remove('hidden');
+};
     window.showSelections = () => {
         selectionPanel.classList.remove('hidden');
         selectedNightfarer = currentSelections.nightfarer;
@@ -1448,7 +1554,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    initBossGrid();
     initNightfarerGrid();
     initBossGrid();
 
@@ -1507,20 +1612,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Add to app.js (after DOMContentLoaded)
 document.querySelectorAll('.info-tab').forEach(btn => {
-    btn.addEventListener('click', () => {
-        document.querySelectorAll('.info-tab').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.info-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
 
-        // hide all tables + the weapons grid
-        document.querySelectorAll('#infoTables .info-table, #weaponsGrid')
-            .forEach(el => el.classList.add('hidden'));
+    // hide all
+    document.querySelectorAll('#infoTables .info-table, #weaponsGrid, #spellsGrid')
+      .forEach(el => el.classList.add('hidden'));
 
-        const tab = btn.getAttribute('data-tab');
-        if (tab === 'weapons') {
-            document.getElementById('weaponsGrid').classList.remove('hidden');
-            renderPreferredWeapons(); // ensure fresh render
-        } else {
-            document.getElementById(tab + 'Table').classList.remove('hidden');
-        }
-    });
+    const tab = btn.dataset.tab?.trim();
+
+    if (tab === 'weapons') {
+      document.getElementById('weaponsGrid').classList.remove('hidden');
+      renderPreferredWeapons();
+    } else if (tab === 'spells') {
+      document.getElementById('spellsGrid').classList.remove('hidden');
+      renderPreferredSpells();
+    } else {
+      const table = document.getElementById(`${tab}Table`);
+      if (table) table.classList.remove('hidden');
+      else console.warn('No table for tab:', tab);
+    }
+  });
 });

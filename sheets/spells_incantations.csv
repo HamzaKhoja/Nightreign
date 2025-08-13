@@ -1,159 +1,159 @@
-Type,Spell Name,School,FP,Description
-Sorcery,Glintstone Pebble,Glintstone Sorceries,7,Fires magic projectiles from glintstone.
-Sorcery,Swift Glintstone Shard,Glintstone Sorceries,5,Swiftly fires magic projectiles from glintstone
-Sorcery,Great Glintstone Shard,Glintstone Sorceries,12,Fires larger magic projectiles from glintstone.
-Sorcery,Glintstone Cometshard,Glintstone Sorceries,17,Fires a magic comet with a trailing tail
-Sorcery,Comet,Glintstone Sorceries,24,Fires a great magic comet.
-Sorcery,Shard Spiral,Glintstone Sorceries,14,Fire twin spiraling projectiles.
-Sorcery,Glintstone Stars,Glintstone Sorceries,12,Fires guided magic shooting stars
-Sorcery,Star Shower,Glintstone Sorceries,23,Fires six shooting stars that pursue foes.
-Sorcery,Glintstone Arc,Glintstone Sorceries,9,Launches a horizontally-widening magic arc.
-Sorcery,Crystal Barrage,Glintstone Sorceries,14 (2),Fires a volley of glintstone crystal shards.
-Sorcery,Crystal Burst,Glintstone Sorceries,14,Fires a burst of glintstone crystal shards.
-Sorcery,Cannon of Haima,Glintstone Sorceries,38,Lobs an explosive magic projectile in an arc.
-Sorcery,Gavel of Haima,Glintstone Sorceries,22,Attacks using a magic greathammer.
-Sorcery,Shatter Earth,Glintstone Sorceries,10,Thrust staff into ground to emit a shockwave.
-Sorcery,Rock Blaster,Glintstone Sorceries,22 (5),Thrust staff into ground to emit a massive shockwave.
-Sorcery,Scholar's Armament,Glintstone Sorceries,25,Enchants right-hand armament with magic damage.
-Sorcery,Scholar's Shield,Glintstone Sorceries,30,Enhances left-hand shield damage negation.
-Sorcery,Terra Magica,Glintstone Sorceries,20,Raises the magic strength of those within the sigil.
-Sorcery,Thops's Barrier (Spell),Glintstone Sorceries,7 (7),Erect a magic forcefield to deflect spells.
-Sorcery,Comet Azur,Glintstone Sorceries,40 (10),Fires a tremendous comet within a starry torrent.
-Sorcery,Stars of Ruin,Glintstone Sorceries,32,Fire twelve dark shooting stars that pursue foes.
-Sorcery,Founding Rain of Stars,Glintstone Sorceries,27,Releases a downpour of star rain for a while.
-Sorcery,Magic Glintblade,Carian Sorceries,12,Creates sigil that forms a projectile glintblade after delay.
-Sorcery,Glintblade Phalanx,Carian Sorceries,18,Forms a defensive arch of magic glintblades.
-Sorcery,Carian Phalanx,Carian Sorceries,24,Forms a defensive arch of numerous magic glintblades.
-Sorcery,Greatblade Phalanx,Carian Sorceries,30,Forms a defensive arch of larger magic glintblades.
-Sorcery,Magic Downpour,Carian Sorceries,18,Summon a magic mass that sprays projectiles over area.
-Sorcery,Loretta's Greatbow,Carian Sorceries,24,Fires great arrow from a magic greatbow.
-Sorcery,Loretta's Mastery,Carian Sorceries,39,Fires four great arrow from a magic greatbow at once.
-Sorcery,Rennala's Full Moon,Moon Sorceries,47,Incarnate a full moon and launch it at foes.
-Sorcery,Ranni's Dark Moon,Moon Sorceries,57,"Incarnate a cold, dark moon and launch it at foes."
-Sorcery,Carian Slicer,Carian Sorceries,4,Performs swift sweeping slash using magical sword.
-Sorcery,Carian Greatsword,Carian Sorceries,12,Performs sweeping slash using magical greatsword.
-Sorcery,Carian Piercer,Carian Sorceries,17,Impales foes with magical greatsword.
-Sorcery,Adula's Moonblade,Carian Sorceries,22,Sweeping slash followed by cold blade projectile.
-Sorcery,Carian Retaliation,Carian Sorceries,8,Dispels enemy spells and retaliates with glintblades.
-Sorcery,Ambush Shard,Sellian Sorceries,13,Strikes from behind with projectile fired from distance.
-Sorcery,Night Shard,Sellian Sorceries,7,Swiftly fires a semi-invisible magic projectile.
-Sorcery,Night Comet,Sellian Sorceries,21,Fires a semi-invisible magic comet.
-Sorcery,Night Maiden's Mist,Sellian Sorceries,20,Releases life-sapping silver mist before caster.
-Sorcery,Eternal Darkness,Sellian Sorceries,25,Creates a dark space that draws in spells.
-Sorcery,Magma Shot,Magma Sorceries,16,Fires lump of magma that explodes on contact.
-Sorcery,Roiling Magma,Magma Sorceries,28,Fires lump of magma that explodes after delay.
-Sorcery,Gelmir's Fury,Magma Sorceries,16 (3),Covers area with surge of magma from the earth.
-Sorcery,Rykard's Rancor,Magma Sorceries,23,Releases searing spirits that repeatedly explode after delay.
-Sorcery,Glintstone Icecrag,Cold Sorceries,12,Fires mass of cold magic from glintstone.
-Sorcery,Freezing Mist,Cold Sorceries,20,Releases cold mist before caster.
-Sorcery,Frozen Armament,Cold Sorceries,20,Enchants right-hand armament with frost.
-Sorcery,Zamor Ice Storm,Cold Sorceries,17,Thrust staff into ground to create freezing tornado.
-Sorcery,Shattering Crystal,Crystalian Sorceries,21,Creates crystal mass that shatters in forward burst.
-Sorcery,Crystal Torrent,Crystalian Sorceries,20 (5),Creates crystal mass that fires stream of crystal shards.
-Sorcery,Crystal Release,Crystalian Sorceries,34,Scours area with violent rain of crystal shards.
-Sorcery,Gravity Well,Gravity Sorceries,12,Pulls foes toward caster with gravity projectile.
-Sorcery,Collapsing Stars,Gravity Sorceries,18,Pulls foes toward caster with gravity projectile volley.
-Sorcery,Rock Sling,Gravity Sorceries,18,Summons rocks from the earth and sends its flying.
-Sorcery,Meteorite,Gravity Sorceries,30 (10),Calls small meteors down from the sky.
-Sorcery,Meteorite of Astel,Gravity Sorceries,60 (12),Calls a hail of small meteorites from the void.
-Sorcery,Oracle Bubbles,Oracle Sorceries,12,Launches several small magic bubbles.
-Sorcery,Great Oracular Bubble (Spell),Oracle Sorceries,16,Launches a large magic bubble.
-Sorcery,Briars of Sin,Thorn Sorceries,6,Summons thorns from a whorl of own blood.
-Sorcery,Briars of Punishment,Thorn Sorceries,9,Wounds caster to unleash trail of bloodthrorns.
-Sorcery,Rancorcall,Death Sorceries,12,Summons vengeful spirits that chase down foes.
-Sorcery,Ancient Death Rancor,Death Sorceries,21,Summons horde of vengeful spirits that chase down foes.
-Sorcery,Explosive Ghostflame,Death Sorceries,29,Causes ghostflame explosion that burns wide area.
-Sorcery,Tibia's Summons,Death Sorceries,17,Summons Those Who Live in Death.
-Incantation,Urgent Heal,Two Fingers Incantations,16,Heals a small amount of HP.
-Incantation,Heal,Two Fingers Incantations,32,Heals HP for you and nearby allies.
-Incantation,Great Heal,Two Fingers Incantations,45,Greatly Heals HP for self and nearby allies.
-Incantation,Lord's Heal,Two Fingers Incantations,55,Massively heals HP for self and nearby allies.
-Incantation,Magic Fortification,Two Fingers Incantations,20,Increases magic damage negation.
-Incantation,Flame Fortification,Two Fingers Incantations,20,Increases fire damage negation.
-Incantation,Lightning Fortification,Two Fingers Incantations,20,Increase lightning damage negation.
-Incantation,Divine Fortification,Two Fingers Incantations,20,Increases holy damage negation.
-Incantation,Lord's Divine Fortification,Two Fingers Incantations,30,Greatly increases holy damage negation incl. allies
-Incantation,Rejection,Two Fingers Incantations,9,Produces a shockwave that pushes away foes.
-Incantation,Shadow Bait,Two Fingers Incantations,15,Creates shadow that lures the aggression of foes of human build.
-Incantation,Darkness,Two Fingers Incantations,24,Creates area of darkness that conceals caster.
-Incantation,Golden Vow,Erdtree Incantations,47,Increases attack and defense for self and allies.
-Incantation,Barrier of Gold,Erdtree Incantations,30,Greatly increases magic damage negation for self & allies.
-Incantation,Golden Lightning Fortification,Erdtree Incantations,30,Greatly increases lightning damage negation for self and allies.
-Incantation,Protection of the Erdtree,Erdtree Incantations,30,Increases affinity damage negation for self & allies.
-Incantation,Wrath of Gold,Erdtree Incantations,40,Produces golden shockwave that knocks back foes.
-Incantation,Erdtree Heal,Erdtree Incantations,65,Vastly heals HP for self and nearby allies.
-Incantation,Blessing's Boon,Erdtree Incantations,30,Grants blessing to self and nearby allies.
-Incantation,Blessing of the Erdtree,Erdtree Incantations,60,Grants greater blessing to self and nearby allies
-Incantation,Aspects of the Crucible: Breath,Erdtree Incantations,28 (4),Creates throat pouch to spew fire while walking.
-Incantation,Aspects of the Crucible: Tail,Erdtree Incantations,20,Creates supple tail to sweep area before caster.
-Incantation,Aspects of the Crucible: Horns,Erdtree Incantations,18,Creates shoulder horn to gore foes from a low stance.
-Incantation,Elden Stars,Erdtree Incantations,41,Creates a steam of golden shooting stars that assail the area..
-Incantation,Black Blade,Erdtree Incantations,26,Black blade spinning slash that emits wave of light.
-Incantation,Discus of Light,Golden Order Incantations,3,Fires ring of light before the caster.
-Incantation,Triple Rings of Light,Golden Order Incantations,23,Fire three rings of light before the caster.
-Incantation,Radagon's Rings of Light,Golden Order Incantations,21,Creates golden ring of light to attack wide area.
-Incantation,Litany of Proper Death,Golden Order Incantations,17,Creates image of Order to deal holy damage.
-Incantation,Order's Blade,Golden Order Incantations,22,Enchanted right-hand armament with holy damage.
-Incantation,Immutable Shield,Golden Order Incantations,15,Increases left-hand shield's affinity/ailment resistance.
-Incantation,Law of Causality,Golden Order Incantations,22,Retaliates upon receiving a number of blows.
-Incantation,Law of Regression,Golden Order Incantations,55,Heals all ailments and dispels all special effects.
-Incantation,Lightning Spear,Dragon Cult Incantations,18,Hurls lightning spear before caster.
-Incantation,Lightning Strike,Dragon Cult Incantations,19,Summons lightning bolt that spreads from impact.
-Incantation,Honed Bolt,Dragon Cult Incantations,12,Strikes foe with lightning bolt from above.
-Incantation,Ancient Dragons' Lightning Spear,Dragon Cult Incantations,25,Stabs with red lightning spear from above.
-Incantation,Ancient Dragons' Lightning Strike,Dragon Cult Incantations,36,Summons red lightning that spreads from impact.
-Incantation,Lansseax's Glaive,Dragon Cult Incantations,22,Sweeps from above with red lightning glaive.
-Incantation,Fortissax's Lightning Spear,Dragon Cult Incantations,35,Stabs from above with two red lightning spears in tandem.
-Incantation,Frozen Lightning Spear,Dragon Cult Incantations,29,Stabs with ice lightning spear from above.
-Incantation,Death Lightning,Dragon Cult Incantations,28,Strikes surroundings with storm of death lightning.
-Incantation,Electrify Armament,Dragon Cult Incantations,27,Enchants right-hand armament with lightning damage.
-Incantation,Dragonbolt Blessing,Dragon Cult Incantations,20,Bolsters caster's body with lightning.
-Incantation,Catch Flame,Giants' Flame Incantations,10,Momentarily sparks flame from hand.
-Incantation,O Flame!,Giants' Flame Incantations,16,Momentarily sparks roaring flame from hand.
-Incantation,Flame Sling,Giants' Flame Incantations,11,Throws balls of raging fire.
-Incantation,Giantsflame Take Thee,Giants' Flame Incantations,30,Hurls massive ball of raging fire.
-Incantation,Flame Fall Upon Them,Giants' Flame Incantations,16,Hurls several balls of fire at once.
-Incantation,Flame of the Fell God,Giants' Flame Incantations,34,Summons raging fireball that explodes and sets the area ablaze.
-Incantation,Surge O Flame!,Giants' Flame Incantations,1 (1),Incinerates area before caster with stream of fire.
-Incantation,Whirl O Flame!,Giants' Flame Incantations,19,Sweeps area before caster with stream of fire.
-Incantation,Burn O Flame!,Giants' Flame Incantations,26,Raises a series of flame pillars around caster.
-Incantation,Flame Protect Me,Giants' Flame Incantations,30,Greatly increases fire damage negation.
-Incantation,Flame Grant Me Strength,Giants' Flame Incantations,28,Raises physical and fire-affinity attack power.
-Incantation,Fire's Deadly Sin,Giants' Flame Incantations,26,Sets area and self ablaze with raging flames.
-Incantation,Black Flame,Black Flame Incantations,18,Throws a ball of raging black fire.
-Incantation,Scouring Black Flame,Black Flame Incantations,21,Sweeps area before caster with black flame.
-Incantation,Black Flame Ritual,Black Flame Incantations,30,Summons circle of black flame pillars around caster.
-Incantation,Black Flame Blade,Black Flame Incantations,15,Enchants right-hand armament with black flame.
-Incantation,Black Flame's Protection,Black Flame Incantations,30,Increases physical damage negation.
-Incantation,Noble Presence,Black Flame Incantations,20,Thrust out belly with gusto to unleash repelling shockwave.
-Incantation,Beast Claw,Bestial Incantations,10,Creates claws that tear through the land.
-Incantation,Gurranq's Beast Claw,Bestial Incantations,21,Creates beast claws to rend surroundings with shockwaves.
-Incantation,Bestial Sling,Bestial Incantations,7,Swiftly flings numerous sharp rock shards
-Incantation,Stone of Gurranq,Bestial Incantations,15,Hurls a boulder before the caster.
-Incantation,Bestial Vitality,Bestial Incantations,18,Heals HP over a period of time.
-Incantation,Swarm of Flies,Blood Oath Incantations,14,Releases a swarm of bloodflies before caster.
-Incantation,Bloodflame Talons,Blood Oath Incantations,12,Creates bloodflame lacerations that then explode.
-Incantation,Bloodboon,Blood Oath Incantations,13,Scatters bloodflame before caster to set area aflame.
-Incantation,Bloodflame Blade,Blood Oath Incantations,20,Enchants right-hand armament with bloodflame.
-Incantation,Poison Mist,Servants of Rot Incantations,18,Releases poison mist before caster.
-Incantation,Poison Armament,Servants of Rot Incantations,15,Enchants right-hand armament with poison.
-Incantation,Pest Threads,Servants of Rot Incantations,19,Launches countless sticky threads before caster.
-Incantation,Scarlet Aeonia,Servants of Rot Incantations,48,Creates a giant flower that explodes with scarlet rot.
-Incantation,The Flame of Frenzy,Frenzied Flame Incantations,16,Emits burst of yellow flame of frenzy from eyes.
-Incantation,Unendurable Frenzy,Frenzied Flame Incantations,22 (6),Emits violent burst of yellow flame of frenzy from eyes.
-Incantation,Frenzied Burst,Frenzied Flame Incantations,24,Emits concentrated blast of yellow flame of frenzy from eyes.
-Incantation,Howl of Shabriri,Frenzied Flame Incantations,21,"Shrieks, building up madness in nearby foes."
-Incantation,Dragonfire,Dragon Communion Incantations,28 (4),Channels dragon to spew flame breath.
-Incantation,Agheel's Flame,Dragon Communion Incantations,36 (6),Spews flame breath of Agheel from above.
-Incantation,Magma Breath,Dragon Communion Incantations,30,Channels wyrm to spew magma breath
-Incantation,Theodorix's Magma,Dragon Communion Incantations,45,Spews magma breath of Theodorix from above.
-Incantation,Glintstone Breath,Dragon Communion Incantations,28 (4),Channels dragon to spew magic breath.
-Incantation,Smarag's Glintstone Breath,Dragon Communion Incantations,36 (6),Spews magic breath of Glintstone Dragon Smarag from above.
-Incantation,Rotten Breath,Dragon Communion Incantations,36 (4),Channels dragon to spew scarlet rot breath.
-Incantation,Ekzykes's Decay,Dragon Communion Incantations,48 (6),Spews scarlet rot breath of Ekzykes from above.
-Incantation,Dragonice,Dragon Communion Incantations,36 (4),Channels dragon to spew icy breath.
-Incantation,Borealis's Mist,Dragon Communion Incantations,48 (6),Spews icy breath of Borealis from above.
-Incantation,Placidusax's Ruin,Dragon Communion Incantations,62,Spews golden breath of Dragonlord Placidusax.
-Incantation,Dragonclaw,Dragon Communion Incantations,24,Channels dragon to rend foes with dragon claws.
-Incantation,Dragonmaw,Dragon Communion Incantations,34,Channels dragon to bite foes before caster.
-Incantation,Greyoll's Roar,Dragon Communion Incantations,50,Emits the roar of Elder Dragon Greyoll.
+Type,Spell Name,School,Damage,FP,Tier,Description
+Sorcery,Glintstone Pebble,Glintstone Sorceries,Magic,7,S,Fires magic projectiles from glintstone.
+Sorcery,Swift Glintstone Shard,Glintstone Sorceries,Magic,5,D,Swiftly fires magic projectiles from glintstone
+Sorcery,Great Glintstone Shard,Glintstone Sorceries,Magic,12,A,Fires larger magic projectiles from glintstone.
+Sorcery,Glintstone Cometshard,Glintstone Sorceries,Magic,17,S+,Fires a magic comet with a trailing tail
+Sorcery,Comet,Glintstone Sorceries,Magic,24,A,Fires a great magic comet.
+Sorcery,Shard Spiral,Glintstone Sorceries,Magic,14,C,Fire twin spiraling projectiles.
+Sorcery,Glintstone Stars,Glintstone Sorceries,Magic,12,D,Fires guided magic shooting stars
+Sorcery,Star Shower,Glintstone Sorceries,Magic,23,B,Fires six shooting stars that pursue foes.
+Sorcery,Glintstone Arc,Glintstone Sorceries,Magic,9,S,Launches a horizontally-widening magic arc.
+Sorcery,Crystal Barrage,Glintstone Sorceries,Magic,14 (2),B,Fires a volley of glintstone crystal shards.
+Sorcery,Crystal Burst,Glintstone Sorceries,Magic,14,D,Fires a burst of glintstone crystal shards.
+Sorcery,Cannon of Haima,Glintstone Sorceries,Magic,38,S+,Lobs an explosive magic projectile in an arc.
+Sorcery,Gavel of Haima,Glintstone Sorceries,Magic,22,S+,Attacks using a magic greathammer.
+Sorcery,Shatter Earth,Glintstone Sorceries,Magic,10,C,Thrust staff into ground to emit a shockwave.
+Sorcery,Rock Blaster,Glintstone Sorceries,Magic,22 (5),B,Thrust staff into ground to emit a massive shockwave.
+Sorcery,Scholar's Armament,Glintstone Sorceries,-,25,-,Enchants right-hand armament with magic damage.
+Sorcery,Scholar's Shield,Glintstone Sorceries,-,30,-,Enhances left-hand shield damage negation.
+Sorcery,Terra Magica,Glintstone Sorceries,-,20,-,Raises the magic strength of those within the sigil.
+Sorcery,Thops's Barrier,Glintstone Sorceries,-,7 (7),-,Erect a magic forcefield to deflect spells.
+Sorcery,Comet Azur,Glintstone Sorceries,Magic,40 (10),C,Fires a tremendous comet within a starry torrent.
+Sorcery,Stars of Ruin,Glintstone Sorceries,Magic,32,S,Fire twelve dark shooting stars that pursue foes.
+Sorcery,Founding Rain of Stars,Glintstone Sorceries,Magic,27,C,Releases a downpour of star rain for a while.
+Sorcery,Magic Glintblade,Carian Sorceries,Magic,12,S,Creates sigil that forms a projectile glintblade after delay.
+Sorcery,Glintblade Phalanx,Carian Sorceries,Magic,18,C,Forms a defensive arch of magic glintblades.
+Sorcery,Carian Phalanx,Carian Sorceries,Magic,24,C,Forms a defensive arch of numerous magic glintblades.
+Sorcery,Greatblade Phalanx,Carian Sorceries,Magic,30,S+,Forms a defensive arch of larger magic glintblades.
+Sorcery,Magic Downpour,Carian Sorceries,Magic,18,A,Summon a magic mass that sprays projectiles over area.
+Sorcery,Loretta's Greatbow,Carian Sorceries,Magic,24,A,Fires great arrow from a magic greatbow.
+Sorcery,Loretta's Mastery,Carian Sorceries,Magic,39,B,Fires four great arrow from a magic greatbow at once.
+Sorcery,Rennala's Full Moon,Moon Sorceries,Magic,47,A,Incarnate a full moon and launch it at foes.
+Sorcery,Ranni's Dark Moon,Moon Sorceries,"Magic, Frost",57,S+,"Incarnate a cold, dark moon and launch it at foes."
+Sorcery,Carian Slicer,Carian Sorceries,Magic,4,S+,Performs swift sweeping slash using magical sword.
+Sorcery,Carian Greatsword,Carian Sorceries,Magic,12,B,Performs sweeping slash using magical greatsword.
+Sorcery,Carian Piercer,Carian Sorceries,Magic,17,A,Impales foes with magical greatsword.
+Sorcery,Adula's Moonblade,Carian Sorceries,"Magic, Frost",22,S+,Sweeping slash followed by cold blade projectile.
+Sorcery,Carian Retaliation,Carian Sorceries,Magic,8,B,Dispels enemy spells and retaliates with glintblades.
+Sorcery,Ambush Shard,Sellian Sorceries,Magic,13,D,Strikes from behind with projectile fired from distance.
+Sorcery,Night Shard,Sellian Sorceries,Magic,7,B,Swiftly fires a semi-invisible magic projectile.
+Sorcery,Night Comet,Sellian Sorceries,Magic,21,S,Fires a semi-invisible magic comet.
+Sorcery,Night Maiden's Mist,Sellian Sorceries,Standard,20,A,Releases life-sapping silver mist before caster.
+Sorcery,Eternal Darkness,Sellian Sorceries,-,25,-,Creates a dark space that draws in spells.
+Sorcery,Magma Shot,Magma Sorceries,Fire,16,S,Fires lump of magma that explodes on contact.
+Sorcery,Roiling Magma,Magma Sorceries,Fire,28,B,Fires lump of magma that explodes after delay.
+Sorcery,Gelmir's Fury,Magma Sorceries,Fire,16 (3),S+,Covers area with surge of magma from the earth.
+Sorcery,Rykard's Rancor,Magma Sorceries,Fire,23,S+,Releases searing spirits that repeatedly explode after delay.
+Sorcery,Glintstone Icecrag,Cold Sorceries,"Magic, Frost",12,A,Fires mass of cold magic from glintstone.
+Sorcery,Freezing Mist,Cold Sorceries,"Magic, Frost",20,D,Releases cold mist before caster.
+Sorcery,Frozen Armament,Cold Sorceries,-,20,-,Enchants right-hand armament with frost.
+Sorcery,Zamor Ice Storm,Cold Sorceries,"Magic, Frost",17,C,Thrust staff into ground to create freezing tornado.
+Sorcery,Shattering Crystal,Crystalian Sorceries,Magic,21,S,Creates crystal mass that shatters in forward burst.
+Sorcery,Crystal Torrent,Crystalian Sorceries,Magic,20 (5),S+,Creates crystal mass that fires stream of crystal shards.
+Sorcery,Crystal Release,Crystalian Sorceries,Magic,34,S+,Scours area with violent rain of crystal shards.
+Sorcery,Gravity Well,Gravity Sorceries,Magic,12,S,Pulls foes toward caster with gravity projectile.
+Sorcery,Collapsing Stars,Gravity Sorceries,Magic,18,A,Pulls foes toward caster with gravity projectile volley.
+Sorcery,Rock Sling,Gravity Sorceries,Standard,18,A,Summons rocks from the earth and sends its flying.
+Sorcery,Meteorite,Gravity Sorceries,"Magic, Standard",30 (10),A,Calls small meteors down from the sky.
+Sorcery,Meteorite of Astel,Gravity Sorceries,"Magic, Standard",60 (12),S+,Calls a hail of small meteorites from the void.
+Sorcery,Oracle Bubbles,Oracle Sorceries,Magic,12,A,Launches several small magic bubbles.
+Sorcery,Great Oracular Bubble,Oracle Sorceries,Magic,16,A,Launches a large magic bubble.
+Sorcery,Briars of Sin,Thorn Sorceries,"Magic, Bleed",6,D,Summons thorns from a whorl of own blood.
+Sorcery,Briars of Punishment,Thorn Sorceries,"Magic, Bleed",9,D,Wounds caster to unleash trail of bloodthrorns.
+Sorcery,Rancorcall,Death Sorceries,Magic,12,S,Summons vengeful spirits that chase down foes.
+Sorcery,Ancient Death Rancor,Death Sorceries,Magic,21,S+,Summons horde of vengeful spirits that chase down foes.
+Sorcery,Explosive Ghostflame,Death Sorceries,"Magic, Frost",29,A,Causes ghostflame explosion that burns wide area.
+Sorcery,Tibia's Summons,Death Sorceries,Magic,17,B,Summons Those Who Live in Death.
+Incantation,Urgent Heal,Two Fingers Incantations,-,16,-,Heals a small amount of HP.
+Incantation,Heal,Two Fingers Incantations,-,32,-,Heals HP for you and nearby allies.
+Incantation,Great Heal,Two Fingers Incantations,-,45,-,Greatly Heals HP for self and nearby allies.
+Incantation,Lord's Heal,Two Fingers Incantations,-,55,-,Massively heals HP for self and nearby allies.
+Incantation,Magic Fortification,Two Fingers Incantations,-,20,-,Increases magic damage negation.
+Incantation,Flame Fortification,Two Fingers Incantations,-,20,-,Increases fire damage negation.
+Incantation,Lightning Fortification,Two Fingers Incantations,-,20,-,Increase lightning damage negation.
+Incantation,Divine Fortification,Two Fingers Incantations,-,20,-,Increases holy damage negation.
+Incantation,Lord's Divine Fortification,Two Fingers Incantations,-,30,-,Greatly increases holy damage negation incl. allies
+Incantation,Rejection,Two Fingers Incantations,-,9,-,Produces a shockwave that pushes away foes.
+Incantation,Shadow Bait,Two Fingers Incantations,-,15,-,Creates shadow that lures the aggression of foes of human build.
+Incantation,Darkness,Two Fingers Incantations,-,24,-,Creates area of darkness that conceals caster.
+Incantation,Golden Vow,Erdtree Incantations,-,47,-,Increases attack and defense for self and allies.
+Incantation,Barrier of Gold,Erdtree Incantations,-,30,-,Greatly increases magic damage negation for self & allies.
+Incantation,Golden Lightning Fortification,Erdtree Incantations,-,30,-,Greatly increases lightning damage negation for self and allies.
+Incantation,Protection of the Erdtree,Erdtree Incantations,-,30,-,Increases affinity damage negation for self & allies.
+Incantation,Wrath of Gold,Erdtree Incantations,Holy,40,S,Produces golden shockwave that knocks back foes.
+Incantation,Erdtree Heal,Erdtree Incantations,-,65,-,Vastly heals HP for self and nearby allies.
+Incantation,Blessing's Boon,Erdtree Incantations,-,30,-,Grants blessing to self and nearby allies.
+Incantation,Blessing of the Erdtree,Erdtree Incantations,-,60,-,Grants greater blessing to self and nearby allies
+Incantation,Aspects of the Crucible: Breath,Erdtree Incantations,Fire,28 (4),D,Creates throat pouch to spew fire while walking.
+Incantation,Aspects of the Crucible: Tail,Erdtree Incantations,Standard,20,B,Creates supple tail to sweep area before caster.
+Incantation,Aspects of the Crucible: Horns,Erdtree Incantations,Standard,18,B,Creates shoulder horn to gore foes from a low stance.
+Incantation,Elden Stars,Erdtree Incantations,Holy,41,S+,Creates a steam of golden shooting stars that assail the area..
+Incantation,Black Blade,Erdtree Incantations,Holy,26,S,Black blade spinning slash that emits wave of light.
+Incantation,Discus of Light,Golden Order Incantations,Holy,3,S,Fires ring of light before the caster.
+Incantation,Triple Rings of Light,Golden Order Incantations,Holy,23,S+,Fire three rings of light before the caster.
+Incantation,Radagon's Rings of Light,Golden Order Incantations,Holy,21,B,Creates golden ring of light to attack wide area.
+Incantation,Litany of Proper Death,Golden Order Incantations,Holy,17,B,Creates image of Order to deal holy damage.
+Incantation,Order's Blade,Golden Order Incantations,-,22,-,Enchanted right-hand armament with holy damage.
+Incantation,Immutable Shield,Golden Order Incantations,-,15,-,Increases left-hand shield's affinity/ailment resistance.
+Incantation,Law of Causality,Golden Order Incantations,Holy,22,-,Retaliates upon receiving a number of blows.
+Incantation,Law of Regression,Golden Order Incantations,-,55,-,Heals all ailments and dispels all special effects.
+Incantation,Lightning Spear,Dragon Cult Incantations,Lightning,18,S+,Hurls lightning spear before caster.
+Incantation,Lightning Strike,Dragon Cult Incantations,Lightning,19,S+,Summons lightning bolt that spreads from impact.
+Incantation,Honed Bolt,Dragon Cult Incantations,Lightning,12,A,Strikes foe with lightning bolt from above.
+Incantation,Ancient Dragons' Lightning Spear,Dragon Cult Incantations,Lightning,25,B,Stabs with red lightning spear from above.
+Incantation,Ancient Dragons' Lightning Strike,Dragon Cult Incantations,Lightning,36,B,Summons red lightning that spreads from impact.
+Incantation,Lansseax's Glaive,Dragon Cult Incantations,Lightning,22,A,Sweeps from above with red lightning glaive.
+Incantation,Fortissax's Lightning Spear,Dragon Cult Incantations,Lightning,35,B,Stabs from above with two red lightning spears in tandem.
+Incantation,Frozen Lightning Spear,Dragon Cult Incantations,"Lightning, Frost",29,B,Stabs with ice lightning spear from above.
+Incantation,Death Lightning,Dragon Cult Incantations,Lightning,28,D,Strikes surroundings with storm of death lightning.
+Incantation,Electrify Armament,Dragon Cult Incantations,-,27,-,Enchants right-hand armament with lightning damage.
+Incantation,Dragonbolt Blessing,Dragon Cult Incantations,-,20,-,Bolsters caster's body with lightning.
+Incantation,Catch Flame,Giants' Flame Incantations,Fire,10,S+,Momentarily sparks flame from hand.
+Incantation,O Flame!,Giants' Flame Incantations,Fire,16,A,Momentarily sparks roaring flame from hand.
+Incantation,Flame Sling,Giants' Flame Incantations,Fire,11,B,Throws balls of raging fire.
+Incantation,Giantsflame Take Thee,Giants' Flame Incantations,Fire,30,A,Hurls massive ball of raging fire.
+Incantation,Flame Fall Upon Them,Giants' Flame Incantations,Fire,16,A,Hurls several balls of fire at once.
+Incantation,Flame of the Fell God,Giants' Flame Incantations,Fire,34,C,Summons raging fireball that explodes and sets the area ablaze.
+Incantation,Surge O Flame!,Giants' Flame Incantations,Fire,1 (1),D,Incinerates area before caster with stream of fire.
+Incantation,Whirl O Flame!,Giants' Flame Incantations,Fire,19,A,Sweeps area before caster with stream of fire.
+Incantation,Burn O Flame!,Giants' Flame Incantations,Fire,26,S+,Raises a series of flame pillars around caster.
+Incantation,Flame Protect Me,Giants' Flame Incantations,-,30,-,Greatly increases fire damage negation.
+Incantation,Flame Grant Me Strength,Giants' Flame Incantations,-,28,-,Raises physical and fire-affinity attack power.
+Incantation,Fire's Deadly Sin,Giants' Flame Incantations,Fire,26,D,Sets area and self ablaze with raging flames.
+Incantation,Black Flame,Black Flame Incantations,Fire,18,S+,Throws a ball of raging black fire.
+Incantation,Scouring Black Flame,Black Flame Incantations,Fire,21,A,Sweeps area before caster with black flame.
+Incantation,Black Flame Ritual,Black Flame Incantations,Fire,30,B,Summons circle of black flame pillars around caster.
+Incantation,Black Flame Blade,Black Flame Incantations,-,15,-,Enchants right-hand armament with black flame.
+Incantation,Black Flame's Protection,Black Flame Incantations,-,30,-,Increases physical damage negation.
+Incantation,Noble Presence,Black Flame Incantations,Fire,20,B,Thrust out belly with gusto to unleash repelling shockwave.
+Incantation,Beast Claw,Bestial Incantations,Slash,10,D,Creates claws that tear through the land.
+Incantation,Gurranq's Beast Claw,Bestial Incantations,Standard,21,D,Creates beast claws to rend surroundings with shockwaves.
+Incantation,Bestial Sling,Bestial Incantations,Standard,7,B,Swiftly flings numerous sharp rock shards
+Incantation,Stone of Gurranq,Bestial Incantations,Standard,15,A,Hurls a boulder before the caster.
+Incantation,Bestial Vitality,Bestial Incantations,-,18,-,Heals HP over a period of time.
+Incantation,Swarm of Flies,Blood Oath Incantations,"Standard, Bleed",14,B,Releases a swarm of bloodflies before caster.
+Incantation,Bloodflame Talons,Blood Oath Incantations,"Fire, Bleed",12,B,Creates bloodflame lacerations that then explode.
+Incantation,Bloodboon,Blood Oath Incantations,"Fire, Bleed",13,C,Scatters bloodflame before caster to set area aflame.
+Incantation,Bloodflame Blade,Blood Oath Incantations,-,20,-,Enchants right-hand armament with bloodflame.
+Incantation,Poison Mist,Servants of Rot Incantations,Poison,18,C,Releases poison mist before caster.
+Incantation,Poison Armament,Servants of Rot Incantations,-,15,-,Enchants right-hand armament with poison.
+Incantation,Pest Threads,Servants of Rot Incantations,Standard,19,-,Launches countless sticky threads before caster.
+Incantation,Scarlet Aeonia,Servants of Rot Incantations,"Standard, Rot",48,C,Creates a giant flower that explodes with scarlet rot.
+Incantation,The Flame of Frenzy,Frenzied Flame Incantations,"Fire, Madness",16,S,Emits burst of yellow flame of frenzy from eyes.
+Incantation,Unendurable Frenzy,Frenzied Flame Incantations,"Fire, Madness",22 (6),S,Emits violent burst of yellow flame of frenzy from eyes.
+Incantation,Frenzied Burst,Frenzied Flame Incantations,"Fire, Madness",24,S,Emits concentrated blast of yellow flame of frenzy from eyes.
+Incantation,Howl of Shabriri,Frenzied Flame Incantations,"Fire, Madness",21,B,"Shrieks, building up madness in nearby foes."
+Incantation,Dragonfire,Dragon Communion Incantations,Fire,28 (4),C,Channels dragon to spew flame breath.
+Incantation,Agheel's Flame,Dragon Communion Incantations,Fire,36 (6),B,Spews flame breath of Agheel from above.
+Incantation,Magma Breath,Dragon Communion Incantations,Fire,30,B,Channels wyrm to spew magma breath
+Incantation,Theodorix's Magma,Dragon Communion Incantations,Fire,45,S+,Spews magma breath of Theodorix from above.
+Incantation,Glintstone Breath,Dragon Communion Incantations,Magic,28 (4),C,Channels dragon to spew magic breath.
+Incantation,Smarag's Glintstone Breath,Dragon Communion Incantations,Magic,36 (6),S+,Spews magic breath of Glintstone Dragon Smarag from above.
+Incantation,Rotten Breath,Dragon Communion Incantations,"Standard, Rot",36 (4),C,Channels dragon to spew scarlet rot breath.
+Incantation,Ekzykes's Decay,Dragon Communion Incantations,"Standard, Rot",48 (6),A,Spews scarlet rot breath of Ekzykes from above.
+Incantation,Dragonice,Dragon Communion Incantations,"Magic, Frost",36 (4),C,Channels dragon to spew icy breath.
+Incantation,Borealis's Mist,Dragon Communion Incantations,"Magic, Frost",48 (6),S+,Spews icy breath of Borealis from above.
+Incantation,Placidusax's Ruin,Dragon Communion Incantations,"Lightning, Fire",62,S+,Spews golden breath of Dragonlord Placidusax.
+Incantation,Dragonclaw,Dragon Communion Incantations,Standard,24,A,Channels dragon to rend foes with dragon claws.
+Incantation,Dragonmaw,Dragon Communion Incantations,Standard,34,A,Channels dragon to bite foes before caster.
+Incantation,Greyoll's Roar,Dragon Communion Incantations,Standard,50,B,Emits the roar of Elder Dragon Greyoll.
