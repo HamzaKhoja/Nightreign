@@ -415,14 +415,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     function syncOverlayToImage() {
-        const imgRect = mapImage.getBoundingClientRect();
+        const imgRect  = mapImage.getBoundingClientRect();
         const wrapRect = imageWrapper.getBoundingClientRect();
+        const bleed = 2; // px on each edge to avoid clipping
+
         Object.assign(mapOverlay.style, {
-            left: (imgRect.left - wrapRect.left) + 'px',
-            top: (imgRect.top - wrapRect.top) + 'px',
-            width: imgRect.width + 'px',
-            height: imgRect.height + 'px',
-            position: 'absolute'
+            left:  (imgRect.left - wrapRect.left - bleed) + 'px',
+            top:   (imgRect.top  - wrapRect.top  - bleed) + 'px',
+            width:  (imgRect.width  + bleed * 2) + 'px',
+            height: (imgRect.height + bleed * 2) + 'px',
+            position: 'absolute',
+            overflow: 'visible'
         });
     }
 
@@ -583,7 +586,8 @@ document.addEventListener('DOMContentLoaded', () => {
         name: (r['Spell Name'] || '').trim(),
         dmgType: (r['Damage'] || '').trim(),
         desc: (r['Description'] || '').trim(),
-        tier: normTier(r['Tier'])
+        tier: normTier(r['Tier']),
+        fp:  (r['FP'] || '').trim()
         })).filter(s => s.type && s.name);
     }
     });
@@ -671,7 +675,7 @@ function renderPreferredSpells() {
       item,
       `<div>
          <strong>${spell.name}</strong><br>
-         Tier: ${spell.tier}<br>
+         FP: ${spell.fp}<br>
          Damage: ${getDamageTypeIconsHTML(spell.dmgType)} ${spell.dmgType}<br>
          ${spell.desc}
        </div>`
@@ -1558,7 +1562,7 @@ window.confirmSelections = () => {
     initBossGrid();
 
     // ── DEBUG ──
-    // const DEBUG_SEED = 310;
+    // const DEBUG_SEED = 187;
     // if (typeof DEBUG_SEED !== 'undefined') {
     //     const seedNum = DEBUG_SEED;
     //     const seedID = seedNum.toString(); // for renderSeedMap lookup
