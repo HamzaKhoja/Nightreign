@@ -1,0 +1,609 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nightreign Seed Viewer</title>
+    
+    
+
+<style id="highlightColorStyleElem">:root { --cws-custom-highlight-bg:#F0F0F0;--cws-custom-highlight-txt:#0F0F0F;}::selection {background: var(--cws-custom-highlight-bg,#F0F0F0) !important; color: var(--cws-custom-highlight-txt,#0F0F0F) !important;}.kix-selection-overlay {background: #F0F0F0;color:#0F0F0F;border-top-color:#F0F0F0;border-bottom-color:#F0F0F0;}</style><link href="https://fonts.googleapis.com/css2?family=Almendra:wght@400;700&amp;display=swap&amp;_cacheOverride=1755603095416" rel="stylesheet"><link rel="stylesheet" href="http://127.0.0.1:5500/styles.css?_cacheOverride=1755603095417"></head>
+<body style="user-select: text; transition: all;">
+    <div id="infoPopup" class="popup-window hidden">
+        <div id="infoContent"></div>
+    </div>  
+
+    <div class="container">
+        <div id="selectionPanel" class="selection-panel hidden">
+            <div class="form-group">
+                <label>Choose Your Foe:</label>
+                <div id="bossGrid" class="boss-grid"><div class="boss-option selected" data-boss="Gladius"><img src="Icons/Boss Icons/Gladius, Beast of Night.png" alt="Gladius"><span>Gladius, Beast of Night</span></div><div class="boss-option" data-boss="Adel"><img src="Icons/Boss Icons/Adel, Baron of Night.png" alt="Adel"><span>Adel, Baron of Night</span></div><div class="boss-option" data-boss="Gnoster"><img src="Icons/Boss Icons/Gnoster, Wisdom of Night.png" alt="Gnoster"><span>Gnoster, Wisdom of Night</span></div><div class="boss-option" data-boss="Maris"><img src="Icons/Boss Icons/Maris, Fathom of Night.png" alt="Maris"><span>Maris, Fathom of Night</span></div><div class="boss-option" data-boss="Libra"><img src="Icons/Boss Icons/Libra, Creature of Night.png" alt="Libra"><span>Libra, Creature of Night</span></div><div class="boss-option" data-boss="Fulghor"><img src="Icons/Boss Icons/Fulghor, Champion of Nightglow.png" alt="Fulghor"><span>Fulghor, Champion of Nightglow</span></div><div class="boss-option" data-boss="Caligo"><img src="Icons/Boss Icons/Caligo, Miasma of Night.png" alt="Caligo"><span>Caligo, Miasma of Night</span></div><div class="boss-option" data-boss="Heolstor"><img src="Icons/Boss Icons/Heolstor, The Nightlord.png" alt="Heolstor"><span>Heolstor, The Nightlord</span></div></div>
+            </div>
+
+            <div class="form-group">
+    <label>Choose Your Nightfarer:</label>
+    <div id="nightfarerGrid" class="boss-grid"><div class="boss-option selected" data-nightfarer="Duchess"><img src="Icons/Nightfarers/Duchess.png" alt="Duchess"><span>Duchess</span></div><div class="boss-option" data-nightfarer="Executor"><img src="Icons/Nightfarers/Executor.png" alt="Executor"><span>Executor</span></div><div class="boss-option" data-nightfarer="Guardian"><img src="Icons/Nightfarers/Guardian.png" alt="Guardian"><span>Guardian</span></div><div class="boss-option" data-nightfarer="Ironeye"><img src="Icons/Nightfarers/Ironeye.png" alt="Ironeye"><span>Ironeye</span></div><div class="boss-option" data-nightfarer="Raider"><img src="Icons/Nightfarers/Raider.png" alt="Raider"><span>Raider</span></div><div class="boss-option" data-nightfarer="Recluse"><img src="Icons/Nightfarers/Recluse.png" alt="Recluse"><span>Recluse</span></div><div class="boss-option" data-nightfarer="Revenant"><img src="Icons/Nightfarers/Revenant.png" alt="Revenant"><span>Revenant</span></div><div class="boss-option" data-nightfarer="Wylder"><img src="Icons/Nightfarers/Wylder.png" alt="Wylder"><span>Wylder</span></div></div>
+</div>
+<div class="form-row">
+    <!-- Shifting Earth -->
+    <div class="form-group">
+        <label for="earthSelect">The Shifting Earth:</label>
+        <select id="earthSelect">
+            <option value="None">None</option>
+            <option value="Mountains">Mountains</option>
+            <option value="Crater">Crater</option>
+            <option value="Rotted Woods">Rotted Woods</option>
+            <option value="Noklateo">Noklateo</option>
+        </select>
+    </div>
+
+    <!-- Players Radio Buttons -->
+    <div class="form-group">
+        <label>Number of Players:</label>
+        <div id="playersRadios" class="radio-group">
+            <input type="radio" id="p1" name="players" value="1" checked="" wfd-id="id0"><label for="p1">1</label>
+            <input type="radio" id="p2" name="players" value="2" wfd-id="id1"><label for="p2">2</label>
+            <input type="radio" id="p3" name="players" value="3" wfd-id="id2"><label for="p3">3</label>
+        </div>
+    </div>
+</div>
+
+            <div class="form-group">
+                <button onclick="confirmSelections()">Confirm Fate</button>
+            </div>
+        </div>
+        
+        <div class="map-layout">
+          <div id="leftInfo" class="left-info">
+            <div class="info-tabs">
+                <button class="info-tab active" data-tab="character">Character</button>
+                <button class="info-tab" data-tab="weapons">Weapons</button>
+                <button class="info-tab" data-tab="spells">Spells</button>
+                <button class="info-tab" data-tab="scalings">Scalings</button>
+            </div>
+            <div id="infoTables">
+              <table id="characterTable" class="info-table">
+                <tbody>
+                  <tr><th colspan="2">Character</th></tr>
+                  <tr><td>Level</td><td>45</td></tr>
+                  <tr><td>Vigor</td><td>25</td></tr>
+                  <tr><td>Mind</td><td>15</td></tr>
+                  <tr><td>Endurance</td><td>18</td></tr>
+                </tbody>
+              </table>
+              <div id="weaponsGrid" class="weapons-grid hidden"><div class="weapon-tile">
+      <img src="Icons/Weapons/Black Knife.png" alt="Black Knife" onerror="this.style.display='none'">
+      <span>Black Knife</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Weapons/Blade of Calling.png" alt="Blade of Calling" onerror="this.style.display='none'">
+      <span>Blade of Calling</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Weapons/Bloodstained Dagger.png" alt="Bloodstained Dagger" onerror="this.style.display='none'">
+      <span>Bloodstained Dagger</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Weapons/Celebrant's Sickle.png" alt="Celebrant's Sickle" onerror="this.style.display='none'">
+      <span>Celebrant's Sickle</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Weapons/Cinquedea.png" alt="Cinquedea" onerror="this.style.display='none'">
+      <span>Cinquedea</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Weapons/Crystal Knife.png" alt="Crystal Knife" onerror="this.style.display='none'">
+      <span>Crystal Knife</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Weapons/Dagger.png" alt="Dagger" onerror="this.style.display='none'">
+      <span>Dagger</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Weapons/Duchess' Dagger.png" alt="Duchess' Dagger" onerror="this.style.display='none'">
+      <span>Duchess' Dagger</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Weapons/Erdsteel Dagger.png" alt="Erdsteel Dagger" onerror="this.style.display='none'">
+      <span>Erdsteel Dagger</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Weapons/Glintstone Kris.png" alt="Glintstone Kris" onerror="this.style.display='none'">
+      <span>Glintstone Kris</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Weapons/Great Knife.png" alt="Great Knife" onerror="this.style.display='none'">
+      <span>Great Knife</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Weapons/Ivory Sickle.png" alt="Ivory Sickle" onerror="this.style.display='none'">
+      <span>Ivory Sickle</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Weapons/Misericorde.png" alt="Misericorde" onerror="this.style.display='none'">
+      <span>Misericorde</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Weapons/Reduvia.png" alt="Reduvia" onerror="this.style.display='none'">
+      <span>Reduvia</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Weapons/Parrying Dagger.png" alt="Parrying Dagger" onerror="this.style.display='none'">
+      <span>Parrying Dagger</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Weapons/Scorpion's Stinger.png" alt="Scorpion's Stinger" onerror="this.style.display='none'">
+      <span>Scorpion's Stinger</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Weapons/Wakizashi.png" alt="Wakizashi" onerror="this.style.display='none'">
+      <span>Wakizashi</span>
+    </div></div>
+              <div id="spellsGrid" class="weapons-grid hidden"><section class="spell-section"><h3>Weakness: Holy</h3><div class="tier-group"><h4 class="tier-header">S+</h4><div class="spell-grid"><div class="weapon-tile">
+      <img src="Icons/Spells/Elden Stars.png" alt="Elden Stars" onerror="this.style.display='none'">
+      <span>Elden Stars</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Triple Rings of Light.png" alt="Triple Rings of Light" onerror="this.style.display='none'">
+      <span>Triple Rings of Light</span>
+    </div></div></div><div class="tier-group"><h4 class="tier-header">S</h4><div class="spell-grid"><div class="weapon-tile">
+      <img src="Icons/Spells/Black Blade.png" alt="Black Blade" onerror="this.style.display='none'">
+      <span>Black Blade</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Discus of Light.png" alt="Discus of Light" onerror="this.style.display='none'">
+      <span>Discus of Light</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Wrath of Gold.png" alt="Wrath of Gold" onerror="this.style.display='none'">
+      <span>Wrath of Gold</span>
+    </div></div></div><div class="tier-group"><h4 class="tier-header">B</h4><div class="spell-grid"><div class="weapon-tile">
+      <img src="Icons/Spells/Litany of Proper Death.png" alt="Litany of Proper Death" onerror="this.style.display='none'">
+      <span>Litany of Proper Death</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Radagons Rings of Light.png" alt="Radagon's Rings of Light" onerror="this.style.display='none'">
+      <span>Radagon's Rings of Light</span>
+    </div></div></div></section><section class="spell-section"><h3>Other Spells</h3><div class="tier-group"><h4 class="tier-header">S+</h4><div class="spell-grid"><div class="weapon-tile">
+      <img src="Icons/Spells/Adulas Moonblade.png" alt="Adula's Moonblade" onerror="this.style.display='none'">
+      <span>Adula's Moonblade</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Ancient Death Rancor.png" alt="Ancient Death Rancor" onerror="this.style.display='none'">
+      <span>Ancient Death Rancor</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Black Flame.png" alt="Black Flame" onerror="this.style.display='none'">
+      <span>Black Flame</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Borealiss Mist.png" alt="Borealis's Mist" onerror="this.style.display='none'">
+      <span>Borealis's Mist</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Burn O Flame.png" alt="Burn O Flame!" onerror="this.style.display='none'">
+      <span>Burn O Flame!</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Cannon of Haima.png" alt="Cannon of Haima" onerror="this.style.display='none'">
+      <span>Cannon of Haima</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Carian Slicer.png" alt="Carian Slicer" onerror="this.style.display='none'">
+      <span>Carian Slicer</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Catch Flame.png" alt="Catch Flame" onerror="this.style.display='none'">
+      <span>Catch Flame</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Crystal Release.png" alt="Crystal Release" onerror="this.style.display='none'">
+      <span>Crystal Release</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Crystal Torrent.png" alt="Crystal Torrent" onerror="this.style.display='none'">
+      <span>Crystal Torrent</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Gavel of Haima.png" alt="Gavel of Haima" onerror="this.style.display='none'">
+      <span>Gavel of Haima</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Gelmirs Fury.png" alt="Gelmir's Fury" onerror="this.style.display='none'">
+      <span>Gelmir's Fury</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Glintstone Cometshard.png" alt="Glintstone Cometshard" onerror="this.style.display='none'">
+      <span>Glintstone Cometshard</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Greatblade Phalanx.png" alt="Greatblade Phalanx" onerror="this.style.display='none'">
+      <span>Greatblade Phalanx</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Lightning Spear.png" alt="Lightning Spear" onerror="this.style.display='none'">
+      <span>Lightning Spear</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Lightning Strike.png" alt="Lightning Strike" onerror="this.style.display='none'">
+      <span>Lightning Strike</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Meteorite of Astel.png" alt="Meteorite of Astel" onerror="this.style.display='none'">
+      <span>Meteorite of Astel</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Placidusaxs Ruin.png" alt="Placidusax's Ruin" onerror="this.style.display='none'">
+      <span>Placidusax's Ruin</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Rannis Dark Moon.png" alt="Ranni's Dark Moon" onerror="this.style.display='none'">
+      <span>Ranni's Dark Moon</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Rykards Rancor.png" alt="Rykard's Rancor" onerror="this.style.display='none'">
+      <span>Rykard's Rancor</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Smarags Glintstone Breath.png" alt="Smarag's Glintstone Breath" onerror="this.style.display='none'">
+      <span>Smarag's Glintstone Breath</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Theodorixs Magma.png" alt="Theodorix's Magma" onerror="this.style.display='none'">
+      <span>Theodorix's Magma</span>
+    </div></div></div><div class="tier-group"><h4 class="tier-header">S</h4><div class="spell-grid"><div class="weapon-tile">
+      <img src="Icons/Spells/Frenzied Burst.png" alt="Frenzied Burst" onerror="this.style.display='none'">
+      <span>Frenzied Burst</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Glintstone Arc.png" alt="Glintstone Arc" onerror="this.style.display='none'">
+      <span>Glintstone Arc</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Glintstone Pebble.png" alt="Glintstone Pebble" onerror="this.style.display='none'">
+      <span>Glintstone Pebble</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Gravity Well.png" alt="Gravity Well" onerror="this.style.display='none'">
+      <span>Gravity Well</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Magic Glintblade.png" alt="Magic Glintblade" onerror="this.style.display='none'">
+      <span>Magic Glintblade</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Magma Shot.png" alt="Magma Shot" onerror="this.style.display='none'">
+      <span>Magma Shot</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Night Comet.png" alt="Night Comet" onerror="this.style.display='none'">
+      <span>Night Comet</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Rancorcall.png" alt="Rancorcall" onerror="this.style.display='none'">
+      <span>Rancorcall</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Shattering Crystal.png" alt="Shattering Crystal" onerror="this.style.display='none'">
+      <span>Shattering Crystal</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Stars of Ruin.png" alt="Stars of Ruin" onerror="this.style.display='none'">
+      <span>Stars of Ruin</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/The Flame of Frenzy.png" alt="The Flame of Frenzy" onerror="this.style.display='none'">
+      <span>The Flame of Frenzy</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Unendurable Frenzy.png" alt="Unendurable Frenzy" onerror="this.style.display='none'">
+      <span>Unendurable Frenzy</span>
+    </div></div></div><div class="tier-group"><h4 class="tier-header">A</h4><div class="spell-grid"><div class="weapon-tile">
+      <img src="Icons/Spells/Carian Piercer.png" alt="Carian Piercer" onerror="this.style.display='none'">
+      <span>Carian Piercer</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Collapsing Stars.png" alt="Collapsing Stars" onerror="this.style.display='none'">
+      <span>Collapsing Stars</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Comet.png" alt="Comet" onerror="this.style.display='none'">
+      <span>Comet</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Dragonclaw.png" alt="Dragonclaw" onerror="this.style.display='none'">
+      <span>Dragonclaw</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Dragonmaw.png" alt="Dragonmaw" onerror="this.style.display='none'">
+      <span>Dragonmaw</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Ekzykess Decay.png" alt="Ekzykes's Decay" onerror="this.style.display='none'">
+      <span>Ekzykes's Decay</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Explosive Ghostflame.png" alt="Explosive Ghostflame" onerror="this.style.display='none'">
+      <span>Explosive Ghostflame</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Flame Fall Upon Them.png" alt="Flame Fall Upon Them" onerror="this.style.display='none'">
+      <span>Flame Fall Upon Them</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Giantsflame Take Thee.png" alt="Giantsflame Take Thee" onerror="this.style.display='none'">
+      <span>Giantsflame Take Thee</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Glintstone Icecrag.png" alt="Glintstone Icecrag" onerror="this.style.display='none'">
+      <span>Glintstone Icecrag</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Great Glintstone Shard.png" alt="Great Glintstone Shard" onerror="this.style.display='none'">
+      <span>Great Glintstone Shard</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Great Oracular Bubble.png" alt="Great Oracular Bubble" onerror="this.style.display='none'">
+      <span>Great Oracular Bubble</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Honed Bolt.png" alt="Honed Bolt" onerror="this.style.display='none'">
+      <span>Honed Bolt</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Lansseaxs Glaive.png" alt="Lansseax's Glaive" onerror="this.style.display='none'">
+      <span>Lansseax's Glaive</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Lorettas Greatbow.png" alt="Loretta's Greatbow" onerror="this.style.display='none'">
+      <span>Loretta's Greatbow</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Magic Downpour.png" alt="Magic Downpour" onerror="this.style.display='none'">
+      <span>Magic Downpour</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Meteorite.png" alt="Meteorite" onerror="this.style.display='none'">
+      <span>Meteorite</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Night Maidens Mist.png" alt="Night Maiden's Mist" onerror="this.style.display='none'">
+      <span>Night Maiden's Mist</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/O Flame.png" alt="O Flame!" onerror="this.style.display='none'">
+      <span>O Flame!</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Oracle Bubbles.png" alt="Oracle Bubbles" onerror="this.style.display='none'">
+      <span>Oracle Bubbles</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Rennalas Full Moon.png" alt="Rennala's Full Moon" onerror="this.style.display='none'">
+      <span>Rennala's Full Moon</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Rock Sling.png" alt="Rock Sling" onerror="this.style.display='none'">
+      <span>Rock Sling</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Scouring Black Flame.png" alt="Scouring Black Flame" onerror="this.style.display='none'">
+      <span>Scouring Black Flame</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Stone of Gurranq.png" alt="Stone of Gurranq" onerror="this.style.display='none'">
+      <span>Stone of Gurranq</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Whirl O Flame.png" alt="Whirl O Flame!" onerror="this.style.display='none'">
+      <span>Whirl O Flame!</span>
+    </div></div></div><div class="tier-group"><h4 class="tier-header">B</h4><div class="spell-grid"><div class="weapon-tile">
+      <img src="Icons/Spells/Agheels Flame.png" alt="Agheel's Flame" onerror="this.style.display='none'">
+      <span>Agheel's Flame</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Ancient Dragons Lightning Spear.png" alt="Ancient Dragons' Lightning Spear" onerror="this.style.display='none'">
+      <span>Ancient Dragons' Lightning Spear</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Ancient Dragons Lightning Strike.png" alt="Ancient Dragons' Lightning Strike" onerror="this.style.display='none'">
+      <span>Ancient Dragons' Lightning Strike</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Aspects of the Crucible Horns.png" alt="Aspects of the Crucible: Horns" onerror="this.style.display='none'">
+      <span>Aspects of the Crucible: Horns</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Aspects of the Crucible Tail.png" alt="Aspects of the Crucible: Tail" onerror="this.style.display='none'">
+      <span>Aspects of the Crucible: Tail</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Bestial Sling.png" alt="Bestial Sling" onerror="this.style.display='none'">
+      <span>Bestial Sling</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Black Flame Ritual.png" alt="Black Flame Ritual" onerror="this.style.display='none'">
+      <span>Black Flame Ritual</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Bloodflame Talons.png" alt="Bloodflame Talons" onerror="this.style.display='none'">
+      <span>Bloodflame Talons</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Carian Greatsword.png" alt="Carian Greatsword" onerror="this.style.display='none'">
+      <span>Carian Greatsword</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Carian Retaliation.png" alt="Carian Retaliation" onerror="this.style.display='none'">
+      <span>Carian Retaliation</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Crystal Barrage.png" alt="Crystal Barrage" onerror="this.style.display='none'">
+      <span>Crystal Barrage</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Flame Sling.png" alt="Flame Sling" onerror="this.style.display='none'">
+      <span>Flame Sling</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Fortissaxs Lightning Spear.png" alt="Fortissax's Lightning Spear" onerror="this.style.display='none'">
+      <span>Fortissax's Lightning Spear</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Frozen Lightning Spear.png" alt="Frozen Lightning Spear" onerror="this.style.display='none'">
+      <span>Frozen Lightning Spear</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Greyolls Roar.png" alt="Greyoll's Roar" onerror="this.style.display='none'">
+      <span>Greyoll's Roar</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Howl of Shabriri.png" alt="Howl of Shabriri" onerror="this.style.display='none'">
+      <span>Howl of Shabriri</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Lorettas Mastery.png" alt="Loretta's Mastery" onerror="this.style.display='none'">
+      <span>Loretta's Mastery</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Magma Breath.png" alt="Magma Breath" onerror="this.style.display='none'">
+      <span>Magma Breath</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Night Shard.png" alt="Night Shard" onerror="this.style.display='none'">
+      <span>Night Shard</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Noble Presence.png" alt="Noble Presence" onerror="this.style.display='none'">
+      <span>Noble Presence</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Rock Blaster.png" alt="Rock Blaster" onerror="this.style.display='none'">
+      <span>Rock Blaster</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Roiling Magma.png" alt="Roiling Magma" onerror="this.style.display='none'">
+      <span>Roiling Magma</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Star Shower.png" alt="Star Shower" onerror="this.style.display='none'">
+      <span>Star Shower</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Swarm of Flies.png" alt="Swarm of Flies" onerror="this.style.display='none'">
+      <span>Swarm of Flies</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Tibias Summons.png" alt="Tibia's Summons" onerror="this.style.display='none'">
+      <span>Tibia's Summons</span>
+    </div></div></div><div class="tier-group"><h4 class="tier-header">C</h4><div class="spell-grid"><div class="weapon-tile">
+      <img src="Icons/Spells/Bloodboon.png" alt="Bloodboon" onerror="this.style.display='none'">
+      <span>Bloodboon</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Carian Phalanx.png" alt="Carian Phalanx" onerror="this.style.display='none'">
+      <span>Carian Phalanx</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Comet Azur.png" alt="Comet Azur" onerror="this.style.display='none'">
+      <span>Comet Azur</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Dragonfire.png" alt="Dragonfire" onerror="this.style.display='none'">
+      <span>Dragonfire</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Dragonice.png" alt="Dragonice" onerror="this.style.display='none'">
+      <span>Dragonice</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Flame of the Fell God.png" alt="Flame of the Fell God" onerror="this.style.display='none'">
+      <span>Flame of the Fell God</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Founding Rain of Stars.png" alt="Founding Rain of Stars" onerror="this.style.display='none'">
+      <span>Founding Rain of Stars</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Glintblade Phalanx.png" alt="Glintblade Phalanx" onerror="this.style.display='none'">
+      <span>Glintblade Phalanx</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Glintstone Breath.png" alt="Glintstone Breath" onerror="this.style.display='none'">
+      <span>Glintstone Breath</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Poison Mist.png" alt="Poison Mist" onerror="this.style.display='none'">
+      <span>Poison Mist</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Rotten Breath.png" alt="Rotten Breath" onerror="this.style.display='none'">
+      <span>Rotten Breath</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Scarlet Aeonia.png" alt="Scarlet Aeonia" onerror="this.style.display='none'">
+      <span>Scarlet Aeonia</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Shard Spiral.png" alt="Shard Spiral" onerror="this.style.display='none'">
+      <span>Shard Spiral</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Shatter Earth.png" alt="Shatter Earth" onerror="this.style.display='none'">
+      <span>Shatter Earth</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Zamor Ice Storm.png" alt="Zamor Ice Storm" onerror="this.style.display='none'">
+      <span>Zamor Ice Storm</span>
+    </div></div></div><div class="tier-group"><h4 class="tier-header">D</h4><div class="spell-grid"><div class="weapon-tile">
+      <img src="Icons/Spells/Ambush Shard.png" alt="Ambush Shard" onerror="this.style.display='none'">
+      <span>Ambush Shard</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Aspects of the Crucible Breath.png" alt="Aspects of the Crucible: Breath" onerror="this.style.display='none'">
+      <span>Aspects of the Crucible: Breath</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Beast Claw.png" alt="Beast Claw" onerror="this.style.display='none'">
+      <span>Beast Claw</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Briars of Punishment.png" alt="Briars of Punishment" onerror="this.style.display='none'">
+      <span>Briars of Punishment</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Briars of Sin.png" alt="Briars of Sin" onerror="this.style.display='none'">
+      <span>Briars of Sin</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Crystal Burst.png" alt="Crystal Burst" onerror="this.style.display='none'">
+      <span>Crystal Burst</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Death Lightning.png" alt="Death Lightning" onerror="this.style.display='none'">
+      <span>Death Lightning</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Fires Deadly Sin.png" alt="Fire's Deadly Sin" onerror="this.style.display='none'">
+      <span>Fire's Deadly Sin</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Freezing Mist.png" alt="Freezing Mist" onerror="this.style.display='none'">
+      <span>Freezing Mist</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Glintstone Stars.png" alt="Glintstone Stars" onerror="this.style.display='none'">
+      <span>Glintstone Stars</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Gurranqs Beast Claw.png" alt="Gurranq's Beast Claw" onerror="this.style.display='none'">
+      <span>Gurranq's Beast Claw</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Surge O Flame.png" alt="Surge O Flame!" onerror="this.style.display='none'">
+      <span>Surge O Flame!</span>
+    </div><div class="weapon-tile">
+      <img src="Icons/Spells/Swift Glintstone Shard.png" alt="Swift Glintstone Shard" onerror="this.style.display='none'">
+      <span>Swift Glintstone Shard</span>
+    </div></div></div></section></div>
+
+              <table id="scalingsTable" class="info-table hidden">
+                    <thead>
+                        <tr>
+                        <th>NIGHTFARER</th>
+                        <th>HP</th>
+                        <th>FP</th>
+                        <th>STA</th>
+                        <th>STR</th>
+                        <th>DEX</th>
+                        <th>INT</th>
+                        <th>FAI</th>
+                        <th>ARC</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><a>Duchess</a></td>
+                            <td>C</td><td>B</td><td>D</td><td>D</td><td>B</td><td>A</td><td>B</td><td>C</td>
+                        </tr>
+                        <tr>
+                            <td><a>Executor</a></td>
+                            <td>B</td><td>D</td><td>B</td><td>C</td><td>S</td><td>D</td><td>D</td><td>S</td>
+                        </tr>
+                        <tr>
+                            <td><a>Guardian</a></td>
+                            <td>S</td><td>C</td><td>A</td><td>B</td><td>C</td><td>D</td><td>C</td><td>C</td>
+                        </tr>
+                        <tr>
+                            <td><a>Ironeye</a></td>
+                            <td>C</td><td>C</td><td>B</td><td>C</td><td>A</td><td>D</td><td>D</td><td>B</td>
+                        </tr>
+                        <tr>
+                            <td><a>Raider</a></td>
+                            <td>A</td><td>D</td><td>A</td><td>S</td><td>C</td><td>D</td><td>D</td><td>C</td>
+                        </tr>
+                        <tr>
+                            <td><a>Recluse</a></td>
+                            <td>D</td><td>A</td><td>C</td><td>D</td><td>C</td><td>S</td><td>S</td><td>C</td>
+                        </tr>
+                        <tr>
+                            <td><a>Revenant</a></td>
+                            <td>D</td><td>A</td><td>D</td><td>C</td><td>C</td><td>B</td><td>S</td><td>B</td>
+                        </tr>
+                        <tr>
+                            <td><a>Wylder</a></td>
+                            <td>A</td><td>C</td><td>B</td><td>A</td><td>B</td><td>C</td><td>C</td><td>C</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+          </div>
+          <div id="mapContainer" class="map-container">
+              <button id="backButton" class="back-button" onclick="showSelections()">← Change Selection</button>
+              <div id="imageWrapper" class="image-wrapper">
+                <button id="resetMarkersButton" class="reset-markers-button" onclick="resetMarkers()">Reset Markers</button>
+                <div id="mapInstructions" class="map-instructions hidden">
+                    <p><strong>How to use:</strong></p>
+                    <ul>
+                        <li>Left‑click a marker to mark a Church.</li>
+                        <li>Right‑click to mark a Rise.</li>
+                        <li>Click “Reset Markers” to start over.</li>
+                    </ul>
+                </div>
+                <img id="mapImage" class="map-image" alt="Map" src="Maps/None.png">
+                <div id="mapOverlay" class="map-overlay" style="left: -2px; top: -2px; width: 925.6px; height: 925.6px; position: absolute; overflow: visible;"><div class="map-marker hidden" data-location-id="Northeast of Saintsbridge" style="left: 53.13%; top: 23.44%;"></div><div class="map-marker hidden" data-location-id="West of Warmasters Shack" style="left: 20.83%; top: 36.46%;"></div><div class="map-marker hidden" data-location-id="Below Summonwater Hawk" style="left: 68.68%; top: 37.43%;"></div><div class="map-marker hidden" data-location-id="Third Church" style="left: 78.13%; top: 36.46%;"></div><div class="map-marker hidden" data-location-id="Above Stormhill Tunnel Entrance" style="left: 36.46%; top: 40.69%;"></div><div class="map-marker hidden" data-location-id="Stormhill South of Gate" style="left: 19.86%; top: 57.29%;"></div><div class="map-marker hidden" data-location-id="Minor Erdtree" style="left: 75.52%; top: 62.5%;"></div><div class="map-marker church hidden" data-location-id="East of Cavalry Bridge" style="left: 55.34%; top: 64.45%;"></div><div class="map-marker hidden" data-location-id="Far Southwest" style="left: 19.53%; top: 71.61%;"></div><div class="map-marker hidden" data-location-id="Lake" style="left: 45.83%; top: 70.83%;"></div><div class="map-marker church hidden" data-location-id="Southeast of Lake" style="left: 57.29%; top: 80.73%;"></div><img src="Icons/Boss Icons/Gladius, Beast of Night.png" class="boss-overlay"><div class="overlay-label" style="left: 49%; top: 54%;">Banished Knights</div><img src="Icons/Locations/Fort.png" class="overlay-icon icon-fort" style="left: 39.71%; top: 78.13%;"><div class="overlay-label" style="left: 39.71%; top: 82.13%;">Guardian Golem</div><img src="Icons/Locations/Ruins.png" class="overlay-icon icon-ruins" style="left: 27.34%; top: 67.71%;"><div class="overlay-label" style="left: 27.34%; top: 71.71%;">Erdtree Burial Watchdogs</div><img src="Icons/Locations/Camp.png" class="overlay-icon icon-camp" style="left: 30.6%; top: 55.99%;"><div class="overlay-label" style="left: 30.6%; top: 59.99%;">Redmane Knights</div><img src="Icons/Locations/Fort.png" class="overlay-icon icon-fort" style="left: 27.67%; top: 45.57%;"><div class="overlay-label" style="left: 27.67%; top: 49.57%;">Guardian Golem</div><img src="Icons/Locations/Great Church.png" class="overlay-icon icon-great-church" style="left: 41.67%; top: 31.25%;"><div class="overlay-label" style="left: 41.67%; top: 35.25%;">Oracle Envoys</div><img src="Icons/Locations/Ruins.png" class="overlay-icon icon-ruins" style="left: 23.44%; top: 28.65%;"><div class="overlay-label" style="left: 23.44%; top: 32.65%;">Erdtree Burial Watchdogs</div><img src="Icons/Locations/Camp.png" class="overlay-icon icon-camp" style="left: 39.71%; top: 18.23%;"><div class="overlay-label" style="left: 39.71%; top: 22.23%;">Elder Lion</div><img src="Icons/Locations/Ruins.png" class="overlay-icon icon-ruins" style="left: 74.87%; top: 74.22%;"><div class="overlay-label" style="left: 74.87%; top: 78.22%;">Runebear</div><img src="Icons/Locations/Ruins.png" class="overlay-icon icon-ruins" style="left: 61.85%; top: 70.31%;"><div class="overlay-label" style="left: 61.85%; top: 74.31%;">Runebear</div><img src="Icons/Locations/Camp.png" class="overlay-icon icon-camp" style="left: 75.52%; top: 62.5%;"><div class="overlay-label" style="left: 75.52%; top: 66.5%;">Elder Lion</div><img src="Icons/Locations/Ruins.png" class="overlay-icon icon-ruins" style="left: 63.8%; top: 58.59%;"><div class="overlay-label" style="left: 63.8%; top: 62.59%;">Erdtree Burial Watchdogs</div><img src="Icons/Locations/Fort.png" class="overlay-icon icon-fort" style="left: 68.36%; top: 47.53%;"><div class="overlay-label" style="left: 68.36%; top: 51.53%;">Crystalians</div><img src="Icons/Locations/Ruins.png" class="overlay-icon icon-ruins" style="left: 59.9%; top: 42.32%;"><div class="overlay-label" style="left: 59.9%; top: 46.32%;">Albinauric Archers</div><img src="Icons/Locations/Great Church.png" class="overlay-icon icon-great-church" style="left: 78.13%; top: 42.32%;"><div class="overlay-label" style="left: 78.13%; top: 46.32%;">Oracle Envoys</div><img src="Icons/Locations/Great Church.png" class="overlay-icon icon-great-church" style="left: 63.8%; top: 29.95%;"><div class="overlay-label" style="left: 63.8%; top: 33.95%;">Guardian Golem</div><img src="Icons/Locations/Camp.png" class="overlay-icon icon-camp" style="left: 74.87%; top: 21.48%;"><div class="overlay-label" style="left: 74.87%; top: 25.48%;">Leonine Misbegotten</div><img src="Icons/Locations/Sorcerer's Rise.png" class="overlay-icon icon-sorcerer's-rise" style="left: 53.13%; top: 23.44%;"><div class="overlay-label" style="left: 53.13%; top: 27.44%;">Above Door</div><img src="Icons/Locations/Church.png" class="overlay-icon icon-church" style="left: 19.86%; top: 57.29%;"><img src="Icons/Locations/Church.png" class="overlay-icon icon-church" style="left: 55.34%; top: 64.45%;"><img src="Icons/Locations/Sorcerer's Rise.png" class="overlay-icon icon-sorcerer's-rise" style="left: 45.83%; top: 70.83%;"><div class="overlay-label" style="left: 45.83%; top: 74.83%;">Missing Statue</div><img src="Icons/Locations/Church.png" class="overlay-icon icon-church" style="left: 57.29%; top: 80.73%;"><img src="Icons/Locations/Strong Evergaol.png" class="overlay-icon icon-evergaol" style="left: 34.51%; top: 63.15%;"><div class="overlay-label" style="left: 34.51%; top: 67.15%;">Godskin Apostle</div><img src="Icons/Locations/Evergaol.png" class="overlay-icon icon-evergaol" style="left: 44.6%; top: 38.41%;"><div class="overlay-label" style="left: 44.6%; top: 42.41%;">Crucible Knight with Sword</div><img src="Icons/Locations/Strong Evergaol.png" class="overlay-icon icon-evergaol" style="left: 16.93%; top: 31.9%;"><div class="overlay-label" style="left: 16.93%; top: 35.9%;">Death Rite Bird</div><img src="Icons/Locations/Evergaol.png" class="overlay-icon icon-evergaol" style="left: 48.18%; top: 19.53%;"><div class="overlay-label" style="left: 48.18%; top: 23.53%;">Bloodhound Knight</div><img src="Icons/Locations/Evergaol.png" class="overlay-icon icon-evergaol" style="left: 61.85%; top: 76.82%;"><div class="overlay-label" style="left: 61.85%; top: 80.82%;">Banished Knights</div><img src="Icons/Locations/Evergaol.png" class="overlay-icon icon-evergaol" style="left: 79.1%; top: 48.83%;"><div class="overlay-label" style="left: 79.1%; top: 52.83%;">Grave Warden Duelist</div><img src="Icons/Locations/Evergaol.png" class="overlay-icon icon-evergaol" style="left: 63.15%; top: 36.46%;"><div class="overlay-label" style="left: 63.15%; top: 40.46%;">Beastly Brigade</div><div class="overlay-label" style="left: 45%; top: 57%;">Red Wolf</div><div class="overlay-label" style="left: 45%; top: 51%;">Ancestor Spirit</div><img src="Icons/Locations/Minor Field Boss.png" class="overlay-icon icon-field-boss" style="left: 30.6%; top: 81.38%;"><div class="overlay-label" style="left: 30.6%; top: 85.38%;">Miranda Blossom</div><img src="Icons/Locations/Major Field Boss.png" class="overlay-icon icon-field-boss" style="left: 43.62%; top: 72.27%;"><div class="overlay-label" style="left: 43.62%; top: 76.27%;">Flying Dragon</div><img src="Icons/Locations/Major Field Boss.png" class="overlay-icon icon-field-boss" style="left: 31.9%; top: 37.11%;"><div class="overlay-label" style="left: 31.9%; top: 41.11%;">Draconic Tree Sentinel</div><img src="Icons/Locations/Minor Field Boss.png" class="overlay-icon icon-field-boss" style="left: 46.88%; top: 36.46%;"><div class="overlay-label" style="left: 46.88%; top: 40.46%;">Royal Revenant</div><img src="Icons/Locations/Major Field Boss.png" class="overlay-icon icon-field-boss" style="left: 33.85%; top: 23.76%;"><div class="overlay-label" style="left: 33.85%; top: 27.76%;">Erdtree Avatar</div><img src="Icons/Locations/Minor Field Boss.png" class="overlay-icon icon-field-boss" style="left: 29.3%; top: 18.88%;"><div class="overlay-label" style="left: 29.3%; top: 22.88%;">Ancient Hero of Zamor</div><img src="Icons/Locations/Minor Field Boss.png" class="overlay-icon icon-field-boss" style="left: 69.99%; top: 76.82%;"><div class="overlay-label" style="left: 69.99%; top: 80.82%;">Demi-Human Queen</div><img src="Icons/Locations/Minor Field Boss.png" class="overlay-icon icon-field-boss" style="left: 76.5%; top: 50.46%;"><div class="overlay-label" style="left: 76.5%; top: 54.46%;">Night's Cavalry</div><img src="Icons/Locations/Minor Field Boss.png" class="overlay-icon icon-field-boss" style="left: 55.34%; top: 37.76%;"><div class="overlay-label" style="left: 55.34%; top: 41.76%;">Grafted Scion</div><img src="Icons/Locations/Major Field Boss.png" class="overlay-icon icon-field-boss" style="left: 65.1%; top: 21.48%;"><div class="overlay-label" style="left: 65.1%; top: 25.48%;">Royal Carian Knight</div><div class="boss-event-text">Seed: 17<br>Event: None</div><div class="circle-wrapper" style="left: 21.48%; top: 40.36%;"><img src="Icons/Locations/Storm.png" class="circle-icon"></div><div class="circle-label" style="left: 21.48%; top: 40.36%;">1.&nbsp;Bell Bearing Hunter</div><div class="circle-wrapper" style="left: 26.69%; top: 75.2%;"><img src="Icons/Locations/Storm.png" class="circle-icon"></div><div class="circle-label" style="left: 26.69%; top: 75.2%;">2.&nbsp;Tree Sentinel and Royal Cavalrymen</div><img src="Icons/Locations/Spawnpoint.png" class="overlay-icon icon-spawn-point" style="left: 68.68%; top: 37.43%;"></div>
+            </div>
+            <div id="errorMessage" class="error-message hidden"></div>
+            <div id="seedDisplay" class="seed-display hidden"></div>
+            <div id="seedInfo" class="seed-info hidden">
+                <img id="seedBossIcon" alt="Boss icon">
+                <div class="seed-info-text">
+                    <div id="seedId" class="seed-id"></div>
+                    <div id="seedEvent" class="seed-event"></div>
+                </div>
+            </div>
+          </div>
+          <div class="right-spacer" aria-hidden="true"></div>
+        </div> <!-- /.map-layout -->
+        
+        <div id="seedDisplay" class="seed-display hidden"></div>
+        <button id="viewSeedButton" class="reset-markers-button hidden">View Seed</button>
+        <img id="seedImage" class="hidden" alt="Seed Preview">
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script><style>::-webkit-scrollbar{width:0px; height:3px;} ::-webkit-scrollbar-thumb{background-color:#c1c1c1;} ::-webkit-scrollbar-thumb:hover{background-color:#666;} *{scrollbar-width:none!important;}</style><div class="my_noscrollbar_scroll_bar_iframe" data-name="iframe_sb"></div><div style="opacity: 0;"></div>
+    <script src="app.js" defer=""></script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+
+</body></html>

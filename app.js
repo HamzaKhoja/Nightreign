@@ -1089,9 +1089,9 @@ function renderPreferredSpells() {
                 userRises.every(r => s.riseLocations.includes(r));
         });
 
-        seedDisplay.textContent =
-            `${currentPossible.length} possible seed${currentPossible.length === 1 ? `: ${currentPossible[0].id}` : 's'}`;
-        seedDisplay.classList.remove('hidden');
+        // seedDisplay.textContent =
+        //     `${currentPossible.length} possible seed${currentPossible.length === 1 ? `: ${currentPossible[0].id}` : 's'}`;
+        // seedDisplay.classList.remove('hidden');
         // viewSeedButton.classList.toggle('hidden', currentPossible.length !== 1);
 
         if (currentPossible.length === 1) {
@@ -1225,11 +1225,14 @@ function renderPreferredSpells() {
     function showSpecialEvent(seedID) {
         // remove any old text
         mapOverlay.querySelectorAll('.boss-event-text').forEach(el => el.remove());
+
         // look up event (or “None”)
         const text = seedEvents[seedID] || 'None';
+
         const div = document.createElement('div');
         div.className = 'boss-event-text';
-        div.textContent = 'Special Event: ' + text;
+        div.innerHTML = 'Seed: ' + currentPossible[0].id + '<br>Event: ' + text;
+
         mapOverlay.appendChild(div);
     }
 
